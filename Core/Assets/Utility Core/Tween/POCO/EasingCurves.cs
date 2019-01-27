@@ -4,7 +4,7 @@ using UnityEngine;
 public class EasingCurves {
 	public enum List {
 		Linear, Quadratic,
-		Clerp, Spring, Punch,
+		Clerp, Spring,
 		EaseInQuad, EaseOutQuad, EaseInOutQuad,
 		EaseInCubic, EaseOutCubic, EaseInOutCubic,
 		EaseInQuart, EaseOutQuart, EaseInOutQuart,
@@ -18,7 +18,7 @@ public class EasingCurves {
 	}
 
 	#region Class implementation
-	public static float GetEaseValue (List ease, float value, float amplitude = 0) {
+	public static float GetEaseValue (List ease, float value) {
 		switch (ease) {
 			case List.Linear:
 				return Linear (value);
@@ -29,8 +29,6 @@ public class EasingCurves {
 				return Clerp (value);
 			case List.Spring:
 				return Spring (value);
-			case List.Punch:
-				return Punch (amplitude, value);
 
 			case List.EaseInQuad:
 				return EaseInQuad (value);
@@ -187,7 +185,6 @@ public class EasingCurves {
 
 	public static readonly Func<float, float> clerp = Clerp;
 	public static readonly Func<float, float> spring = Spring;
-	public static readonly Func<float, float, float> punch = Punch;
 
 	public static readonly Func<float, float> easeInQuad = EaseInQuad;
 	public static readonly Func<float, float> easeOutQuad = EaseOutQuad;
@@ -270,6 +267,7 @@ public class EasingCurves {
 		return start + (end - start) * value;
 	}
 
+	// Not use by any method
 	protected static float Punch (float amplitude, float value) {
 		float s = 9;
 		if (value == 0)
