@@ -81,15 +81,5 @@ public class CoreUtility {
 		}
 #endif
 	}
-
-	//public static SoundNamesEnum GetRandomSound (params SoundNamesEnum[] sounds) {
-	//	int randomIndex = Random.Range (0, sounds.Length);
-	//	return sounds[randomIndex];
-	//}
-
-	//public static SoundSO GetRandomSound (params SoundSO[] sounds) {
-	//	int randomIndex = Random.Range (0, sounds.Length);
-	//	return sounds[randomIndex];
-	//}
 	#endregion
 }
