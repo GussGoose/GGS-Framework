@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public class EasingCurvesEditorWindow : EditorWindow {
+public class EasingCurvesEditorWindowOld : EditorWindow {
 
 	#region Class members
 	private const float delay = 0.2f;
@@ -28,9 +28,9 @@ public class EasingCurvesEditorWindow : EditorWindow {
 	#endregion
 
 	#region Class overrides
-	[MenuItem ("Tools/Tween/Easing Curves")]
+	[MenuItem ("Tools/Tween/Easing Curves Old")]
 	static void Init () {
-		EasingCurvesEditorWindow window = (EasingCurvesEditorWindow) GetWindow (typeof (EasingCurvesEditorWindow));
+		EasingCurvesEditorWindowOld window = (EasingCurvesEditorWindowOld) GetWindow (typeof (EasingCurvesEditorWindowOld));
 		window.Show ();
 	}
 
@@ -40,7 +40,7 @@ public class EasingCurvesEditorWindow : EditorWindow {
 		padding = 10;
 
 		yOffset = 80;
-		resolution = 100;
+		resolution = 30;
 
 		EditorApplication.update += delegate { Repaint (); };
 	}
