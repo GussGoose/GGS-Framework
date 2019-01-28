@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TMPro_DarkSkin 2
+  m_Name: EasingCurves_DarkSkin
   m_EditorClassIdentifier: 
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_box:
@@ -1353,9 +1353,9 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   m_CustomStyles:
-  - m_Name: Box
+  - m_Name: Background
     m_Normal:
-      m_Background: {fileID: 2800000, guid: d29cb3985930952479ebe9dc61c7b5ef, type: 3}
+      m_Background: {fileID: 2800000, guid: c8cdf7d9be4eeb5449b57cc324927c3b, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.7835821, g: 0.7835821, b: 0.7835821, a: 1}
     m_Hover:
@@ -1419,9 +1419,9 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  - m_Name: Box Light
+  - m_Name: Ease
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 49463c5d22bc0bf4fb122d1a88fc4226, type: 3}
+      m_Background: {fileID: 2800000, guid: 290ea6e268c63eb4c97468e32afb993a, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     m_Hover:
