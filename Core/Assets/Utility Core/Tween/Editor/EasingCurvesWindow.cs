@@ -23,7 +23,7 @@ public class EasingCurvesWindow : EditorWindow {
 	#region Class accesors
 	public RectOffset WindowOffset { get { return new RectOffset (-5, (useScrollBar) ? -19 : -5, -5, -5); } }
 
-	private float Resolution { get { return 40; } }
+	private float Resolution { get { return 100; } }
 	private float PreviewDelay { get { return 0.05f; } }
 
 	private Vector2 Size { get { return new Vector2 (175, 175); } }
@@ -56,6 +56,7 @@ public class EasingCurvesWindow : EditorWindow {
 	[MenuItem ("Tools/Tween/Easing Curves")]
 	static void Init () {
 		EasingCurvesWindow window = (EasingCurvesWindow) GetWindow (typeof (EasingCurvesWindow));
+		window.titleContent = new GUIContent ("Easing Curves");
 		window.Show ();
 	}
 
@@ -76,6 +77,8 @@ public class EasingCurvesWindow : EditorWindow {
 		useScrollBar = tableSize.y > rect.height;
 		if (useScrollBar) {
 			Rect scrollBarRect = new Rect (position.width - 14, rect.yMin, 14, rect.height);
+
+			scrollPosition += Event.current.delta.y * 5;
 			scrollPosition = GUI.VerticalScrollbar (scrollBarRect, scrollPosition, scrollBarRect.height, 0, tableSize.y);
 		}
 
@@ -89,6 +92,9 @@ public class EasingCurvesWindow : EditorWindow {
 	}
 
 	private void DrawEase (Rect rect, EasingCurves.List ease) {
+		if (!windowRect.Overlaps (rect))
+			return;
+
 		Dictionary<string, Rect> rects = ExtendedRect.VerticalRects (rect,
 		new RectLayoutElement ("Header", 20),
 		new RectLayoutElement (1),
