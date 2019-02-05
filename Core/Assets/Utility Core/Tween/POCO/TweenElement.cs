@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TweenElement {
 
@@ -86,7 +83,7 @@ public class TweenElement {
 
 	public void Update (float elapsedTime) {
 		if (Reference == null) {
-			Stop (NewTweenStopAction.Nothing);
+			Stop (TweenStopAction.Nothing);
 			return;
 		}
 
@@ -94,7 +91,7 @@ public class TweenElement {
 			CurrentTime += elapsedTime;
 
 			if (CurrentTime >= Duration)
-				Stop (NewTweenStopAction.CompleteInterpolationMakeFinishCallback);
+				Stop (TweenStopAction.CompleteInterpolationMakeFinishCallback);
 			else
 				UpdateInterpolation ();
 		}
@@ -118,13 +115,13 @@ public class TweenElement {
 			State = TweenState.Running;
 	}
 
-	public void Stop (NewTweenStopAction stopAction) {
+	public void Stop (TweenStopAction stopAction) {
 		if (State == TweenState.Stopped)
 			return;
 
 		State = TweenState.Stopped;
 
-		if (stopAction == NewTweenStopAction.CompleteInterpolationMakeFinishCallback) {
+		if (stopAction == TweenStopAction.CompleteInterpolationMakeFinishCallback) {
 			CurrentTime = Duration;
 			UpdateInterpolation ();
 
@@ -133,7 +130,7 @@ public class TweenElement {
 				finishCallback = null;
 			}
 		}
-		else if (stopAction == NewTweenStopAction.MakeFinishCallback) {
+		else if (stopAction == TweenStopAction.MakeFinishCallback) {
 			if (finishCallback != null) {
 				finishCallback.Invoke (this);
 				finishCallback = null;

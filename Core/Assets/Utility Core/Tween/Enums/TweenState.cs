@@ -1,1 +1,5 @@
-﻿public enum TweenState { Running, Paused, Stopped }
+﻿public enum TweenState {
+	Running,
+	Paused,
+	Stopped
+}
