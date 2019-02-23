@@ -48,10 +48,12 @@ public class TweenElement {
 	/// Current value of interpolation between Start Value and End Value
 	/// </summary>
 	public float Value { get; private set; }
+	public float DeltaValue { get; private set; }
 	/// <summary>
 	/// Current progress of interpolation between Start Value and End Value
 	/// </summary>
 	public float Progress { get; private set; }
+	public float DeltaProgress { get; private set; }
 
 	/// <summary>
 	/// Ease funcion used by interpolation
@@ -65,7 +67,7 @@ public class TweenElement {
 
 	#region Class implementation
 	public TweenElement (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Func<float, float> ease, AnimationCurve customEase, Action<TweenElement> updateCallback, Action<TweenElement> finishCallback) {
-		Reference = Reference;
+		Reference = reference;
 		Id = id;
 		UniqueId = string.Concat (Reference.GetInstanceID (), Id);
 
@@ -98,8 +100,13 @@ public class TweenElement {
 	}
 
 	private void UpdateInterpolation () {
+		float previousProgress = Progress;
 		Progress = CurrentTime / Duration;
+		DeltaProgress = Progress - previousProgress;
+
+		float previousValue = Value;
 		Value = Mathf.LerpUnclamped (StartValue, EndValue, (CustomEase == null) ? Ease (Progress) : CustomEase.Evaluate (Progress));
+		DeltaValue = Value - previousValue;
 
 		if (updateCallback != null)
 			updateCallback.Invoke (this);
@@ -137,8 +144,5 @@ public class TweenElement {
 			}
 		}
 	}
-	#endregion
-
-	#region Interface implementation
 	#endregion
 }

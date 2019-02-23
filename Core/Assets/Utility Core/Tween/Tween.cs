@@ -14,7 +14,9 @@ public class Tween : MonoBehaviour {
 
 	#region Class overrides
 	private void Update () {
-		foreach (TweenElement tween in tweens) {
+		for (int i = 0; i < tweens.Count; i++) {
+			TweenElement tween = tweens[i];
+
 			if (tween.State == TweenState.Stopped) {
 				tweens.Remove (tween);
 				continue;
@@ -59,7 +61,7 @@ public class Tween : MonoBehaviour {
 
 	protected static TweenElement AddTween (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Func<float, float> ease, AnimationCurve customEase, Action<TweenElement> updateCallback, Action<TweenElement> finishCallback) {
 		if (root == null) {
-			root = new GameObject ("Tween", typeof (Tween));
+			root = new GameObject ("TweenManager", typeof (Tween));
 			DontDestroyOnLoad (root.gameObject);
 		}
 
@@ -67,7 +69,7 @@ public class Tween : MonoBehaviour {
 
 		foreach (TweenElement currentTween in tweens) {
 			if (tween.UniqueId == currentTween.UniqueId) {
-				tween.Stop (TweenStopAction.Nothing);
+				currentTween.Stop (TweenStopAction.Nothing);
 				tweens.Remove (currentTween);
 				break;
 			}
