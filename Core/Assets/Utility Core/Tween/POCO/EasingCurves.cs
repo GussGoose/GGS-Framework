@@ -21,84 +21,84 @@ public class EasingCurves {
 	public static float GetEaseValue (List ease, float value) {
 		switch (ease) {
 			case List.Linear:
-				return Linear (value);
+				return ComputeLinear (value);
 			case List.Quadratic:
-				return Quadratic (value);
+				return ComputeQuadratic (value);
 
 			case List.Clerp:
-				return Clerp (value);
+				return ComputeClerp (value);
 			case List.Spring:
-				return Spring (value);
+				return ComputeSpring (value);
 
 			case List.EaseInQuad:
-				return EaseInQuad (value);
+				return ComputeEaseInQuad (value);
 			case List.EaseOutQuad:
-				return EaseOutQuad (value);
+				return ComputeEaseOutQuad (value);
 			case List.EaseInOutQuad:
-				return EaseInOutQuad (value);
+				return ComputeEaseInOutQuad (value);
 
 			case List.EaseInCubic:
-				return EaseInCubic (value);
+				return ComputeEaseInCubic (value);
 			case List.EaseOutCubic:
-				return EaseOutCubic (value);
+				return ComputeEaseOutCubic (value);
 			case List.EaseInOutCubic:
-				return EaseInOutCubic (value);
+				return ComputeEaseInOutCubic (value);
 
 			case List.EaseInQuart:
-				return EaseInQuart (value);
+				return ComputeEaseInQuart (value);
 			case List.EaseOutQuart:
-				return EaseOutQuart (value);
+				return ComputeEaseOutQuart (value);
 			case List.EaseInOutQuart:
-				return EaseInOutQuart (value);
+				return ComputeEaseInOutQuart (value);
 
 			case List.EaseInQuint:
-				return EaseInQuint (value);
+				return ComputeEaseInQuint (value);
 			case List.EaseOutQuint:
-				return EaseOutQuint (value);
+				return ComputeEaseOutQuint (value);
 			case List.EaseInOutQuint:
-				return EaseInOutQuint (value);
+				return ComputeEaseInOutQuint (value);
 
 			case List.EaseInSine:
-				return EaseInSine (value);
+				return ComputeEaseInSine (value);
 			case List.EaseOutSine:
-				return EaseOutSine (value);
+				return ComputeEaseOutSine (value);
 			case List.EaseInOutSine:
-				return EaseInOutSine (value);
+				return ComputeEaseInOutSine (value);
 
 			case List.EaseInExpo:
-				return EaseInExpo (value);
+				return ComputeEaseInExpo (value);
 			case List.EaseOutExpo:
-				return EaseOutExpo (value);
+				return ComputeEaseOutExpo (value);
 			case List.EaseInOutExpo:
-				return EaseInOutExpo (value);
+				return ComputeEaseInOutExpo (value);
 
 			case List.EaseInCirc:
-				return EaseInCirc (value);
+				return ComputeEaseInCirc (value);
 			case List.EaseOutCirc:
-				return EaseOutCirc (value);
+				return ComputeEaseOutCirc (value);
 			case List.EaseInOutCirc:
-				return EaseInOutCirc (value);
+				return ComputeEaseInOutCirc (value);
 
 			case List.EaseInBounce:
-				return EaseInBounce (value);
+				return ComputeEaseInBounce (value);
 			case List.EaseOutBounce:
-				return EaseOutBounce (value);
+				return ComputeEaseOutBounce (value);
 			case List.EaseInOutBounce:
-				return EaseInOutBounce (value);
+				return ComputeEaseInOutBounce (value);
 
 			case List.EaseInBack:
-				return EaseInBack (value);
+				return ComputeEaseInBack (value);
 			case List.EaseOutBack:
-				return EaseOutBack (value);
+				return ComputeEaseOutBack (value);
 			case List.EaseInOutBack:
-				return EaseInOutBack (value);
+				return ComputeEaseInOutBack (value);
 
 			case List.EaseInElastic:
-				return EaseInElastic (value);
+				return ComputeEaseInElastic (value);
 			case List.EaseOutElastic:
-				return EaseOutElastic (value);
+				return ComputeEaseOutElastic (value);
 			case List.EaseInOutElastic:
-				return EaseInOutElastic (value);
+				return ComputeEaseInOutElastic (value);
 		}
 
 		return 0;
@@ -107,138 +107,138 @@ public class EasingCurves {
 	public static Func<float, float> GetEaseFunc (List ease) {
 		switch (ease) {
 			case List.Linear:
-				return linear;
+				return Linear;
 			case List.Quadratic:
-				return quadratic;
+				return Quadratic;
 			case List.Clerp:
-				return clerp;
+				return Clerp;
 			case List.Spring:
-				return spring;
+				return Spring;
 			case List.EaseInQuad:
-				return easeInQuad;
+				return EaseInQuad;
 			case List.EaseOutQuad:
-				return easeOutQuad;
+				return EaseOutQuad;
 			case List.EaseInOutQuad:
-				return easeInOutQuad;
+				return EaseInOutQuad;
 			case List.EaseInCubic:
-				return easeInCubic;
+				return EaseInCubic;
 			case List.EaseOutCubic:
-				return easeOutCubic;
+				return EaseOutCubic;
 			case List.EaseInOutCubic:
-				return easeInOutCubic;
+				return EaseInOutCubic;
 			case List.EaseInQuart:
-				return easeInQuart;
+				return EaseInQuart;
 			case List.EaseOutQuart:
-				return easeOutQuart;
+				return EaseOutQuart;
 			case List.EaseInOutQuart:
-				return easeInOutQuart;
+				return EaseInOutQuart;
 			case List.EaseInQuint:
-				return easeInQuint;
+				return EaseInQuint;
 			case List.EaseOutQuint:
-				return easeOutQuint;
+				return EaseOutQuint;
 			case List.EaseInOutQuint:
-				return easeInOutQuint;
+				return EaseInOutQuint;
 			case List.EaseInSine:
-				return easeInSine;
+				return EaseInSine;
 			case List.EaseOutSine:
-				return easeOutSine;
+				return EaseOutSine;
 			case List.EaseInOutSine:
-				return easeInOutSine;
+				return EaseInOutSine;
 			case List.EaseInExpo:
-				return easeInExpo;
+				return EaseInExpo;
 			case List.EaseOutExpo:
-				return easeOutExpo;
+				return EaseOutExpo;
 			case List.EaseInOutExpo:
-				return easeInOutExpo;
+				return EaseInOutExpo;
 			case List.EaseInCirc:
-				return easeInCirc;
+				return EaseInCirc;
 			case List.EaseOutCirc:
-				return easeOutCirc;
+				return EaseOutCirc;
 			case List.EaseInOutCirc:
-				return easeInOutCirc;
+				return EaseInOutCirc;
 			case List.EaseInBounce:
-				return easeInBounce;
+				return EaseInBounce;
 			case List.EaseOutBounce:
-				return easeOutBounce;
+				return EaseOutBounce;
 			case List.EaseInOutBounce:
-				return easeInOutBounce;
+				return EaseInOutBounce;
 			case List.EaseInBack:
-				return easeInBack;
+				return EaseInBack;
 			case List.EaseOutBack:
-				return easeOutBack;
+				return EaseOutBack;
 			case List.EaseInOutBack:
-				return easeInOutBack;
+				return EaseInOutBack;
 			case List.EaseInElastic:
-				return easeInElastic;
+				return EaseInElastic;
 			case List.EaseOutElastic:
-				return easeOutElastic;
+				return EaseOutElastic;
 			case List.EaseInOutElastic:
-				return easeInOutElastic;
+				return EaseInOutElastic;
 		}
 
 		return null;
 	}
 
 	#region Functions
-	public static readonly Func<float, float> linear = Linear;
-	public static readonly Func<float, float> quadratic = Quadratic;
+	public static readonly Func<float, float> Linear = ComputeLinear;
+	public static readonly Func<float, float> Quadratic = ComputeQuadratic;
 
-	public static readonly Func<float, float> clerp = Clerp;
-	public static readonly Func<float, float> spring = Spring;
+	public static readonly Func<float, float> Clerp = ComputeClerp;
+	public static readonly Func<float, float> Spring = ComputeSpring;
 
-	public static readonly Func<float, float> easeInQuad = EaseInQuad;
-	public static readonly Func<float, float> easeOutQuad = EaseOutQuad;
-	public static readonly Func<float, float> easeInOutQuad = EaseInOutQuad;
+	public static readonly Func<float, float> EaseInQuad = ComputeEaseInQuad;
+	public static readonly Func<float, float> EaseOutQuad = ComputeEaseOutQuad;
+	public static readonly Func<float, float> EaseInOutQuad = ComputeEaseInOutQuad;
 
-	public static readonly Func<float, float> easeInCubic = EaseInCubic;
-	public static readonly Func<float, float> easeOutCubic = EaseOutCubic;
-	public static readonly Func<float, float> easeInOutCubic = EaseInOutCubic;
+	public static readonly Func<float, float> EaseInCubic = ComputeEaseInCubic;
+	public static readonly Func<float, float> EaseOutCubic = ComputeEaseOutCubic;
+	public static readonly Func<float, float> EaseInOutCubic = ComputeEaseInOutCubic;
 
-	public static readonly Func<float, float> easeInQuart = EaseInQuart;
-	public static readonly Func<float, float> easeOutQuart = EaseOutQuart;
-	public static readonly Func<float, float> easeInOutQuart = EaseInOutQuart;
+	public static readonly Func<float, float> EaseInQuart = ComputeEaseInQuart;
+	public static readonly Func<float, float> EaseOutQuart = ComputeEaseOutQuart;
+	public static readonly Func<float, float> EaseInOutQuart = ComputeEaseInOutQuart;
 
-	public static readonly Func<float, float> easeInQuint = EaseInQuint;
-	public static readonly Func<float, float> easeOutQuint = EaseOutQuint;
-	public static readonly Func<float, float> easeInOutQuint = EaseInOutQuint;
+	public static readonly Func<float, float> EaseInQuint = ComputeEaseInQuint;
+	public static readonly Func<float, float> EaseOutQuint = ComputeEaseOutQuint;
+	public static readonly Func<float, float> EaseInOutQuint = ComputeEaseInOutQuint;
 
-	public static readonly Func<float, float> easeInSine = EaseInSine;
-	public static readonly Func<float, float> easeOutSine = EaseOutSine;
-	public static readonly Func<float, float> easeInOutSine = EaseInOutSine;
+	public static readonly Func<float, float> EaseInSine = ComputeEaseInSine;
+	public static readonly Func<float, float> EaseOutSine = ComputeEaseOutSine;
+	public static readonly Func<float, float> EaseInOutSine = ComputeEaseInOutSine;
 
-	public static readonly Func<float, float> easeInExpo = EaseInExpo;
-	public static readonly Func<float, float> easeOutExpo = EaseOutExpo;
-	public static readonly Func<float, float> easeInOutExpo = EaseInOutExpo;
+	public static readonly Func<float, float> EaseInExpo = ComputeEaseInExpo;
+	public static readonly Func<float, float> EaseOutExpo = ComputeEaseOutExpo;
+	public static readonly Func<float, float> EaseInOutExpo = ComputeEaseInOutExpo;
 
-	public static readonly Func<float, float> easeInCirc = EaseInCirc;
-	public static readonly Func<float, float> easeOutCirc = EaseOutCirc;
-	public static readonly Func<float, float> easeInOutCirc = EaseInOutCirc;
+	public static readonly Func<float, float> EaseInCirc = ComputeEaseInCirc;
+	public static readonly Func<float, float> EaseOutCirc = ComputeEaseOutCirc;
+	public static readonly Func<float, float> EaseInOutCirc = ComputeEaseInOutCirc;
 
-	public static readonly Func<float, float> easeInBounce = EaseInBounce;
-	public static readonly Func<float, float> easeOutBounce = EaseOutBounce;
-	public static readonly Func<float, float> easeInOutBounce = EaseInOutBounce;
+	public static readonly Func<float, float> EaseInBounce = ComputeEaseInBounce;
+	public static readonly Func<float, float> EaseOutBounce = ComputeEaseOutBounce;
+	public static readonly Func<float, float> EaseInOutBounce = ComputeEaseInOutBounce;
 
-	public static readonly Func<float, float> easeInBack = EaseInBack;
-	public static readonly Func<float, float> easeOutBack = EaseOutBack;
-	public static readonly Func<float, float> easeInOutBack = EaseInOutBack;
+	public static readonly Func<float, float> EaseInBack = ComputeEaseInBack;
+	public static readonly Func<float, float> EaseOutBack = ComputeEaseOutBack;
+	public static readonly Func<float, float> EaseInOutBack = ComputeEaseInOutBack;
 
-	public static readonly Func<float, float> easeInElastic = EaseInElastic;
-	public static readonly Func<float, float> easeOutElastic = EaseOutElastic;
-	public static readonly Func<float, float> easeInOutElastic = EaseInOutElastic;
+	public static readonly Func<float, float> EaseInElastic = ComputeEaseInElastic;
+	public static readonly Func<float, float> EaseOutElastic = ComputeEaseOutElastic;
+	public static readonly Func<float, float> EaseInOutElastic = ComputeEaseInOutElastic;
 	#endregion
 
 	#region Methods
-	protected static float Linear (float value) {
+	protected static float ComputeLinear (float value) {
 		float start = 0;
 		float end = 1;
 		return Mathf.Lerp (start, end, value);
 	}
 
-	protected static float Quadratic (float value) {
+	protected static float ComputeQuadratic (float value) {
 		return -4 * Mathf.Pow (value, 2) + value * 4;
 	}
 
-	protected static float Clerp (float value) {
+	protected static float ComputeClerp (float value) {
 		float start = 0;
 		float end = 1;
 		float min = 0.0f;
@@ -259,7 +259,7 @@ public class EasingCurves {
 		return retval;
 	}
 
-	protected static float Spring (float value) {
+	protected static float ComputeSpring (float value) {
 		float start = 0;
 		float end = 1;
 		value = Mathf.Clamp01 (value);
@@ -268,7 +268,7 @@ public class EasingCurves {
 	}
 
 	// Not use by any method
-	protected static float Punch (float amplitude, float value) {
+	protected static float ComputePunch (float amplitude, float value) {
 		float s = 9;
 		if (value == 0)
 			return 0;
@@ -280,21 +280,21 @@ public class EasingCurves {
 		return (amplitude * Mathf.Pow (2, -10 * value) * Mathf.Sin ((value * 1 - s) * (2 * Mathf.PI) / period));
 	}
 
-	protected static float EaseInQuad (float value) {
+	protected static float ComputeEaseInQuad (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * value * value + start;
 	}
 
-	protected static float EaseOutQuad (float value) {
+	protected static float ComputeEaseOutQuad (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return -end * value * (value - 2) + start;
 	}
 
-	protected static float EaseInOutQuad (float value) {
+	protected static float ComputeEaseInOutQuad (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 0.5f;
@@ -307,14 +307,14 @@ public class EasingCurves {
 		return -end * 0.5f * (value * (value - 2) - 1) + start;
 	}
 
-	protected static float EaseInCubic (float value) {
+	protected static float ComputeEaseInCubic (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * value * value * value + start;
 	}
 
-	protected static float EaseOutCubic (float value) {
+	protected static float ComputeEaseOutCubic (float value) {
 		float start = 0;
 		float end = 1;
 		value--;
@@ -322,7 +322,7 @@ public class EasingCurves {
 		return end * (value * value * value + 1) + start;
 	}
 
-	protected static float EaseInOutCubic (float value) {
+	protected static float ComputeEaseInOutCubic (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 0.5f;
@@ -335,14 +335,14 @@ public class EasingCurves {
 		return end * 0.5f * (value * value * value + 2) + start;
 	}
 
-	protected static float EaseInQuart (float value) {
+	protected static float ComputeEaseInQuart (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * value * value * value * value + start;
 	}
 
-	protected static float EaseOutQuart (float value) {
+	protected static float ComputeEaseOutQuart (float value) {
 		float start = 0;
 		float end = 1;
 		value--;
@@ -350,7 +350,7 @@ public class EasingCurves {
 		return -end * (value * value * value * value - 1) + start;
 	}
 
-	protected static float EaseInOutQuart (float value) {
+	protected static float ComputeEaseInOutQuart (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 0.5f;
@@ -363,14 +363,14 @@ public class EasingCurves {
 		return -end * 0.5f * (value * value * value * value - 2) + start;
 	}
 
-	protected static float EaseInQuint (float value) {
+	protected static float ComputeEaseInQuint (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * value * value * value * value * value + start;
 	}
 
-	protected static float EaseOutQuint (float value) {
+	protected static float ComputeEaseOutQuint (float value) {
 		float start = 0;
 		float end = 1;
 		value--;
@@ -378,7 +378,7 @@ public class EasingCurves {
 		return end * (value * value * value * value * value + 1) + start;
 	}
 
-	protected static float EaseInOutQuint (float value) {
+	protected static float ComputeEaseInOutQuint (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 0.5f;
@@ -391,42 +391,42 @@ public class EasingCurves {
 		return end * 0.5f * (value * value * value * value * value + 2) + start;
 	}
 
-	protected static float EaseInSine (float value) {
+	protected static float ComputeEaseInSine (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return -end * Mathf.Cos (value * (Mathf.PI * 0.5f)) + end + start;
 	}
 
-	protected static float EaseOutSine (float value) {
+	protected static float ComputeEaseOutSine (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * Mathf.Sin (value * (Mathf.PI * 0.5f)) + start;
 	}
 
-	protected static float EaseInOutSine (float value) {
+	protected static float ComputeEaseInOutSine (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return -end * 0.5f * (Mathf.Cos (Mathf.PI * value) - 1) + start;
 	}
 
-	protected static float EaseInExpo (float value) {
+	protected static float ComputeEaseInExpo (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * Mathf.Pow (2, 10 * (value - 1)) + start;
 	}
 
-	protected static float EaseOutExpo (float value) {
+	protected static float ComputeEaseOutExpo (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return end * (-Mathf.Pow (2, -10 * value) + 1) + start;
 	}
 
-	protected static float EaseInOutExpo (float value) {
+	protected static float ComputeEaseInOutExpo (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 0.5f;
@@ -439,14 +439,14 @@ public class EasingCurves {
 		return end * 0.5f * (-Mathf.Pow (2, -10 * value) + 2) + start;
 	}
 
-	protected static float EaseInCirc (float value) {
+	protected static float ComputeEaseInCirc (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		return -end * (Mathf.Sqrt (1 - value * value) - 1) + start;
 	}
 
-	protected static float EaseOutCirc (float value) {
+	protected static float ComputeEaseOutCirc (float value) {
 		float start = 0;
 		float end = 1;
 		value--;
@@ -454,7 +454,7 @@ public class EasingCurves {
 		return end * Mathf.Sqrt (1 - value * value) + start;
 	}
 
-	protected static float EaseInOutCirc (float value) {
+	protected static float ComputeEaseInOutCirc (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 0.5f;
@@ -465,15 +465,15 @@ public class EasingCurves {
 		return end * 0.5f * (Mathf.Sqrt (1 - value * value) + 1) + start;
 	}
 
-	protected static float EaseInBounce (float value) {
+	protected static float ComputeEaseInBounce (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		float d = 1f;
-		return end - EaseOutBounce (d - value) + start;
+		return end - ComputeEaseOutBounce (d - value) + start;
 	}
 
-	protected static float EaseOutBounce (float value) {
+	protected static float ComputeEaseOutBounce (float value) {
 		float start = 0;
 		float end = 1;
 		value /= 1f;
@@ -495,19 +495,19 @@ public class EasingCurves {
 		}
 	}
 
-	protected static float EaseInOutBounce (float value) {
+	protected static float ComputeEaseInOutBounce (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
 		float d = 1f;
 
 		if (value < d * 0.5f)
-			return EaseInBounce (value * 2) * 0.5f + start;
+			return ComputeEaseInBounce (value * 2) * 0.5f + start;
 		else
-			return EaseOutBounce (value * 2 - d) * 0.5f + end * 0.5f + start;
+			return ComputeEaseOutBounce (value * 2 - d) * 0.5f + end * 0.5f + start;
 	}
 
-	protected static float EaseInBack (float value) {
+	protected static float ComputeEaseInBack (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
@@ -516,7 +516,7 @@ public class EasingCurves {
 		return end * (value) * value * ((s + 1) * value - s) + start;
 	}
 
-	protected static float EaseOutBack (float value) {
+	protected static float ComputeEaseOutBack (float value) {
 		float start = 0;
 		float end = 1;
 		float s = 1.70158f;
@@ -525,7 +525,7 @@ public class EasingCurves {
 		return end * ((value) * value * ((s + 1) * value + s) + 1) + start;
 	}
 
-	protected static float EaseInOutBack (float value) {
+	protected static float ComputeEaseInOutBack (float value) {
 		float start = 0;
 		float end = 1;
 		float s = 1.70158f;
@@ -541,7 +541,7 @@ public class EasingCurves {
 		return end * 0.5f * ((value) * value * (((s) + 1) * value + s) + 2) + start;
 	}
 
-	protected static float EaseInElastic (float value) {
+	protected static float ComputeEaseInElastic (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
@@ -567,7 +567,7 @@ public class EasingCurves {
 		return -(a * Mathf.Pow (2, 10 * (value -= 1)) * Mathf.Sin ((value * d - s) * (2 * Mathf.PI) / p)) + start;
 	}
 
-	protected static float EaseOutElastic (float value) {
+	protected static float ComputeEaseOutElastic (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;
@@ -593,7 +593,7 @@ public class EasingCurves {
 		return (a * Mathf.Pow (2, -10 * value) * Mathf.Sin ((value * d - s) * (2 * Mathf.PI) / p) + end + start);
 	}
 
-	protected static float EaseInOutElastic (float value) {
+	protected static float ComputeEaseInOutElastic (float value) {
 		float start = 0;
 		float end = 1;
 		end -= start;

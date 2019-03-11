@@ -29,11 +29,11 @@ public class Tween : MonoBehaviour {
 
 	#region Class implementation
 	public static TweenElement Create (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Action<TweenElement> updateCallback) {
-		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.linear, null, updateCallback, null);
+		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.Linear, null, updateCallback, null);
 	}
 
 	public static TweenElement Create (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Action<TweenElement> updateCallback, Action<TweenElement> finishCallback) {
-		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.linear, null, updateCallback, finishCallback);
+		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.Linear, null, updateCallback, finishCallback);
 	}
 
 	public static TweenElement Create (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Func<float, float> ease, Action<TweenElement> updateCallback) {
@@ -45,18 +45,18 @@ public class Tween : MonoBehaviour {
 	}
 
 	public static TweenElement Create (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, AnimationCurve ease, Action<TweenElement> updateCallback) {
-		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.linear, ease, updateCallback, null);
+		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.Linear, ease, updateCallback, null);
 	}
 
 	public static TweenElement Create (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, AnimationCurve ease, Action<TweenElement> updateCallback, Action<TweenElement> finishCallback) {
-		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.linear, ease, updateCallback, finishCallback);
+		return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.Linear, ease, updateCallback, finishCallback);
 	}
 
 	/// <summary>
 	/// Makes delay, when end, "Finish" is called.
 	/// </summary>
 	public static TweenElement Delay (GameObject reference, string id, bool unscaledTime, float time, Action<TweenElement> finishCallback) {
-		return AddTween (reference, id, unscaledTime, 0, 1, time, EasingCurves.linear, null, null, finishCallback);
+		return AddTween (reference, id, unscaledTime, 0, 1, time, EasingCurves.Linear, null, null, finishCallback);
 	}
 
 	protected static TweenElement AddTween (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Func<float, float> ease, AnimationCurve customEase, Action<TweenElement> updateCallback, Action<TweenElement> finishCallback) {

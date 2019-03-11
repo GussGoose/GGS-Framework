@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class ExtendedGUI {
 
+	#region Class accesors
+	public static Color DefaultTittleColor { get { return (EditorGUIUtility.isProSkin) ? Color.black : new Color (0.705f, 0.705f, 0.705f, 1); } }
+	#endregion
+
 	#region Class implementation
 	public static void BeginInspector () {
 		EditorGUILayout.BeginHorizontal ();
@@ -15,36 +19,9 @@ public class ExtendedGUI {
 		EditorGUILayout.EndHorizontal ();
 	}
 
-	//public static void DrawTitle (string content, FontStyle fontStyle, GUIStyle style, float height = 18) {
-	//	GUIStyle labelStyle = GUI.skin.GetStyle ("Label");
-	//	labelStyle.alignment = TextAnchor.MiddleCenter;
-	//	labelStyle.normal.textColor = Color.white;
-	//	labelStyle.fontStyle = fontStyle;
-
-	//	if (style == null)
-	//		style = new GUIStyle ();
-
-	//	Rect rect = EditorGUILayout.GetControlRect (GUILayout.MinWidth (0), GUILayout.Height (height));
-	//	GUI.Box (rect, new GUIContent (), style);
-	//	GUI.Label (rect, content, labelStyle);
-	//}
-
-	//public static void DrawTitle (Rect rect, string content, FontStyle fontStyle, GUIStyle style) {
-	//	GUIStyle labelStyle = GUI.skin.GetStyle ("Label");
-	//	labelStyle.alignment = TextAnchor.MiddleCenter;
-	//	labelStyle.normal.textColor = Color.white;
-	//	labelStyle.fontStyle = fontStyle;
-
-	//	if (style == null)
-	//		style = new GUIStyle ();
-
-	//	GUI.Box (rect, new GUIContent (), style);
-	//	GUI.Label (rect, content, labelStyle);
-	//}
-
 	#region DrawTitle with automatic layout
 	public static void DrawTitle (string content) {
-		DoDrawTitle (content, null, Color.white, FontStyle.Normal, TextAnchor.MiddleCenter);
+		DoDrawTitle (content, null, DefaultTittleColor, FontStyle.Normal, TextAnchor.MiddleCenter);
 	}
 
 	public static void DrawTitle (string content, Color color) {
@@ -56,11 +33,11 @@ public class ExtendedGUI {
 	}
 
 	public static void DrawTitle (string content, FontStyle fontStyle = FontStyle.Normal, TextAnchor aligment = TextAnchor.MiddleCenter) {
-		DoDrawTitle (content, null, Color.white, fontStyle, aligment);
+		DoDrawTitle (content, null, DefaultTittleColor, fontStyle, aligment);
 	}
 
 	public static void DrawTitle (string content, GUIStyle backgroundStyle) {
-		DoDrawTitle (content, backgroundStyle, Color.white, FontStyle.Normal, TextAnchor.MiddleCenter);
+		DoDrawTitle (content, backgroundStyle, DefaultTittleColor, FontStyle.Normal, TextAnchor.MiddleCenter);
 	}
 
 	public static void DrawTitle (string content, GUIStyle backgroundStyle, Color color) {
@@ -72,13 +49,13 @@ public class ExtendedGUI {
 	}
 
 	public static void DrawTitle (string content, GUIStyle backgroundStyle, FontStyle fontStyle = FontStyle.Normal, TextAnchor aligment = TextAnchor.MiddleCenter) {
-		DoDrawTitle (content, backgroundStyle, Color.white, fontStyle, aligment);
+		DoDrawTitle (content, backgroundStyle, DefaultTittleColor, fontStyle, aligment);
 	}
 	#endregion
 
 	#region DrawTitle without automatic layout
 	public static void DrawTitle (Rect rect, string content) {
-		DoDrawTitle (rect, content, null, Color.white, FontStyle.Normal, TextAnchor.MiddleCenter);
+		DoDrawTitle (rect, content, null, DefaultTittleColor, FontStyle.Normal, TextAnchor.MiddleCenter);
 	}
 
 	public static void DrawTitle (Rect rect, string content, Color color) {
@@ -90,11 +67,11 @@ public class ExtendedGUI {
 	}
 
 	public static void DrawTitle (Rect rect, string content, FontStyle fontStyle = FontStyle.Normal, TextAnchor aligment = TextAnchor.MiddleCenter) {
-		DoDrawTitle (rect, content, null, Color.white, fontStyle, aligment);
+		DoDrawTitle (rect, content, null, DefaultTittleColor, fontStyle, aligment);
 	}
 
 	public static void DrawTitle (Rect rect, string content, GUIStyle backgroundStyle) {
-		DoDrawTitle (rect, content, backgroundStyle, Color.white, FontStyle.Normal, TextAnchor.MiddleCenter);
+		DoDrawTitle (rect, content, backgroundStyle, DefaultTittleColor, FontStyle.Normal, TextAnchor.MiddleCenter);
 	}
 
 	public static void DrawTitle (Rect rect, string content, GUIStyle backgroundStyle, Color color) {
@@ -106,7 +83,7 @@ public class ExtendedGUI {
 	}
 
 	public static void DrawTitle (Rect rect, string content, GUIStyle backgroundStyle, FontStyle fontStyle = FontStyle.Normal, TextAnchor aligment = TextAnchor.MiddleCenter) {
-		DoDrawTitle (rect, content, backgroundStyle, Color.white, fontStyle, aligment);
+		DoDrawTitle (rect, content, backgroundStyle, DefaultTittleColor, fontStyle, aligment);
 	}
 	#endregion
 
