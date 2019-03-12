@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -24,3 +24,4 @@ public class PopupMenu {
 	}
 	#endregion
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
@@ -57,3 +58,4 @@ public class PopupMenuWindow : PopupWindowContent {
 	}
 	#endregion
 }
+#endif

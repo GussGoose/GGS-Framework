@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.IMGUI.Controls;
 
@@ -44,4 +45,5 @@ public class EnumPopupTreeView : TreeView {
 			onEnumSelected (id);
 	}
 	#endregion
-}
+} 
+#endif

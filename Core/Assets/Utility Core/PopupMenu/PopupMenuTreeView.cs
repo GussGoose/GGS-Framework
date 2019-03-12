@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿#if UNITY_EDITOR
 using UnityEditor.IMGUI.Controls;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PopupMenuTreeView : TreeView {
 
@@ -46,3 +47,4 @@ public class PopupMenuTreeView : TreeView {
 	}
 	#endregion
 }
+#endif

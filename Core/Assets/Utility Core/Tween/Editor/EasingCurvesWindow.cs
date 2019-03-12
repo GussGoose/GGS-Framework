@@ -30,8 +30,8 @@ public class EasingCurvesWindow : EditorWindow {
 
 	#region Class overrides
 	private void OnEnable () {
-		darkSkin = EditorGUIUtility.Load ("EasingCurves/EasingCurves_DarkSkin.guiskin") as GUISkin;
-		lightSkin = EditorGUIUtility.Load ("EasingCurves/EasingCurves_LightSkin.guiskin") as GUISkin;
+		darkSkin = EditorGUIUtility.Load ("TweenEasingCurves/TweenEasingCurves_DarkSkin.guiskin") as GUISkin;
+		lightSkin = EditorGUIUtility.Load ("TweenEasingCurves/TweenEasingCurves_LightSkin.guiskin") as GUISkin;
 		skin = (EditorGUIUtility.isProSkin) ? darkSkin : lightSkin;
 
 		EditorApplication.update += delegate { Repaint (); };
@@ -59,7 +59,7 @@ public class EasingCurvesWindow : EditorWindow {
 	}
 
 	private void DrawHeader (Rect rect) {
-		GUI.Label (rect, "Easing Curves", skin.GetStyle ("Header"));
+		GUI.Label (rect, "Tween Easing Curves", skin.GetStyle ("Header"));
 	}
 
 	private void DrawEasings (Rect rect) {

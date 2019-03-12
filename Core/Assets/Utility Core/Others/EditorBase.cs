@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿#if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine.UI;
-using System;
 
 public class EditorBase<T> : Editor where T : class {
 
-	#region Class members
-	public new T targetClass;
-	public SerializedObject serializedObject;
-	#endregion
+#region Class members
+	public T targetClass;
+	public new SerializedObject serializedObject;
+#endregion
 
-	#region Class overrides
+#region Class overrides
 	public virtual void OnEnable () {
 		targetClass = base.target as T;
 		serializedObject = new SerializedObject (base.target);
 	}
-	#endregion
-}
+#endregion
+} 
+#endif

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
@@ -13,7 +14,6 @@ public class CustomReorderableList {
 	public UnityEventT<int> onElementAdded = new UnityEventT<int> ();
 	public UnityEventT<int> onElementInserted = new UnityEventT<int> ();
 	public UnityEventT<int> onElementDuplicated = new UnityEventT<int> ();
-	private System.Type elementType;
 
 	public Rect Rect { get; private set; }
 
@@ -126,7 +126,6 @@ public class CustomReorderableList {
 	}
 
 	private void InitList (System.Type elementType, bool draggable, bool displayHeader, float headerHeight, string headerTitle, string headerStyle, FontStyle headerFontStyle, bool displayBackground, string backgroundStyle, float elementHeight, bool displayFooter, bool displayRemove, float footerHeight) {
-		this.elementType = elementType;
 		Draggable = draggable;
 
 		this.displayHeader = displayHeader;
@@ -349,3 +348,4 @@ public class CustomReorderableList {
 	}
 	#endregion
 }
+#endif

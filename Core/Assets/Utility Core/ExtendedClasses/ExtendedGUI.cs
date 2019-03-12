@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 public class ExtendedGUI {
 
 	#region Class accesors
-	public static Color DefaultTittleColor { get { return (EditorGUIUtility.isProSkin) ? Color.black : new Color (0.705f, 0.705f, 0.705f, 1); } }
+	public static Color DefaultTittleColor { get { return (EditorGUIUtility.isProSkin) ? new Color (0.705f, 0.705f, 0.705f, 1) : Color.black; } }
 	#endregion
 
 	#region Class implementation
@@ -110,3 +111,4 @@ public class ExtendedGUI {
 	}
 	#endregion
 }
+#endif
