@@ -5,10 +5,6 @@ using UnityEngine;
 public class EasingCurvesWindow : EditorWindow {
 
 	#region Class members
-	private GUISkin darkSkin;
-	private GUISkin lightSkin;
-	private GUISkin skin;
-
 	private bool useScrollBar;
 	private float scrollPosition;
 
@@ -30,10 +26,6 @@ public class EasingCurvesWindow : EditorWindow {
 
 	#region Class overrides
 	private void OnEnable () {
-		darkSkin = EditorGUIUtility.Load ("TweenEasingCurves/TweenEasingCurves_DarkSkin.guiskin") as GUISkin;
-		lightSkin = EditorGUIUtility.Load ("TweenEasingCurves/TweenEasingCurves_LightSkin.guiskin") as GUISkin;
-		skin = (EditorGUIUtility.isProSkin) ? darkSkin : lightSkin;
-
 		EditorApplication.update += delegate { Repaint (); };
 	}
 
@@ -59,11 +51,11 @@ public class EasingCurvesWindow : EditorWindow {
 	}
 
 	private void DrawHeader (Rect rect) {
-		GUI.Label (rect, "Tween Easing Curves", skin.GetStyle ("Header"));
+		GUI.Label (rect, "Tween Easing Curves", EasingCurvesStyles.Header);
 	}
 
 	private void DrawEasings (Rect rect) {
-		skin.GetStyle ("Background").Draw (rect);
+		EasingCurvesStyles.Background.Draw (rect);
 		rect = new RectOffset (0, 0, -4, -4).Add (rect);
 
 		int easeCount = System.Enum.GetValues (typeof (EasingCurves.List)).Length;
@@ -101,8 +93,8 @@ public class EasingCurvesWindow : EditorWindow {
 		Rect originalEaseRect = rects["Ease"];
 		Rect easeRect = originalEaseRect;
 
-		GUI.Label (rects["Header"], ease.ToString ().ToTitleCase (), skin.GetStyle ("Header"));
-		skin.GetStyle ("Ease").Draw (easeRect);
+		GUI.Label (rects["Header"], ease.ToString ().ToTitleCase (), EasingCurvesStyles.Header);
+		EasingCurvesStyles.Ease.Draw (easeRect);
 
 		GUI.BeginGroup (easeRect);
 		easeRect.position = Vector2.zero;
@@ -149,10 +141,10 @@ public class EasingCurvesWindow : EditorWindow {
 			Vector2 position = new Vector2 (offset.x + previewTime * easeRect.width, offset.y + -EasingCurves.GetEaseValue (ease, previewTime) * (easeRect.height - verticalOffset * 2));
 
 			Rect circleRect = new Rect (originalEaseRect.position + position - Vector2.one * 4f, Vector2.one * 8);
-			skin.GetStyle ("Circle").Draw (circleRect);
+			EasingCurvesStyles.Circle.Draw (circleRect);
 
 			Rect arrowRect = new Rect (originalEaseRect.xMax + 5, originalEaseRect.y + position.y - 6, 20, 12);
-			skin.GetStyle ("Arrow").Draw (arrowRect);
+			EasingCurvesStyles.Arrow.Draw (arrowRect);
 		}
 	}
 
@@ -183,8 +175,5 @@ public class EasingCurvesWindow : EditorWindow {
 		tableSize = new Vector2 (tableCellCount.x * cellSize.x + (tableCellCount.x - 1) * cellSpacing.x, tableCellCount.y * cellSize.y + (tableCellCount.y - 1) * cellSpacing.y);
 		return rects;
 	}
-	#endregion
-
-	#region Interface implementation
 	#endregion
 }

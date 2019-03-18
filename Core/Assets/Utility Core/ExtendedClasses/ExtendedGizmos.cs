@@ -1,85 +1,41 @@
 ﻿#if UNITY_EDITOR
-using UnityEditor; 
+using UnityEditor;
 #endif
 using UnityEngine;
 
-public class ExtendedGizmos {
+public static class ExtendedGizmos {
 
 	#region Class implementation
-	public static void DrawTextPoint (Vector2 position, string text) {
+	public static void DrawTextPoint (Vector3 position, string text) {
 #if UNITY_EDITOR
 		SceneView sceneView = SceneView.currentDrawingSceneView;
-		Rect sceneViewRect = sceneView.camera.pixelRect;
-
-		Handles.DrawWireDisc (position, Vector3.back, 0.5f);
-		Handles.DrawLine (position + Vector2.up * 0.5f, position + Vector2.down * 0.5f);
-		Handles.DrawLine (position + Vector2.left * 0.5f, position + Vector2.right * 0.5f);
+		Camera camera = sceneView.camera;
+		Rect sceneViewRect = camera.pixelRect;
 
 		Handles.BeginGUI ();
 
-		Vector2 boxPosition = sceneView.camera.WorldToScreenPoint (position + Vector2.down * 0.75f);
-		Vector2 boxSize = GUI.skin.label.CalcSize (new GUIContent (text)) + Vector2.right;
-		//boxSize /= sceneView.size;
-		//boxSize *= 50;
-		Rect boxRect = new Rect (new Vector2 (boxPosition.x - boxSize.x / 2f, -boxPosition.y + sceneViewRect.height), boxSize);
+		Vector2 size = CoreUtilityStyles.TextPoint.CalcSize (new GUIContent (text));
+		Rect sizedRect = HandleUtility.WorldPointToSizedRect (position, GUIContent.none, GUIStyle.none);
+		sizedRect.size = size;
+		sizedRect.position = sizedRect.position - size / 2f;
+		GUI.Label (sizedRect, new GUIContent (text), CoreUtilityStyles.TextPoint);
 
-		GUI.Box (boxRect, "", EditorStyles.helpBox);
-
-		GUIStyle style = new GUIStyle (GUI.skin.label);
-		style.fontStyle = FontStyle.Normal;
-		style.alignment = TextAnchor.MiddleCenter;
-		style.clipping = TextClipping.Overflow;
-		//style.fontSize = 500 / (int) sceneView.size;
-		GUI.Label (boxRect, new GUIContent (text), style);
-
-		Handles.EndGUI (); 
+		Handles.EndGUI ();
 #endif
 	}
 
-	public static void DrawTextPoint (Vector2 position, string text, Color color) {
+	public static void DrawBracketIndicator (Vector3 startPosition, Vector3 endPosition, string text, Color color, float spacing = 1, float arrowSize = 2) {
 #if UNITY_EDITOR
-		SceneView sceneView = SceneView.currentDrawingSceneView;
-		Rect sceneViewRect = sceneView.camera.pixelRect;
+		Vector3 lineDirection = endPosition - startPosition;
+		Vector3 perpLineDirection = new Vector3 (lineDirection.y, -lineDirection.x).normalized;
+		Vector3 startSpacedPos = startPosition + perpLineDirection * spacing;
+		Vector3 endSpacedPos = endPosition + perpLineDirection * spacing;
+		Vector3 middleSpacedPos = startSpacedPos + lineDirection / 2f;
 
-		Handles.color = color;
-		Handles.DrawWireDisc (position, Vector3.back, 0.5f);
-		Handles.DrawLine (position + Vector2.up * 0.5f, position + Vector2.down * 0.5f);
-		Handles.DrawLine (position + Vector2.left * 0.5f, position + Vector2.right * 0.5f);
-		Handles.color = Color.white;
-
-		Handles.BeginGUI ();
-
-		Vector2 boxPosition = sceneView.camera.WorldToScreenPoint (position + Vector2.down * 0.75f);
-		Vector2 boxSize = GUI.skin.label.CalcSize (new GUIContent (text)) + Vector2.right;
-		//boxSize /= sceneView.size;
-		//boxSize *= 50;
-		Rect boxRect = new Rect (new Vector2 (boxPosition.x - boxSize.x / 2f, -boxPosition.y + sceneViewRect.height), boxSize);
-
-		GUI.Box (boxRect, "", EditorStyles.helpBox);
-
-		GUIStyle style = new GUIStyle (GUI.skin.label);
-		style.fontStyle = FontStyle.Normal;
-		style.alignment = TextAnchor.MiddleCenter;
-		style.clipping = TextClipping.Overflow;
-		//style.fontSize = 500 / (int) sceneView.size;
-		GUI.Label (boxRect, new GUIContent (text), style);
-
-		Handles.EndGUI (); 
-#endif
-	}
-
-	public static void DrawBracketIndicator (Vector2 startPosition, Vector2 endPosition, string text, Color color, float spacing = 1, float arrowSize = 2) {
-#if UNITY_EDITOR
-		Vector2 lineDirection = endPosition - startPosition;
-		Vector2 perpLineDirection = new Vector2 (lineDirection.y, -lineDirection.x).normalized;
-		Vector2 startSpacedPos = startPosition + perpLineDirection * spacing;
-		Vector2 endSpacedPos = endPosition + perpLineDirection * spacing;
-		Vector2 middleSpacedPos = startSpacedPos + lineDirection / 2f;
-
-		Vector2 arrowOffset = lineDirection.normalized * arrowSize / 2f;
-		Vector2 startArrowPos = middleSpacedPos - arrowOffset;
-		Vector2 endArrowPos = middleSpacedPos + arrowOffset;
-		Vector2 middleArrowPos = middleSpacedPos + perpLineDirection * arrowSize / 2f;
+		Vector3 arrowOffset = lineDirection.normalized * arrowSize / 2f;
+		Vector3 startArrowPos = middleSpacedPos - arrowOffset;
+		Vector3 endArrowPos = middleSpacedPos + arrowOffset;
+		Vector3 middleArrowPos = middleSpacedPos + perpLineDirection * arrowSize / 2f;
 
 		Handles.color = color;
 		Handles.DrawLine (startPosition, startSpacedPos);
@@ -94,25 +50,7 @@ public class ExtendedGizmos {
 		SceneView sceneView = SceneView.currentDrawingSceneView;
 		Rect sceneViewRect = sceneView.camera.pixelRect;
 
-		Handles.BeginGUI ();
-
-		Vector2 boxPosition = sceneView.camera.WorldToScreenPoint (middleArrowPos + perpLineDirection * 0.2f);
-		Vector2 boxSize = GUI.skin.label.CalcSize (new GUIContent (text)) + Vector2.right;
-		boxPosition.x += boxSize.x / 2f * perpLineDirection.x;
-		boxPosition.y += boxSize.y / 2f * perpLineDirection.y;
-
-		//boxSize /= sceneView.size;
-		//boxSize *= 50;
-		Rect boxRect = new Rect (new Vector2 (boxPosition.x - boxSize.x / 2f, (-boxPosition.y - boxSize.y / 2f) + sceneViewRect.height), boxSize);
-
-		GUI.Box (boxRect, "", EditorStyles.helpBox);
-
-		GUIStyle style = new GUIStyle (GUI.skin.label);
-		style.alignment = TextAnchor.MiddleCenter;
-		//style.fontSize = 500 / (int) sceneView.size;
-		GUI.Label (boxRect, new GUIContent (text), style);
-
-		Handles.EndGUI ();
+		DrawTextPoint (middleArrowPos, text);
 #endif
 	}
 
