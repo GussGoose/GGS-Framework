@@ -7,7 +7,7 @@ public class EnumPopupTreeView : TreeView {
 
 	#region Class members
 	public System.Action<int> onEnumSelected;
-	private TreeViewState treeViewState;
+	private TreeViewState treeViewState;	
 	private string[] enumNames;
 	#endregion
 
