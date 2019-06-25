@@ -1,6 +1,8 @@
-﻿namespace Development {
-	public enum RectGroupOrientation {
+﻿namespace UtilityFramework.Development
+{
+	public enum RectGroupOrientation
+	{
 		Horizontal,
 		Vertical
-	} 
+	}
 }

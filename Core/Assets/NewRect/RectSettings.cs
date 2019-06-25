@@ -1,10 +1,12 @@
-﻿namespace Development {
+﻿namespace UtilityFramework.Development
+{
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.UI;
 
-	public class RectSettings {
+	public class RectSettings
+	{
 		#region Class members
 		public bool use;
 		public float size;
@@ -17,10 +19,11 @@
 		#endregion
 
 		#region Class implementation
-		public RectSettings (float size) {
+		public RectSettings (float size)
+		{
 			this.size = size;
 			this.use = true;
 		}
 		#endregion
-	} 
+	}
 }

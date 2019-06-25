@@ -1,11 +1,13 @@
-﻿namespace Development {
-	using System.Collections;
+﻿namespace UtilityFramework.Development
+{
 	using System.Collections.Generic;
-	using UnityEditor;
 	using UnityEngine;
+#if UNITY_EDITOR
+	using UnityEditor;
+#endif
 
-	public class EditorWindowTest : EditorWindow {
-
+	public class EditorWindowTest : EditorWindow
+	{
 		#region Class members
 		#endregion
 
@@ -13,9 +15,8 @@
 		#endregion
 
 		#region Class overrides
-		private void OnGUI () {
-			Debug.Log (EditorStyles.label.normal.textColor);
-
+		private void OnGUI ()
+		{
 			List<Rect> rects = ExtendedRect.GroupRect (new Rect (Vector2.zero, position.size),
 				new RectGroup (RectGroupOrientation.Vertical,
 					new RectGroup (RectGroupOrientation.Horizontal,
@@ -60,15 +61,17 @@
 
 			Color[] colors = new Color[] { Color.red, Color.blue, Color.yellow, Color.magenta };
 
-			for (int i = 0; i < rects.Count; i++) {
+			for (int i = 0; i < rects.Count; i++)
+			{
 				EditorGUI.DrawRect (rects[i], colors[i]);
 			}
 		}
 		#endregion
 
 		#region Class implementation
-		[MenuItem ("Tools/Rect Test")]
-		static void Init () {
+		[MenuItem ("Window/Utility Framework/Development/Rect Test")]
+		private static void Init ()
+		{
 			EditorWindowTest window = (EditorWindowTest) GetWindow (typeof (EditorWindowTest));
 			window.Show ();
 		}
@@ -76,5 +79,5 @@
 
 		#region Interface implementation
 		#endregion
-	} 
+	}
 }
