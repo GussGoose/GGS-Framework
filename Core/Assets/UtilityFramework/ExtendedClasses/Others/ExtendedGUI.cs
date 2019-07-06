@@ -4,7 +4,7 @@
 	using UnityEditor;
 	using UnityEngine;
 
-	public class ExtendedGUI
+	public partial class ExtendedGUI
 	{
 		#region Class accesors
 		public static Color DefaultTittleColor
