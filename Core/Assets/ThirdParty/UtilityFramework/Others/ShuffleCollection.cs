@@ -3,7 +3,7 @@
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class ShuffleEnumerable<T>
+	public class ShuffleCollection<T>
 	{
 		#region Class members
 		private List<T> elements;
@@ -26,7 +26,7 @@
 		#endregion
 
 		#region Class implementation
-		public ShuffleEnumerable (T[] array, bool preventShuffleStartsWithLastElement = false)
+		public ShuffleCollection (T[] array, bool preventShuffleStartsWithLastElement = false)
 		{
 			this.preventShuffleStartsWithLastElement = preventShuffleStartsWithLastElement;
 
@@ -34,7 +34,7 @@
 			Shuffle ();
 		}
 
-		public ShuffleEnumerable (List<T> list, bool preventShuffleStartsWithLastElement = false)
+		public ShuffleCollection (List<T> list, bool preventShuffleStartsWithLastElement = false)
 		{
 			this.preventShuffleStartsWithLastElement = preventShuffleStartsWithLastElement;
 

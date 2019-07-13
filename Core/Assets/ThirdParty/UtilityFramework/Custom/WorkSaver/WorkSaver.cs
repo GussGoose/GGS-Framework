@@ -179,7 +179,7 @@
 
 		private static void OnEditorUpdate ()
 		{
-			if (!Settings.state)
+			if (!Settings.State)
 				return;
 
 			if (LeftTimeForRequiredSave == TimeSpan.Zero)
@@ -191,7 +191,7 @@
 
 		private static void OnSceneView (SceneView sceneView)
 		{
-			if (!Settings.state)
+			if (!Settings.State)
 				return;
 
 			if (LeftTimeForRequiredSave != TimeSpan.Zero)

@@ -5,7 +5,7 @@
 	public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
 		#region Class members
-		protected static T instance;
+		private static T instance;
 		#endregion
 
 		#region Class accesors
@@ -24,7 +24,8 @@
 		#region Class overrides
 		public virtual void Awake ()
 		{
-			instance = FindObjectOfType<T> ();
+			if (instance == null)
+				instance = FindObjectOfType<T> ();
 		}
 		#endregion
 	}

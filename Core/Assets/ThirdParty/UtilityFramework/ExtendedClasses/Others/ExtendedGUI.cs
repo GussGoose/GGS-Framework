@@ -27,7 +27,8 @@
 			EditorGUILayout.EndHorizontal ();
 		}
 
-		#region DrawTitle with automatic layout
+		#region Draw Title
+		#region Automatic Layout
 		public static void DrawTitle (string content)
 		{
 			DoDrawTitle (content, null, DefaultTittleColor, FontStyle.Normal, TextAnchor.MiddleCenter);
@@ -69,7 +70,7 @@
 		}
 		#endregion
 
-		#region DrawTitle without automatic layout
+		#region Without Automatic Layout
 		public static void DrawTitle (Rect rect, string content)
 		{
 			DoDrawTitle (rect, content, null, DefaultTittleColor, FontStyle.Normal, TextAnchor.MiddleCenter);
@@ -111,13 +112,13 @@
 		}
 		#endregion
 
-		public static void DoDrawTitle (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle, TextAnchor textAligment)
+		private static void DoDrawTitle (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle, TextAnchor textAligment)
 		{
 			Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (18));
 			DoDrawTitle (rect, content, backgroundStyle, color, fontStyle, textAligment);
 		}
 
-		public static void DoDrawTitle (Rect rect, string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle, TextAnchor textAligment)
+		private static void DoDrawTitle (Rect rect, string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle, TextAnchor textAligment)
 		{
 			if (backgroundStyle == null)
 				backgroundStyle = new GUIStyle (GUI.skin.GetStyle ("Label"));
@@ -135,6 +136,7 @@
 			GUI.Label (rect, content, labelStyle);
 		}
 		#endregion
+		#endregion
 	}
-#endif 
+#endif
 }

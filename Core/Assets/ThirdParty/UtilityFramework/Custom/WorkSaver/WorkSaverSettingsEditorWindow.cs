@@ -29,7 +29,7 @@
 		private void OnGUI ()
 		{
 			EditorGUI.BeginChangeCheck ();
-			Settings.state = GUILayout.Toggle (Settings.state, "State", "Button");
+			Settings.State = GUILayout.Toggle (Settings.State, "State", "Button");
 			if (EditorGUI.EndChangeCheck ())
 				SceneView.RepaintAll ();
 			EditorGUILayout.Space ();
@@ -77,6 +77,8 @@
 
 		private void Save ()
 		{
+			EditorUtility.SetDirty (Settings);
+
 			AssetDatabase.SaveAssets ();
 			AssetDatabase.Refresh ();
 		}
