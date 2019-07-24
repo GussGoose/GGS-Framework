@@ -31,7 +31,12 @@
 			EditorGUI.BeginChangeCheck ();
 			Settings.State = GUILayout.Toggle (Settings.State, "State", "Button");
 			if (EditorGUI.EndChangeCheck ())
+			{
+				if (Settings.State)
+					WorkSaver.ResetSaveDate ();
+
 				SceneView.RepaintAll ();
+			}
 			EditorGUILayout.Space ();
 
 			EditorGUI.BeginChangeCheck ();
@@ -70,13 +75,14 @@
 			EditorGUILayout.Space ();
 
 			GUI.backgroundColor = Color.green;
-			if (GUILayout.Button ("Save"))
-				Save ();
+			if (GUILayout.Button ("Save Settings"))
+				SaveSettings ();
 			GUI.backgroundColor = Color.white;
 		}
 
-		private void Save ()
+		private void SaveSettings ()
 		{
+			WorkSaver.ResetSaveDate ();
 			EditorUtility.SetDirty (Settings);
 
 			AssetDatabase.SaveAssets ();

@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d528c06312d1e40a9e579aa5aec956, type: 3}
   m_Name: WorkSaverSettings
   m_EditorClassIdentifier: 
-  state: 0
   blinkCurve:
     serializedVersion: 2
     m_Curve:

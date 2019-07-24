@@ -17,7 +17,7 @@
 		private static int windowOffset = 4;
 
 		private static WorkSaverSettings settings;
-		private static string dataPathInResources = "UtilityFramework";
+		private static string dataPathInResources = "UtilityFramework/WorkSaver";
 		private static string dataAssetName = "WorkSaverSettings";
 
 		#region Save
@@ -95,6 +95,11 @@
 				return leftTime;
 			}
 		}
+
+		private static string SaveKeyCombo
+		{
+			get { return string.Format ("PRESS {0}+S", (Application.platform == RuntimePlatform.WindowsEditor) ? "CTRL+ALT" : "CTRL+CMD"); }
+		}
 		#endregion
 
 		#region Blink
@@ -150,9 +155,14 @@
 
 		private static void Save ()
 		{
-			EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
+			EditorSceneManager.SaveOpenScenes ();
 			AssetDatabase.SaveAssets ();
 
+			ResetSaveDate ();
+		}
+
+		public static void ResetSaveDate ()
+		{
 			elapsedTime = 0;
 			LastSaveDate = DateTime.Now;
 		}
@@ -206,8 +216,8 @@
 
 			GUILayout.BeginArea (windowRect);
 
-			DrawTitle ("Don't lose your work!");
-			DrawTitle (string.Format ("PRESS {0}+S", (Application.platform == RuntimePlatform.WindowsEditor) ? "CTRL+ALT" : "CTRL+CMD"));
+			ExtendedGUI.DrawTitle ("Don't lose your work!", InverseBlinkColor, FontStyle.Bold);
+			ExtendedGUI.DrawTitle (SaveKeyCombo, InverseBlinkColor, FontStyle.Bold);
 
 			GUIStyle buttonStyle = new GUIStyle ("Button");
 			buttonStyle.normal.textColor = (EditorGUIUtility.isProSkin) ? Color.white : Color.black;
@@ -218,26 +228,7 @@
 
 			Handles.EndGUI ();
 		}
-
-		private static void DrawTitle (string content)
-		{
-			Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (18));
-
-			GUIStyle labelStyle = new GUIStyle (GUI.skin.GetStyle ("Label"));
-			labelStyle.normal.textColor = InverseBlinkColor;
-			labelStyle.fontStyle = FontStyle.Bold;
-			labelStyle.alignment = TextAnchor.MiddleCenter;
-			GUI.Label (rect, content, labelStyle);
-		}
-
-		private static float ComputeEaseOutQuad (float value)
-		{
-			float start = 0;
-			float end = 1;
-			end -= start;
-			return -end * value * (value - 2) + start;
-		}
 		#endregion
 	}
-#endif 
+#endif
 }

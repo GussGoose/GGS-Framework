@@ -24,8 +24,13 @@ public class WorkSaverSettings : ScriptableObject
 	#region Class accesors
 	public bool State
 	{
-		get { return EditorPrefs.GetBool (StateKey); }
+		get { return EditorPrefs.GetBool (StateKey, true); }
 		set { EditorPrefs.SetBool (StateKey, value); }
+	}
+
+	public bool StateKeyExist
+	{
+		get { return EditorPrefs.HasKey (StateKey); }
 	}
 	#endregion
 
