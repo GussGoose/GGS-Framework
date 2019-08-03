@@ -1,4 +1,4 @@
-﻿namespace UtilityFramework.Development
+﻿namespace GGS_Framework.Development
 {
 	public enum RectGroupOrientation
 	{

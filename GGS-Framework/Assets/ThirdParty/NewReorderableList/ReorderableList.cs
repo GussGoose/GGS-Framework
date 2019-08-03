@@ -1,4 +1,4 @@
-﻿namespace UtilityFramework.Development
+﻿namespace GGS_Framework.Development
 {
 #if UNITY_EDITOR
 	using System;
@@ -130,7 +130,7 @@
 		{
 			InitDefaults ();
 
-			Dictionary<string, Rect> rects = UtilityFramework.ExtendedRect.VerticalRects (rect,
+			Dictionary<string, Rect> rects = GGS_Framework.ExtendedRect.VerticalRects (rect,
 				new RectLayoutElement ("Header", Config.headerHeight),
 				new RectLayoutElement ("Elements", Config.elementHeight * Count),
 				new RectLayoutElement ("Footer", Config.footerHeight)
