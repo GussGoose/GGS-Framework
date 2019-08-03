@@ -143,7 +143,7 @@
 
 		private void DrawHeader (Rect rect)
 		{
-			ExtendedGUI.DrawTitle (rect, Config.headerTittle, Defaults.headerBackgroundStyle, Config.headerTittleFontStyle);
+			ExtendedGUI.DrawLabel (rect, Config.headerTittle, Defaults.headerBackgroundStyle, Config.headerTittleFontStyle);
 		}
 
 		private void DrawElements (Rect rect)

@@ -69,8 +69,8 @@
 		#endregion
 
 		#region Class implementation
-		[MenuItem ("Window/Utility Framework/Development/Rect Test")]
-		private static void Init ()
+		[MenuItem ("Window/GGS Framework/Development/Rect Test")]
+		private static void Open ()
 		{
 			EditorWindowTest window = (EditorWindowTest) GetWindow (typeof (EditorWindowTest));
 			window.Show ();

@@ -64,8 +64,8 @@ namespace GGS_Framework
 		#endregion
 
 		#region Class implementation
-		[MenuItem ("Window/Utility Framework/Tween/Easing Curves")]
-		private static void Init ()
+		[MenuItem ("Window/GGS Framework/Tween/Easing Curves")]
+		private static void Open ()
 		{
 			EasingCurvesWindow window = (EasingCurvesWindow) GetWindow (typeof (EasingCurvesWindow));
 			window.titleContent = new GUIContent ("Easing Curves");

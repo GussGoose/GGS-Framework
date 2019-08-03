@@ -30,8 +30,8 @@
 		#endregion
 
 		#region Class implementation
-		[MenuItem ("Window/Utility Framework/Development/Reorderable List Example")]
-		public static void Initialize ()
+		[MenuItem ("Window/GGS Framework/Development/Reorderable List Example")]
+		public static void Open ()
 		{
 			EditorWindow window = EditorWindow.GetWindow<ReorderableListExampleEditorWindow> ();
 			window.Show ();

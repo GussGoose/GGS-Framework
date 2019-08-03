@@ -17,7 +17,7 @@ namespace GGS_Framework
 		private static int windowOffset = 4;
 
 		private static WorkSaverSettings settings;
-		private static string dataPathInResources = "UtilityFramework/WorkSaver";
+		private static string dataPathInResources = "WorkSaver";
 		private static string dataAssetName = "WorkSaverSettings";
 
 		#region Save
@@ -43,7 +43,7 @@ namespace GGS_Framework
 
 					if (settings == null)
 					{
-						string fullPath = string.Concat ("Assets/Resources/", dataPathInResources);
+						string fullPath = string.Concat ("Assets/GGS_Framework/Resources/", dataPathInResources);
 
 						if (!Directory.Exists (fullPath))
 						{
@@ -216,8 +216,8 @@ namespace GGS_Framework
 
 			GUILayout.BeginArea (windowRect);
 
-			ExtendedGUI.DrawTitle ("Don't lose your work!", InverseBlinkColor, FontStyle.Bold);
-			ExtendedGUI.DrawTitle (SaveKeyCombo, InverseBlinkColor, FontStyle.Bold);
+			ExtendedGUI.DrawLabel ("Don't lose your work!", InverseBlinkColor, FontStyle.Bold);
+			ExtendedGUI.DrawLabel (SaveKeyCombo, InverseBlinkColor, FontStyle.Bold);
 
 			GUIStyle buttonStyle = new GUIStyle ("Button");
 			buttonStyle.normal.textColor = (EditorGUIUtility.isProSkin) ? Color.white : Color.black;

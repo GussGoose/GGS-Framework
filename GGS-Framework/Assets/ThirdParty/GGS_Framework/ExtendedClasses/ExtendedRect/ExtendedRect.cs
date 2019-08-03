@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-	public class ExtendedRect
+	public static class ExtendedRect
 	{
 		#region Class implementation
 		public static Dictionary<string, Rect> HorizontalRects (Rect rect, params RectLayoutElement[] layoutElements)

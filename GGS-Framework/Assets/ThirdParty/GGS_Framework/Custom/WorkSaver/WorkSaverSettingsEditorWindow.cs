@@ -18,7 +18,7 @@ namespace GGS_Framework
 		#endregion
 
 		#region Class implementation
-		[MenuItem ("Window/Utility Framework/Work Saver Settings")]
+		[MenuItem ("Window/GGS Framework/Work Saver Settings")]
 		public static void Open ()
 		{
 			WorkSaverSettingsEditorWindow window = CreateInstance<WorkSaverSettingsEditorWindow> ();
