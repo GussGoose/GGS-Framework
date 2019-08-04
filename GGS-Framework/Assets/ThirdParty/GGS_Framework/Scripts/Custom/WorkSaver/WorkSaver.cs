@@ -13,12 +13,12 @@ namespace GGS_Framework
 	public class WorkSaver
 	{
 		#region Class members
-		private static Vector2 windowSize = new Vector2 (140, 59);
-		private static int windowOffset = 4;
+		private static readonly Vector2 windowSize = new Vector2 (140, 59);
+		private static readonly int windowOffset = 4;
 
 		private static WorkSaverSettings settings;
-		private static string dataPathInResources = "WorkSaver";
-		private static string dataAssetName = "WorkSaverSettings";
+		private static readonly string pathInResources = "WorkSaver";
+		private static readonly string dataAssetName = "WorkSaverSettings";
 
 		#region Save
 		private const string LastSaveDateKey = "WorkSaver_LastSaveDate";
@@ -38,17 +38,17 @@ namespace GGS_Framework
 			{
 				if (settings == null)
 				{
-					string fullPathInResources = string.Concat (dataPathInResources, "/", dataAssetName);
-					settings = Resources.Load<WorkSaverSettings> (fullPathInResources);
+					string dataPathInResources = string.Concat (pathInResources, "/", dataAssetName);
+					settings = Resources.Load<WorkSaverSettings> (dataPathInResources);
 
 					if (settings == null)
 					{
-						string fullPath = string.Concat ("Assets/GGS_Framework/Resources/", dataPathInResources);
+						string fullResourcesPath = string.Concat (GGS_FrameworkPaths.Resources, pathInResources);
 
-						if (!Directory.Exists (fullPath))
+						if (!Directory.Exists (fullResourcesPath))
 						{
-							Directory.CreateDirectory (fullPath);
-							settings = WorkSaverSettings.Create (string.Concat (fullPath, "/", dataAssetName, ".asset"));
+							Directory.CreateDirectory (fullResourcesPath);
+							settings = WorkSaverSettings.Create (string.Concat (fullResourcesPath, "/", dataAssetName, ".asset"));
 						}
 					}
 				}

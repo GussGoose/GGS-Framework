@@ -74,12 +74,12 @@ namespace GGS_Framework
 
 		private void DrawHeader (Rect rect)
 		{
-			GUI.Label (rect, "Tween Easing Curves", EasingCurvesStyles.Header);
+			GUI.Label (rect, "Tween Easing Curves", EasingCurvesStyles.header);
 		}
 
 		private void DrawEasings (Rect rect)
 		{
-			EasingCurvesStyles.Background.Draw (rect);
+			EasingCurvesStyles.background.Draw (rect);
 			rect = new RectOffset (0, 0, -4, -4).Add (rect);
 
 			int easeCount = System.Enum.GetValues (typeof (EasingCurves.List)).Length;
@@ -120,8 +120,8 @@ namespace GGS_Framework
 			Rect originalEaseRect = rects["Ease"];
 			Rect easeRect = originalEaseRect;
 
-			GUI.Label (rects["Header"], ease.ToString ().ToTitleCase (), EasingCurvesStyles.Header);
-			EasingCurvesStyles.Ease.Draw (easeRect);
+			GUI.Label (rects["Header"], ease.ToString ().ToTitleCase (), EasingCurvesStyles.header);
+			EasingCurvesStyles.ease.Draw (easeRect);
 
 			GUI.BeginGroup (easeRect);
 			easeRect.position = Vector2.zero;
@@ -171,10 +171,10 @@ namespace GGS_Framework
 				Vector2 position = new Vector2 (offset.x + previewTime * easeRect.width, offset.y + -EasingCurves.GetEaseValue (ease, previewTime) * (easeRect.height - verticalOffset * 2));
 
 				Rect circleRect = new Rect (originalEaseRect.position + position - Vector2.one * 4f, Vector2.one * 8);
-				EasingCurvesStyles.Circle.Draw (circleRect);
+				EasingCurvesStyles.circle.Draw (circleRect);
 
 				Rect arrowRect = new Rect (originalEaseRect.xMax + 5, originalEaseRect.y + position.y - 6, 20, 12);
-				EasingCurvesStyles.Arrow.Draw (arrowRect);
+				EasingCurvesStyles.arrow.Draw (arrowRect);
 			}
 		}
 

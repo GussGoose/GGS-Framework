@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-	public static class UtilityFrameworkStyles
+	public static class GGS_FrameworkStyles
 	{
 		#region Class accesors
 		public static GUISkin Skin

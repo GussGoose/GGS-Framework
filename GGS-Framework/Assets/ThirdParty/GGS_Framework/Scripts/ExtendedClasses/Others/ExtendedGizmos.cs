@@ -11,7 +11,7 @@ namespace GGS_Framework
 #if UNITY_EDITOR
 		public static GUIStyle TextPointStyle
 		{
-			get { return UtilityFrameworkStyles.Skin.GetStyle ("TextIndicator"); }
+			get { return GGS_FrameworkStyles.Skin.GetStyle ("TextPoint"); }
 		}
 #endif
 		#endregion
