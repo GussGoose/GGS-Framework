@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: UtilityFrameworkGUISkin
+  m_Name: GGS_FrameworkGUISkin
   m_EditorClassIdentifier: 
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_box:
@@ -1353,7 +1353,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   m_CustomStyles:
-  - m_Name: TextIndicator
+  - m_Name: TextPoint
     m_Normal:
       m_Background: {fileID: 2800000, guid: 1015df842deb57d4280c22045da81e58, type: 3}
       m_ScaledBackgrounds: []
