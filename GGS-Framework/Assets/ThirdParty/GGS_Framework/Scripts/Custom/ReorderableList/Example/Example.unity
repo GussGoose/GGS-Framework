@@ -141,34 +141,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleList:
-  - displayName: toNais
+  - displayName: HOLA
     exampleFloat: 0
     exampleBool: 0
-  - displayName: fdsfsd
+  - displayName: COMO
     exampleFloat: 0
     exampleBool: 0
-  - displayName: 
+  - displayName: ESTAS
     exampleFloat: 0
     exampleBool: 0
-  - displayName: 
+  - displayName: EL
     exampleFloat: 0
     exampleBool: 0
-  - displayName: 
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: 
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: 
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: 
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: 
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: 
+  - displayName: DIA
     exampleFloat: 0
     exampleBool: 0
 --- !u!4 &1374321138

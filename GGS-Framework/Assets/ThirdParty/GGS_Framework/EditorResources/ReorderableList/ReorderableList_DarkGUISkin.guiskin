@@ -1519,10 +1519,10 @@ MonoBehaviour:
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
+      m_Left: 4
+      m_Right: 4
+      m_Top: 4
+      m_Bottom: 4
     m_Margin:
       m_Left: 0
       m_Right: 0
@@ -1585,20 +1585,20 @@ MonoBehaviour:
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Border:
-      m_Left: 6
-      m_Right: 6
-      m_Top: 6
-      m_Bottom: 6
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
     m_Margin:
-      m_Left: 4
-      m_Right: 4
-      m_Top: 4
-      m_Bottom: 4
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
     m_Padding:
       m_Left: 4
       m_Right: 4
-      m_Top: 4
-      m_Bottom: 4
+      m_Top: 0
+      m_Bottom: 0
     m_Overflow:
       m_Left: 0
       m_Right: 0
@@ -1610,7 +1610,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_WordWrap: 0
     m_RichText: 1
-    m_TextClipping: 0
+    m_TextClipping: 1
     m_ImagePosition: 0
     m_ContentOffset: {x: 0, y: 0}
     m_FixedWidth: 0
@@ -1620,12 +1620,10 @@ MonoBehaviour:
   - m_Name: SearchField
     m_Normal:
       m_Background: {fileID: 2800000, guid: 06e2f0cebfa8ee546ae09d5082c0d67e, type: 3}
-      m_ScaledBackgrounds:
-      - {fileID: 2800000, guid: 66a691bf66fc96348b3bd10713e446ce, type: 3}
-      - {fileID: 2800000, guid: 7bdd5423c01439d4283de6a028328699, type: 3}
+      m_ScaledBackgrounds: []
       m_TextColor: {r: 0.6745098, g: 0.6745098, b: 0.6745098, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: 572d4e365e1fafa439185e4db6875778, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.6745098, g: 0.6745098, b: 0.6745098, a: 1}
     m_Active:
@@ -1654,8 +1652,8 @@ MonoBehaviour:
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Border:
       m_Left: 32
-      m_Right: 32
-      m_Top: 32
+      m_Right: 0
+      m_Top: 0
       m_Bottom: 0
     m_Margin:
       m_Left: 0
@@ -1663,7 +1661,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 0
+      m_Left: 16
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
@@ -1675,10 +1673,10 @@ MonoBehaviour:
     m_Font: {fileID: 0}
     m_FontSize: 11
     m_FontStyle: 0
-    m_Alignment: 4
+    m_Alignment: 3
     m_WordWrap: 0
     m_RichText: 1
-    m_TextClipping: 0
+    m_TextClipping: 1
     m_ImagePosition: 0
     m_ContentOffset: {x: 0, y: 0}
     m_FixedWidth: 0

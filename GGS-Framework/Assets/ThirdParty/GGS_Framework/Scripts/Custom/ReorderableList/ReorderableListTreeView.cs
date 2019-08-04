@@ -49,6 +49,12 @@ namespace GGS_Framework
 					rl.onDrawElement (rects["Element"], args.item.id);
 			}
 
+			protected override void ContextClickedItem (int id)
+			{
+				base.ContextClickedItem (id);
+				DoElementOptionsMenu ();
+			}
+
 			#region Drag
 			protected override bool CanStartDrag (CanStartDragArgs args)
 			{
@@ -146,8 +152,34 @@ namespace GGS_Framework
 			{
 				if (GUI.Button (rect, string.Empty, Styles.addButton))
 				{
-					Debug.Log ("Plus press");
 				}
+			}
+
+			private void DoElementOptionsMenu ()
+			{
+				Repaint ();
+
+				AdvancedGenericMenu.Item[] items =
+				{
+					new AdvancedGenericMenu.Item ("Duplicate", false),
+					new AdvancedGenericMenu.Item ("Delete", false),
+				};
+
+				AdvancedGenericMenu.Draw<ElementOptions> (items, item =>
+				{
+					ElementOptions option = (ElementOptions) item;
+
+					switch (option)
+					{
+						case ElementOptions.Duplicate:
+							break;
+						case ElementOptions.Delete:
+							DeleteSelection ();
+							break;
+						case ElementOptions.Copy:
+							break;
+					}
+				});
 			}
 
 			private void MoveSelection (int insertIndex, List<int> selectedIds)
@@ -197,6 +229,25 @@ namespace GGS_Framework
 					return elementType.GetProperty (variableName).GetValue (rl.list[elementIndex], null) as string;
 
 				return "Unnamed";
+			}
+
+			private void AddElement ()
+			{
+
+			}
+
+			private void DeleteSelection ()
+			{
+				List<int> selection = state.selectedIDs;
+
+				if (selection.Count > 1)
+					selection.Sort ((a, b) => -1 * a.CompareTo (b));
+
+				foreach (int id in selection)
+					rl.list.RemoveAt (id);
+
+				Reload ();
+				//SetSelection (null);
 			}
 			#endregion
 		}
