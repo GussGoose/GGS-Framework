@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.IMGUI.Controls;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using UnityEngine;
 
 namespace GGS_Framework
@@ -17,11 +16,30 @@ namespace GGS_Framework
 
 		public string title;
 
+		public delegate void AddElementDelegate (int addedIndex);
+		public AddElementDelegate onElementAdd;
+
+		public delegate void DuplicateElementDelegate (int duplicatedIndex, int targetIndex);
+		public DuplicateElementDelegate onElementDuplicated;
+
+		public delegate void CopyElementDelegate (int copiedIndex);
+		public CopyElementDelegate onElementCopied;
+
+		public delegate void PasteElementDelegate (int copiedIndex, int[] pastedIndexes);
+		public PasteElementDelegate onElementPasted;
+
+		public delegate void RemoveElementDelegate (int removedIndex);
+		public RemoveElementDelegate onElementRemoved;
+
 		public delegate void DrawElementDelegate (Rect rect, int index);
-		public DrawElementDelegate onDrawElement;
+		public DrawElementDelegate onElementDraw;
 		#endregion
 
 		#region Class accesors
+		public int Count
+		{
+			get { return list.Count; }
+		}
 		#endregion
 
 		#region Class overrides
@@ -46,4 +64,5 @@ namespace GGS_Framework
 		}
 		#endregion
 	}
-}
+} 
+#endif

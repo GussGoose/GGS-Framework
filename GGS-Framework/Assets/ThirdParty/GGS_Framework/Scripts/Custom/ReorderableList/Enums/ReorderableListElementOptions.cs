@@ -4,9 +4,11 @@
 	{
 		public enum ElementOptions
 		{
-			Duplicate,
-			Delete,
-			Copy
+			Remove,
+			Copy,
+			Paste,
+			InsertAbove,
+			InsertBelow
 		}
 	}
 }

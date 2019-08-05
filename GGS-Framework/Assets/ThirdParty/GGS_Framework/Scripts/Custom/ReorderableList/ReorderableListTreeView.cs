@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
@@ -12,7 +14,7 @@ namespace GGS_Framework
 		public class TreeView : UnityEditor.IMGUI.Controls.TreeView
 		{
 			#region Class members
-			private const string GenericDragId = "GenericDragColumnDragging";
+			private const string DragKey = "ReorderableListDrag";
 
 			private ReorderableList rl;
 
@@ -20,6 +22,14 @@ namespace GGS_Framework
 			#endregion
 
 			#region Class accesors
+			private int LastSelectionItemId
+			{
+				get
+				{
+					IList<int> selection = GetSelection ();
+					return selection[selection.Count - 1];
+				}
+			}
 			#endregion
 
 			#region Class overrides
@@ -45,8 +55,8 @@ namespace GGS_Framework
 
 				Styles.dragZone.Draw (rects["DragZone"]);
 
-				if (rl.onDrawElement != null)
-					rl.onDrawElement (rects["Element"], args.item.id);
+				if (rl.onElementDraw != null)
+					rl.onElementDraw (rects["Element"], args.item.id);
 			}
 
 			protected override void ContextClickedItem (int id)
@@ -63,10 +73,14 @@ namespace GGS_Framework
 
 			protected override void SetupDragAndDrop (SetupDragAndDropArgs args)
 			{
-				DragAndDrop.PrepareStartDrag ();
-				List<int> draggedItems = args.draggedItemIDs as List<int>;
+				if (hasSearch)
+					return;
 
-				DragAndDrop.SetGenericData (GenericDragId, draggedItems);
+				DragAndDrop.PrepareStartDrag ();
+
+				List<TreeViewItem> draggedItems = GetRows ().Where (item => args.draggedItemIDs.Contains (item.id)).ToList ();
+
+				DragAndDrop.SetGenericData (DragKey, draggedItems);
 				DragAndDrop.objectReferences = new UnityEngine.Object[] { };
 
 				DragAndDrop.StartDrag ("Drag");
@@ -74,7 +88,9 @@ namespace GGS_Framework
 
 			protected override DragAndDropVisualMode HandleDragAndDrop (DragAndDropArgs args)
 			{
-				List<int> draggedItems = DragAndDrop.GetGenericData (GenericDragId) as List<int>;
+				List<TreeViewItem> draggedItems = DragAndDrop.GetGenericData (DragKey) as List<TreeViewItem>;
+				List<int> draggedIds = draggedItems.Select (item => item.id).ToList ();
+
 				if (draggedItems == null)
 					return DragAndDropVisualMode.None;
 
@@ -83,7 +99,7 @@ namespace GGS_Framework
 					case DragAndDropPosition.BetweenItems:
 						{
 							if (args.performDrop)
-								MoveSelection (args.insertAtIndex, draggedItems);
+								MoveElementSelection (args.insertAtIndex, draggedIds);
 
 							return DragAndDropVisualMode.Move;
 						}
@@ -151,38 +167,84 @@ namespace GGS_Framework
 			private void DrawAddButton (Rect rect)
 			{
 				if (GUI.Button (rect, string.Empty, Styles.addButton))
-				{
-				}
+					AddElement (rl.Count);
 			}
 
 			private void DoElementOptionsMenu ()
 			{
 				Repaint ();
 
-				AdvancedGenericMenu.Item[] items =
-				{
-					new AdvancedGenericMenu.Item ("Duplicate", false),
-					new AdvancedGenericMenu.Item ("Delete", false),
-				};
+				List<AdvancedGenericMenu.Item> items = new List<AdvancedGenericMenu.Item> ();
 
-				AdvancedGenericMenu.Draw<ElementOptions> (items, item =>
-				{
-					ElementOptions option = (ElementOptions) item;
+				bool canInsertElementAbove = CanInsertElementAbove ();
+				bool canInsertElementBelow = CanInsertElementBelow ();
+				bool canCopyElement = CanCopyElement ();
+				bool canPasteElement = CanPasteElement ();
 
-					switch (option)
-					{
-						case ElementOptions.Duplicate:
-							break;
-						case ElementOptions.Delete:
-							DeleteSelection ();
-							break;
-						case ElementOptions.Copy:
-							break;
-					}
-				});
+				items.Add (new AdvancedGenericMenu.Item ("Remove", false));
+
+				if (canCopyElement || canPasteElement)
+				{
+					items.Add (new AdvancedGenericMenu.Separator ());
+
+					if (canCopyElement)
+						items.Add (new AdvancedGenericMenu.Item ("Copy", false));
+
+					if (canPasteElement)
+						items.Add (new AdvancedGenericMenu.Item ("Paste", false));
+
+					items.Add (new AdvancedGenericMenu.Separator ());
+				}
+
+				if (canInsertElementAbove)
+					items.Add (new AdvancedGenericMenu.Item ("Insert Above", false));
+
+				if (canInsertElementBelow)
+					items.Add (new AdvancedGenericMenu.Item ("Insert Below", false));
+
+				AdvancedGenericMenu.Draw<ElementOptions> (items.ToArray (), item =>
+				 {
+					 ElementOptions option = (ElementOptions) item;
+
+					 switch (option)
+					 {
+						 case ElementOptions.Remove:
+							 RemoveElementSelection ();
+							 break;
+						 case ElementOptions.Copy:
+							 CopyElement ();
+							 break;
+						 case ElementOptions.Paste:
+							 PasteElement ();
+							 break;
+						 case ElementOptions.InsertAbove:
+							 InsertElementAbove ();
+							 break;
+						 case ElementOptions.InsertBelow:
+							 InsertElementBelow ();
+							 break;
+					 }
+				 });
 			}
 
-			private void MoveSelection (int insertIndex, List<int> selectedIds)
+			private string GetDisplayNameOfElement (int elementIndex, string variableName)
+			{
+				System.Type elementType = rl.elementType;
+
+				if (string.IsNullOrEmpty (variableName))
+					return rl.list[elementIndex] as string;
+
+				if (elementType.GetField (variableName) != null)
+					return elementType.GetField (variableName).GetValue (rl.list[elementIndex]) as string;
+
+				if (elementType.GetProperty (variableName) != null)
+					return elementType.GetProperty (variableName).GetValue (rl.list[elementIndex], null) as string;
+
+				return "Unnamed";
+			}
+
+			#region Element Management
+			private void MoveElementSelection (int insertIndex, List<int> selectedIds)
 			{
 				if (insertIndex < 0)
 					return;
@@ -215,28 +277,76 @@ namespace GGS_Framework
 				SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame);
 			}
 
-			private string GetDisplayNameOfElement (int elementIndex, string variableName)
+			private void AddElement (int insertIndex)
 			{
-				System.Type elementType = rl.elementType;
+				object objectForAdd = GetObjectForAdd (rl.list);
+				rl.list.Insert (insertIndex, objectForAdd);
 
-				if (string.IsNullOrEmpty (variableName))
-					return rl.list[elementIndex] as string;
-
-				if (elementType.GetField (variableName) != null)
-					return elementType.GetField (variableName).GetValue (rl.list[elementIndex]) as string;
-
-				if (elementType.GetProperty (variableName) != null)
-					return elementType.GetProperty (variableName).GetValue (rl.list[elementIndex], null) as string;
-
-				return "Unnamed";
+				Reload ();
+				SetSelection (new List<int> { insertIndex });
 			}
 
-			private void AddElement ()
+			private object GetObjectForAdd (IList list)
+			{
+				// This is ugly but there are a lot of cases like null types and default constructors
+				Type listType = list.GetType ();
+				Type elementType = listType.GetElementType ();
+
+				if (elementType == typeof (string))
+					return "";
+				else if (elementType != null && elementType.GetConstructor (Type.EmptyTypes) == null)
+					Debug.LogError ("Cannot add element. Type " + elementType.ToString () + " has no default constructor. Implement a default constructor or implement your own add behaviour.");
+				else if (listType.GetGenericArguments ()[0] != null)
+					return Activator.CreateInstance (listType.GetGenericArguments ()[0]);
+				else if (elementType != null)
+					return Activator.CreateInstance (elementType);
+				else
+					Debug.LogError ("Cannot add element of type Null.");
+
+				return null;
+			}
+
+			private bool CanInsertElementAbove ()
+			{
+				return (GetSelection ().Count == 1);
+			}
+
+			private void InsertElementAbove ()
+			{
+				AddElement (LastSelectionItemId);
+			}
+
+			private bool CanInsertElementBelow ()
+			{
+				return (GetSelection ().Count == 1);
+			}
+
+			private void InsertElementBelow ()
+			{
+				AddElement (LastSelectionItemId + 1);
+			}
+
+			private bool CanCopyElement ()
+			{
+				return (GetSelection ().Count == 1);
+			}
+
+			private void CopyElement ()
 			{
 
 			}
 
-			private void DeleteSelection ()
+			private bool CanPasteElement ()
+			{
+				return false;
+			}
+
+			private void PasteElement ()
+			{
+
+			}
+
+			private void RemoveElementSelection ()
 			{
 				List<int> selection = state.selectedIDs;
 
@@ -247,9 +357,11 @@ namespace GGS_Framework
 					rl.list.RemoveAt (id);
 
 				Reload ();
-				//SetSelection (null);
+				SetSelection (new List<int> ());
 			}
+			#endregion
 			#endregion
 		}
 	}
 }
+#endif

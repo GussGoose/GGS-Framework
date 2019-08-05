@@ -141,19 +141,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleList:
-  - displayName: HOLA
+  - displayName: AA
     exampleFloat: 0
     exampleBool: 0
-  - displayName: COMO
+  - displayName: BB
     exampleFloat: 0
     exampleBool: 0
-  - displayName: ESTAS
+  - displayName: CC
     exampleFloat: 0
     exampleBool: 0
-  - displayName: EL
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: DIA
+  - displayName: DD
     exampleFloat: 0
     exampleBool: 0
 --- !u!4 &1374321138

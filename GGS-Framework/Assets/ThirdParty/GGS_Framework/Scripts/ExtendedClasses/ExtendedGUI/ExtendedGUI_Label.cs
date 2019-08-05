@@ -1,6 +1,5 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-#endif
 using UnityEngine;
 
 namespace GGS_Framework
@@ -157,3 +156,4 @@ namespace GGS_Framework
 		#endregion
 	}
 }
+#endif

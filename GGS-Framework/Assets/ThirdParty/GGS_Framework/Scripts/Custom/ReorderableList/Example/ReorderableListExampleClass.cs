@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace GGS_Framework
+﻿namespace GGS_Framework
 {
 	[System.Serializable]
 	public class ReorderableListExampleStruct

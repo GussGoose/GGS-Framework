@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GGS_Framework;
 using UnityEditor;
 
 namespace GGS_Framework
@@ -37,7 +36,7 @@ namespace GGS_Framework
 
 		private void OnLostFocus ()
 		{
-			Initialize ();
+			//Initialize ();
 		}
 
 		private void OnGUI ()
@@ -58,7 +57,7 @@ namespace GGS_Framework
 		private void Initialize ()
 		{
 			reorderableList = new ReorderableList (Target.exampleList, typeof (ReorderableListExampleStruct), "DisplayName");
-			reorderableList.onDrawElement += OnElementDraw;
+			reorderableList.onElementDraw += OnElementDraw;
 		}
 
 		private void OnElementDraw (Rect rect, int index)

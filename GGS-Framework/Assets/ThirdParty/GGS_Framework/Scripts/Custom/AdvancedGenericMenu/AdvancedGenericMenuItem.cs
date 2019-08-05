@@ -1,4 +1,6 @@
-﻿namespace GGS_Framework
+﻿using System.Text.RegularExpressions;
+
+namespace GGS_Framework
 {
 	public static partial class AdvancedGenericMenu
 	{
@@ -26,7 +28,11 @@
 			public string GetItemValue ()
 			{
 				string[] splittedPath = Path.Split ('/');
-				return splittedPath[splittedPath.Length - 1];
+
+				string value = splittedPath[splittedPath.Length - 1];
+				value = value.Replace (" ", string.Empty);
+
+				return value;
 			}
 			#endregion
 		}
