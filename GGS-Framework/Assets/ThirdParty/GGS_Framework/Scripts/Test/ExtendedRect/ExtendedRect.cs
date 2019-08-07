@@ -1,17 +1,14 @@
-﻿namespace GGS_Framework.Development
-{
-	using System.Collections.Generic;
-	using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-	public class ExtendedRect : MonoBehaviour
+namespace GGS_Framework.Development.Test
+{
+	public static class ExtendedRect
 	{
 		#region Class members
 		#endregion
 
 		#region Class accesors
-		#endregion
-
-		#region Class overrides
 		#endregion
 
 		#region Class implementation
@@ -111,9 +108,6 @@
 
 			return groups;
 		}
-		#endregion
-
-		#region Interface implementation
 		#endregion
 	}
 }

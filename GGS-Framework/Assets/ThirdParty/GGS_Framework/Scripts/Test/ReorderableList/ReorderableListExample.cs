@@ -1,14 +1,12 @@
-﻿namespace GGS_Framework.Development
-{
-	using System.Collections;
-	using System.Collections.Generic;
-	using UnityEngine;
-	using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+namespace GGS_Framework.Development.Test
+{
 	[ExecuteInEditMode]
 	public class ReorderableListExample : MonoBehaviour
 	{
-
 		#region Class members
 		public List<string> list = new List<string> ();
 
@@ -34,15 +32,10 @@
 
 				hashes.Add (hashCode);
 			}
-
-			Debug.Log (duplicate); //
 		}
 		#endregion
 
 		#region Class implementation
-		#endregion
-
-		#region Interface implementation
 		#endregion
 	}
 }

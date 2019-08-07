@@ -141,16 +141,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleList:
-  - displayName: AA
+  - displayName: First
     exampleFloat: 0
     exampleBool: 0
-  - displayName: BB
+  - displayName: Second
     exampleFloat: 0
     exampleBool: 0
-  - displayName: CC
+  - displayName: Third
     exampleFloat: 0
     exampleBool: 0
-  - displayName: DD
+  - displayName: Fourth
     exampleFloat: 0
     exampleBool: 0
 --- !u!4 &1374321138

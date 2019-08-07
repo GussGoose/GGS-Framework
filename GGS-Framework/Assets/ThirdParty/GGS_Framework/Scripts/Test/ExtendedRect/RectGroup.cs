@@ -1,9 +1,9 @@
-﻿namespace GGS_Framework.Development
-{
-	using System.Collections;
-	using System.Collections.Generic;
-	using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+namespace GGS_Framework.Development.Test
+{
 	public class RectGroup
 	{
 		#region Class members

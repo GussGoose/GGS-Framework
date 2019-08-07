@@ -29,16 +29,6 @@ namespace GGS_Framework
 			Initialize ();
 		}
 
-		private void OnFocus ()
-		{
-			Initialize ();
-		}
-
-		private void OnLostFocus ()
-		{
-			//Initialize ();
-		}
-
 		private void OnGUI ()
 		{
 			reorderableList.Draw (Rect);
@@ -50,7 +40,7 @@ namespace GGS_Framework
 		public static void Open ()
 		{
 			ReorderableListExampleEditorWindow window = CreateInstance<ReorderableListExampleEditorWindow> ();
-			window.titleContent = new GUIContent ("Reorderable List Example");
+			window.titleContent = new GUIContent ("RL Example");
 			window.Show ();
 		}
 
@@ -64,9 +54,6 @@ namespace GGS_Framework
 		{
 			GUI.Label (rect, Target.exampleList[index].DisplayName);
 		}
-		#endregion
-
-		#region Interface implementation
 		#endregion
 	}
 }

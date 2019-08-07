@@ -1,8 +1,8 @@
-﻿namespace GGS_Framework.Development
-{
-	using UnityEditor;
-	using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
+namespace GGS_Framework.Development.Test
+{
 	public class ReorderableListExampleEditorWindow : EditorWindow
 	{
 		#region Class members
@@ -33,12 +33,9 @@
 		[MenuItem ("Window/GGS Framework/Development/Reorderable List Example")]
 		public static void Open ()
 		{
-			EditorWindow window = EditorWindow.GetWindow<ReorderableListExampleEditorWindow> ();
+			EditorWindow window = GetWindow<ReorderableListExampleEditorWindow> ();
 			window.Show ();
 		}
-		#endregion
-
-		#region Interface implementation
 		#endregion
 	}
 }

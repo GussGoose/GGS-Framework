@@ -22,6 +22,11 @@ namespace GGS_Framework
 			#endregion
 
 			#region Class accesors
+			private int ItemCount
+			{
+				get { return rootItem.children.Count; }
+			}
+
 			private int LastSelectionItemId
 			{
 				get
@@ -123,6 +128,12 @@ namespace GGS_Framework
 
 			public void Draw (Rect rect)
 			{
+				if (ItemCount != rl.list.Count)
+				{
+					Reload ();
+					return;
+				}
+
 				Dictionary<string, Rect> rects = ExtendedRect.VerticalRects (rect,
 					new RectLayoutElement ("Header", Styles.headerHeight),
 					new RectLayoutElement (Styles.defaultSpacing),
@@ -161,7 +172,25 @@ namespace GGS_Framework
 
 			private void DrawSerchBar (Rect rect)
 			{
-				searchString = searchField.OnGUI (rect, searchString, Styles.searchField, GUIStyle.none, GUIStyle.none);
+				Dictionary<string, Rect> rects = ExtendedRect.HorizontalRects (rect,
+					new RectLayoutElement ("Bar"),
+					new RectLayoutElement ("Button", Styles.headerHeight)
+				);
+
+				searchString = searchField.OnGUI (rects["Bar"], searchString, Styles.searchBar, GUIStyle.none, GUIStyle.none);
+
+				//Rect cancelButtonRect = new Rect (new Vector2 (rect.xMax - Styles.headerHeight, rect.y), Vector2.one * Styles.headerHeight);
+				if (!string.IsNullOrEmpty (searchString))
+				{
+					if (GUI.Button (rects["Button"].Expand (Styles.searchBarCancelButtonPadding), string.Empty, Styles.searchBarCancelButton))
+					{
+						searchString = string.Empty;
+						//searchField.searchFieldControlID = -1;
+						GUI.FocusControl (null);
+					}
+				}
+
+				//searchString = searchField.OnToolbarGUI (rect, searchString);
 			}
 
 			private void DrawAddButton (Rect rect)
@@ -229,18 +258,22 @@ namespace GGS_Framework
 
 			private string GetDisplayNameOfElement (int elementIndex, string variableName)
 			{
-				System.Type elementType = rl.elementType;
+				Type elementType = rl.elementType;
+				string name = string.Empty;
 
 				if (string.IsNullOrEmpty (variableName))
-					return rl.list[elementIndex] as string;
+					name = rl.list[elementIndex] as string;
 
 				if (elementType.GetField (variableName) != null)
-					return elementType.GetField (variableName).GetValue (rl.list[elementIndex]) as string;
+					name = elementType.GetField (variableName).GetValue (rl.list[elementIndex]) as string;
 
 				if (elementType.GetProperty (variableName) != null)
-					return elementType.GetProperty (variableName).GetValue (rl.list[elementIndex], null) as string;
+					name = elementType.GetProperty (variableName).GetValue (rl.list[elementIndex], null) as string;
 
-				return "Unnamed";
+				if (string.IsNullOrEmpty (name))
+					name = "Unnamed";
+
+				return name;
 			}
 
 			#region Element Management

@@ -26,7 +26,7 @@ namespace GGS_Framework
 		#region Class accesors
 		public bool State
 		{
-			get { return EditorPrefs.GetBool (StateKey, true); }
+			get { return EditorPrefs.GetBool (StateKey, false); }
 			set { EditorPrefs.SetBool (StateKey, value); }
 		}
 
@@ -48,6 +48,6 @@ namespace GGS_Framework
 			return data;
 		}
 		#endregion
-	} 
+	}
 }
 #endif

@@ -16,13 +16,19 @@ namespace GGS_Framework
 			{
 				get; private set;
 			}
+
+			public bool Use
+			{
+				get; private set;
+			}
 			#endregion
 
 			#region Class implementation
-			public Item (string path, bool selected)
+			public Item (string path, bool selected, bool use = true)
 			{
 				Path = path;
 				Selected = selected;
+				Use = use;
 			}
 
 			public string GetItemValue ()

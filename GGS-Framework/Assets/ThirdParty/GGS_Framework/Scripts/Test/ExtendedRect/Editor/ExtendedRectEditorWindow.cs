@@ -1,12 +1,10 @@
-﻿namespace GGS_Framework.Development
-{
-	using System.Collections.Generic;
-	using UnityEngine;
-#if UNITY_EDITOR
-	using UnityEditor;
-#endif
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
 
-	public class EditorWindowTest : EditorWindow
+namespace GGS_Framework.Development.Test
+{
+	public class ExtendedRectEditorWindow : EditorWindow
 	{
 		#region Class members
 		#endregion
@@ -60,24 +58,18 @@
 			);
 
 			Color[] colors = new Color[] { Color.red, Color.blue, Color.yellow, Color.magenta };
-
 			for (int i = 0; i < rects.Count; i++)
-			{
 				EditorGUI.DrawRect (rects[i], colors[i]);
-			}
 		}
 		#endregion
 
 		#region Class implementation
-		[MenuItem ("Window/GGS Framework/Development/Rect Test")]
+		[MenuItem ("Window/GGS Framework/Development/Extended Rect Example")]
 		private static void Open ()
 		{
-			EditorWindowTest window = (EditorWindowTest) GetWindow (typeof (EditorWindowTest));
+			ExtendedRectEditorWindow window = (ExtendedRectEditorWindow) GetWindow (typeof (ExtendedRectEditorWindow));
 			window.Show ();
 		}
-		#endregion
-
-		#region Interface implementation
 		#endregion
 	}
 }

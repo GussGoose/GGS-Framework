@@ -1,12 +1,12 @@
-﻿namespace GGS_Framework.Development
-{
-#if UNITY_EDITOR
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using UnityEditor;
-	using UnityEngine;
+﻿#if UNITY_EDITOR
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
+namespace GGS_Framework.Development.Test
+{
 	[Flags]
 	public enum ReorderableListOptions
 	{
@@ -348,5 +348,5 @@
 		}
 		#endregion
 	}
-#endif
 }
+#endif

@@ -32,6 +32,9 @@ namespace GGS_Framework
 			{
 				Item item = items[i];
 
+				if (!item.Use)
+					continue;
+
 				if (item as Separator != null)
 					menu.AddSeparator (item.Path);
 				else

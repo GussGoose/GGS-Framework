@@ -23,7 +23,9 @@ namespace GGS_Framework
 			public static readonly GUIStyle headerBackground = skin.GetStyle ("HeaderBackground");
 			public static readonly GUIStyle header = skin.GetStyle ("Header");
 
-			public static readonly GUIStyle searchField = skin.GetStyle ("SearchField");
+			public static readonly GUIStyle searchBar = skin.GetStyle ("SearchBar");
+			public static readonly float searchBarCancelButtonPadding = 3;
+			public static readonly GUIStyle searchBarCancelButton = skin.GetStyle ("SearchBarCancelButton");
 
 			public static readonly float addButtonWidth = 16;
 			public static readonly GUIStyle addButton = skin.GetStyle ("AddButton");
@@ -33,5 +35,5 @@ namespace GGS_Framework
 			#endregion
 		}
 	}
-} 
+}
 #endif
