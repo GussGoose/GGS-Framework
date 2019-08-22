@@ -9,226 +9,233 @@ using UnityEngine.Events;
 
 namespace GGS_Framework
 {
-	[InitializeOnLoad]
-	public class WorkSaver
-	{
-		#region Class members
-		private static readonly Vector2 windowSize = new Vector2 (140, 59);
-		private static readonly int windowOffset = 4;
+    [InitializeOnLoad]
+    public class WorkSaver
+    {
+        #region Class members
+        private static readonly Vector2 windowSize = new Vector2 (140, 59);
+        private static readonly int windowOffset = 4;
 
-		private static WorkSaverSettings settings;
-		private static readonly string pathInResources = "WorkSaver";
-		private static readonly string dataAssetName = "WorkSaverSettings";
+        private static WorkSaverSettings settings;
+        private static readonly string pathInResources = "WorkSaver";
+        private static readonly string dataAssetName = "WorkSaverSettings";
 
-		#region Save
-		private const string LastSaveDateKey = "WorkSaver_LastSaveDate";
-		private static UnityEvent onGlobalKeyPress = new UnityEvent ();
-		#endregion
+        #region Save
+        private const string LastSaveDateKey = "WorkSaver_LastSaveDate";
+        private static UnityEvent onGlobalKeyPress = new UnityEvent ();
+        #endregion
 
-		#region Blink
-		private static float lastRealtimeSinceStartup;
-		private static float elapsedTime;
-		#endregion
-		#endregion
+        #region Blink
+        private static float lastRealtimeSinceStartup;
+        private static float elapsedTime;
+        #endregion
+        #endregion
 
-		#region Class accesors
-		public static WorkSaverSettings Settings
-		{
-			get
-			{
-				if (settings == null)
-				{
-					string dataPathInResources = string.Concat (pathInResources, "/", dataAssetName);
-					settings = Resources.Load<WorkSaverSettings> (dataPathInResources);
+        #region Class accesors
+        public static WorkSaverSettings Settings
+        {
+            get
+            {
+                if (settings == null)
+                {
+                    string dataPathInResources = string.Concat (pathInResources, "/", dataAssetName);
+                    settings = Resources.Load<WorkSaverSettings> (dataPathInResources);
 
-					if (settings == null)
-					{
-						string fullResourcesPath = string.Concat (GGS_FrameworkPaths.Resources, pathInResources);
+                    if (settings == null)
+                    {
+                        string fullResourcesPath = string.Concat (GGS_FrameworkPaths.Resources, pathInResources);
 
-						if (!Directory.Exists (fullResourcesPath))
-						{
-							Directory.CreateDirectory (fullResourcesPath);
-							settings = WorkSaverSettings.Create (string.Concat (fullResourcesPath, "/", dataAssetName, ".asset"));
-						}
-					}
-				}
+                        if (!Directory.Exists (fullResourcesPath))
+                        {
+                            Directory.CreateDirectory (fullResourcesPath);
+                            settings = WorkSaverSettings.Create (string.Concat (fullResourcesPath, "/", dataAssetName, ".asset"));
+                        }
+                    }
+                }
 
-				return settings;
-			}
-			set
-			{
-				settings = value;
-			}
-		}
+                return settings;
+            }
+            set
+            {
+                settings = value;
+            }
+        }
 
-		#region Save
-		private static string LastSaveDateString
-		{
-			get { return EditorPrefs.GetString (LastSaveDateKey); }
-			set { EditorPrefs.SetString (LastSaveDateKey, value); }
-		}
+        #region Save
+        private static string LastSaveDateString
+        {
+            get { return EditorPrefs.GetString (LastSaveDateKey); }
+            set { EditorPrefs.SetString (LastSaveDateKey, value); }
+        }
 
-		private static DateTime LastSaveDate
-		{
-			get
-			{
-				if (string.IsNullOrEmpty (LastSaveDateString))
-					LastSaveDate = DateTime.Now;
+        private static DateTime LastSaveDate
+        {
+            get
+            {
+                if (string.IsNullOrEmpty (LastSaveDateString))
+                    LastSaveDate = DateTime.Now;
 
-				return DateTime.Parse (LastSaveDateString, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeLocal);
-			}
-			set
-			{
-				LastSaveDateString = value.ToString ();
-			}
-		}
+                return DateTime.Parse (LastSaveDateString, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeLocal);
+            }
+            set
+            {
+                LastSaveDateString = value.ToString ();
+            }
+        }
 
-		private static TimeSpan LeftTimeForRequiredSave
-		{
-			get
-			{
-				TimeSpan leftTime = LastSaveDate.Add (Settings.timeBetweenSaves).Subtract (DateTime.Now);
+        private static TimeSpan LeftTimeForRequiredSave
+        {
+            get
+            {
+                TimeSpan leftTime = LastSaveDate.Add (Settings.timeBetweenSaves).Subtract (DateTime.Now);
 
-				if (leftTime.Ticks <= 0)
-					leftTime = TimeSpan.Zero;
+                if (leftTime.Ticks <= 0)
+                    leftTime = TimeSpan.Zero;
 
-				return leftTime;
-			}
-		}
+                return leftTime;
+            }
+        }
 
-		private static string SaveKeyCombo
-		{
-			get { return string.Format ("PRESS {0}+S", (Application.platform == RuntimePlatform.WindowsEditor) ? "CTRL+ALT" : "CTRL+CMD"); }
-		}
-		#endregion
+        private static string SaveKeyCombo
+        {
+            get { return string.Format ("PRESS {0}+S", (Application.platform == RuntimePlatform.WindowsEditor) ? "CTRL+ALT" : "CTRL+CMD"); }
+        }
+        #endregion
 
-		#region Blink
-		private static Color StartBlinkColor
-		{
-			get { return (EditorGUIUtility.isProSkin) ? Settings.startBlinkColor : Settings.endBlinkColor; }
-		}
+        #region Blink
+        private static Color StartBlinkColor
+        {
+            get { return (EditorGUIUtility.isProSkin) ? Settings.startBlinkColor : Settings.endBlinkColor; }
+        }
 
-		private static Color EndBlinkColor
-		{
-			get { return (EditorGUIUtility.isProSkin) ? Settings.endBlinkColor : Settings.startBlinkColor; }
-		}
+        private static Color EndBlinkColor
+        {
+            get { return (EditorGUIUtility.isProSkin) ? Settings.endBlinkColor : Settings.startBlinkColor; }
+        }
 
-		private static float BlinkTime
-		{
-			get
-			{
-				TimeSpan elapsedTimeSinceRequired = DateTime.Now.Subtract (LastSaveDate.Add (Settings.timeBetweenSaves));
-				float elapsedTimeProgressSinceRequired = (float) elapsedTimeSinceRequired.TotalSeconds / (float) ((TimeSpan) Settings.timeForReachMaxBlinkSpeed).TotalSeconds;
-				float blinkSpeed = Mathf.Lerp (Settings.minBlinkSpeed, Settings.maxBlinkSpeed, elapsedTimeProgressSinceRequired);
+        private static float BlinkTime
+        {
+            get
+            {
+                TimeSpan elapsedTimeSinceRequired = DateTime.Now.Subtract (LastSaveDate.Add (Settings.timeBetweenSaves));
+                float elapsedTimeProgressSinceRequired = (float) elapsedTimeSinceRequired.TotalSeconds / (float) ((TimeSpan) Settings.timeForReachMaxBlinkSpeed).TotalSeconds;
+                float blinkSpeed = Mathf.Lerp (Settings.minBlinkSpeed, Settings.maxBlinkSpeed, elapsedTimeProgressSinceRequired);
 
-				float deltaTime = Time.realtimeSinceStartup - lastRealtimeSinceStartup;
-				lastRealtimeSinceStartup = Time.realtimeSinceStartup;
+                float deltaTime = Time.realtimeSinceStartup - lastRealtimeSinceStartup;
+                lastRealtimeSinceStartup = Time.realtimeSinceStartup;
 
-				elapsedTime += deltaTime * blinkSpeed;
-				return Settings.blinkCurve.Evaluate (Mathf.Repeat (elapsedTime, 1));
-			}
-		}
+                elapsedTime += deltaTime * blinkSpeed;
+                return Settings.blinkCurve.Evaluate (Mathf.Repeat (elapsedTime, 1));
+            }
+        }
 
-		private static Color BlinkColor
-		{
-			get { return Color.Lerp (StartBlinkColor, EndBlinkColor, BlinkTime); }
-		}
+        private static Color BlinkColor
+        {
+            get { return Color.Lerp (StartBlinkColor, EndBlinkColor, BlinkTime); }
+        }
 
-		private static Color InverseBlinkColor
-		{
-			get { return Color.Lerp (EndBlinkColor, StartBlinkColor, BlinkTime); }
-		}
-		#endregion
-		#endregion
+        private static Color InverseBlinkColor
+        {
+            get { return Color.Lerp (EndBlinkColor, StartBlinkColor, BlinkTime); }
+        }
+        #endregion
+        #endregion
 
-		#region Class implementation
-		static WorkSaver ()
-		{
-			EditorApplication.update -= OnEditorUpdate;
-			EditorApplication.update += OnEditorUpdate;
-			SceneView.onSceneGUIDelegate -= OnSceneView;
-			SceneView.onSceneGUIDelegate += OnSceneView;
+        #region Class implementation
+        static WorkSaver ()
+        {
+            EditorApplication.update -= OnEditorUpdate;
+            EditorApplication.update += OnEditorUpdate;
+            SceneView.onSceneGUIDelegate -= OnSceneView;
+            SceneView.onSceneGUIDelegate += OnSceneView;
 
-			AddGlobalKeyPressEvent ();
-			onGlobalKeyPress.AddListener (OnGlobalKeyPress);
-		}
+            AddGlobalKeyPressEvent ();
+            onGlobalKeyPress.AddListener (OnGlobalKeyPress);
+        }
 
-		private static void Save ()
-		{
-			EditorSceneManager.SaveOpenScenes ();
-			AssetDatabase.SaveAssets ();
+        private static void Save ()
+        {
+            EditorSceneManager.SaveOpenScenes ();
+            AssetDatabase.SaveAssets ();
 
-			ResetSaveDate ();
-		}
+            ResetSaveDate ();
+        }
 
-		public static void ResetSaveDate ()
-		{
-			elapsedTime = 0;
-			LastSaveDate = DateTime.Now;
-		}
+        public static void ResetSaveDate ()
+        {
+            elapsedTime = 0;
+            LastSaveDate = DateTime.Now;
+        }
 
-		private static void AddGlobalKeyPressEvent ()
-		{
-			FieldInfo fieldInfo = typeof (EditorApplication).GetField ("globalEventHandler", BindingFlags.Static | BindingFlags.NonPublic);
-			EditorApplication.CallbackFunction value = (EditorApplication.CallbackFunction) fieldInfo.GetValue (null);
-			value += onGlobalKeyPress.Invoke;
-			fieldInfo.SetValue (null, value);
-		}
+        private static void AddGlobalKeyPressEvent ()
+        {
+            FieldInfo fieldInfo = typeof (EditorApplication).GetField ("globalEventHandler", BindingFlags.Static | BindingFlags.NonPublic);
+            EditorApplication.CallbackFunction value = (EditorApplication.CallbackFunction) fieldInfo.GetValue (null);
+            value += onGlobalKeyPress.Invoke;
+            fieldInfo.SetValue (null, value);
+        }
 
-		private static void OnGlobalKeyPress ()
-		{
-			Event currentEvent = Event.current;
+        private static void OnGlobalKeyPress ()
+        {
+            Event currentEvent = Event.current;
 
-			bool controlKey = (Application.platform == RuntimePlatform.WindowsEditor) ? currentEvent.control && currentEvent.alt : currentEvent.control && currentEvent.command;
-			if (controlKey)
-			{
-				if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.S)
-					Save ();
-			}
-		}
+            bool controlKey = (Application.platform == RuntimePlatform.WindowsEditor) ? currentEvent.control && currentEvent.alt : currentEvent.control && currentEvent.command;
+            if (controlKey)
+            {
+                if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.S)
+                    Save ();
+            }
+        }
 
-		private static void OnEditorUpdate ()
-		{
-			if (!Settings.State)
-				return;
+        private static void OnEditorUpdate ()
+        {
+            if (!Settings.State)
+                return;
 
-			if (LeftTimeForRequiredSave == TimeSpan.Zero)
-			{
-				SceneView.RepaintAll ();
-				Color color = BlinkColor;
-			}
-		}
+            if (LeftTimeForRequiredSave == TimeSpan.Zero)
+            {
+                SceneView.RepaintAll ();
+                Color color = BlinkColor;
+            }
+        }
 
-		private static void OnSceneView (SceneView sceneView)
-		{
-			if (!Settings.State)
-				return;
+        private static void OnSceneView (SceneView sceneView)
+        {
+            if (!Settings.State)
+                return;
 
-			if (LeftTimeForRequiredSave != TimeSpan.Zero)
-				return;
+            if (LeftTimeForRequiredSave != TimeSpan.Zero)
+                return;
 
-			Handles.BeginGUI ();
+            Handles.BeginGUI ();
 
-			Rect rect = new Rect (Vector2.zero, sceneView.position.size - Vector2.up * 18);
-			Rect windowRect = new Rect (rect.x + windowOffset, rect.yMax - windowSize.y - windowOffset, windowSize.x, windowSize.y);
+            Rect rect = new Rect (Vector2.zero, sceneView.position.size - Vector2.up * 18);
+            Rect windowRect = new Rect (rect.x + windowOffset, rect.yMax - windowSize.y - windowOffset, windowSize.x, windowSize.y);
 
-			EditorGUI.DrawRect (windowRect, BlinkColor);
+            EditorGUI.DrawRect (windowRect, BlinkColor);
 
-			GUILayout.BeginArea (windowRect);
+            GUILayout.BeginArea (windowRect);
 
-			ExtendedGUI.DrawLabel ("Don't lose your work!", InverseBlinkColor, FontStyle.Bold);
-			ExtendedGUI.DrawLabel (SaveKeyCombo, InverseBlinkColor, FontStyle.Bold);
+            AdvancedGUILabel.Draw (rect, new AdvancedGUILabelConfig
+            {
+                Content = "Don't lose your work!",
+                Color = InverseBlinkColor,
+                FontStyle = FontStyle.Bold
+            });
 
-			GUIStyle buttonStyle = new GUIStyle ("Button");
-			buttonStyle.normal.textColor = (EditorGUIUtility.isProSkin) ? Color.white : Color.black;
-			if (GUILayout.Button ("Or Press Here", buttonStyle))
-				Save ();
+            AdvancedGUILabel.Draw (new AdvancedGUILabelConfig ("Don't lose your work!", GUIStyle.none, InverseBlinkColor, FontStyle.Bold));
+            AdvancedGUILabel.Draw (new AdvancedGUILabelConfig (SaveKeyCombo, GUIStyle.none, InverseBlinkColor, FontStyle.Bold));
 
-			GUILayout.EndArea ();
+            GUIStyle buttonStyle = new GUIStyle ("Button");
+            buttonStyle.normal.textColor = (EditorGUIUtility.isProSkin) ? Color.white : Color.black;
+            if (GUILayout.Button ("Or Press Here", buttonStyle))
+                Save ();
 
-			Handles.EndGUI ();
-		}
-		#endregion
-	}
+            GUILayout.EndArea ();
+
+            Handles.EndGUI ();
+        }
+        #endregion
+    }
 }
 #endif
