@@ -16,7 +16,7 @@ namespace GGS_Framework
             public const TextAnchor Alignment = TextAnchor.MiddleCenter;
             public const TextClipping Clipping = TextClipping.Clip;
             public const bool WordWrap = true;
-            public const int FontSize = 12;
+            public const int FontSize = 11;
         }
         #endregion
 
@@ -66,72 +66,40 @@ namespace GGS_Framework
         #region Constructors
         public AdvancedGUILabelConfig ()
         {
-            SetDefaults ();
+            Initialize (Defaults.Content, Defaults.BackgroundStyle, Defaults.Color, Defaults.Style, Defaults.Alignment, Defaults.Clipping, Defaults.WordWrap, Defaults.FontSize);
         }
 
         public AdvancedGUILabelConfig (string content, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
         {
-            SetDefaults ();
-
-            Content = content;
-            FontStyle = fontStyle;
-            FontSize = fontSize;
-            Alignment = alignment;
-            Clipping = clipping;
-            WordWrap = wordWrap;
+            Initialize (content, Defaults.BackgroundStyle, Defaults.Color, fontStyle, alignment, clipping, wordWrap, fontSize);
         }
 
         public AdvancedGUILabelConfig (string content, GUIStyle backgroundStyle, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
         {
-            SetDefaults ();
-
-            Content = content;
-            BackgroundStyle = backgroundStyle;
-            FontStyle = fontStyle;
-            FontSize = fontSize;
-            Alignment = alignment;
-            Clipping = clipping;
-            WordWrap = wordWrap;
+            Initialize (content, backgroundStyle, Defaults.Color, fontStyle, alignment, clipping, wordWrap, fontSize);
         }
 
         public AdvancedGUILabelConfig (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
         {
-            SetDefaults ();
-
-            Content = content;
-            BackgroundStyle = backgroundStyle;
-            Color = color;
-            FontStyle = fontStyle;
-            FontSize = fontSize;
-            Alignment = alignment;
-            Clipping = clipping;
-            WordWrap = wordWrap;
+            Initialize (content, backgroundStyle, color, fontStyle, alignment, clipping, wordWrap, fontSize);
         }
 
         public AdvancedGUILabelConfig (string content, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
         {
-            SetDefaults ();
+            Initialize (content, Defaults.BackgroundStyle, color, fontStyle, alignment, clipping, wordWrap, fontSize);
+        }
+        #endregion
 
+        private void Initialize (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+        {
             Content = content;
+            BackgroundStyle = new GUIStyle (backgroundStyle);
             Color = color;
             FontStyle = fontStyle;
             FontSize = fontSize;
             Alignment = alignment;
             Clipping = clipping;
             WordWrap = wordWrap;
-        }
-        #endregion
-
-        private void SetDefaults ()
-        {
-            BackgroundStyle = Defaults.BackgroundStyle;
-            Content = Defaults.Content;
-            Color = Defaults.Color;
-            FontStyle = Defaults.Style;
-            Alignment = Defaults.Alignment;
-            Clipping = Defaults.Clipping;
-            WordWrap = Defaults.WordWrap;
-            FontSize = Defaults.FontSize;
         }
 
         public float GetRequieredHeight (float width)

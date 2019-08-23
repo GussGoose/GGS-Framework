@@ -40,7 +40,7 @@ namespace GGS_Framework
 
         public static GUIStyle GetConfiguredStyle (AdvancedGUILabelConfig config)
         {
-            GUIStyle style = new GUIStyle (EditorStyles.label);
+            GUIStyle style = new GUIStyle (GUI.skin.GetStyle ("Label"));
 
             style.normal.textColor = config.Color;
             style.fontStyle = config.FontStyle;
