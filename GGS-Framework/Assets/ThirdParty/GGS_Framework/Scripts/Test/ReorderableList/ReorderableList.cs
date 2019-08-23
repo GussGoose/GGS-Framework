@@ -143,12 +143,7 @@ namespace GGS_Framework.Development.Test
 
         private void DrawHeader (Rect rect)
         {
-            AdvancedGUILabel.Draw (rect, new AdvancedGUILabelConfig ()
-            {
-                BackgroundStyle = Defaults.headerBackgroundStyle,
-                Content = Config.headerTittle,
-                FontStyle = Config.headerTittleFontStyle
-            });
+            AdvancedGUILabel.Draw (rect, new AdvancedGUILabelConfig (Config.headerTittle, Defaults.headerBackgroundStyle, Config.headerTittleFontStyle));
         }
 
         private void DrawElements (Rect rect)

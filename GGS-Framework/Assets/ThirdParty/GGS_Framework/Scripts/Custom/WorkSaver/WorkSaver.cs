@@ -216,15 +216,8 @@ namespace GGS_Framework
 
             GUILayout.BeginArea (windowRect);
 
-            AdvancedGUILabel.Draw (rect, new AdvancedGUILabelConfig
-            {
-                Content = "Don't lose your work!",
-                Color = InverseBlinkColor,
-                FontStyle = FontStyle.Bold
-            });
-
-            AdvancedGUILabel.Draw (new AdvancedGUILabelConfig ("Don't lose your work!", GUIStyle.none, InverseBlinkColor, FontStyle.Bold));
-            AdvancedGUILabel.Draw (new AdvancedGUILabelConfig (SaveKeyCombo, GUIStyle.none, InverseBlinkColor, FontStyle.Bold));
+            AdvancedGUILabel.Draw (new AdvancedGUILabelConfig ("Don't lose your work!", InverseBlinkColor, FontStyle.Bold));
+            AdvancedGUILabel.Draw (new AdvancedGUILabelConfig (SaveKeyCombo, InverseBlinkColor, FontStyle.Bold));
 
             GUIStyle buttonStyle = new GUIStyle ("Button");
             buttonStyle.normal.textColor = (EditorGUIUtility.isProSkin) ? Color.white : Color.black;
