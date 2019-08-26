@@ -6,18 +6,18 @@ namespace GGS_Framework
 {
 	public class WorkSaverSettingsEditorWindow : EditorWindow
 	{
-		#region Class members
+		#region Class Members
 		private bool editBlinkSettings;
 		#endregion
 
-		#region Class accesors
+		#region Class Accesors
 		private WorkSaverSettings Settings
 		{
 			get { return WorkSaver.Settings; }
 		}
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		[MenuItem ("Window/GGS Framework/Work Saver Settings")]
 		public static void Open ()
 		{

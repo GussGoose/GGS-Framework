@@ -1,22 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using GGS_Framework;
 
-public class AdvancedRect : MonoBehaviour 
+namespace GGS_Framework
 {
-	#region Class members
-	#endregion
+	public static partial class AdvancedRect
+	{
+		#region Class Implementation
+		public static Dictionary<string, Rect> GetRects (Rect rect, Orientation orientation, params Element[] elements)
+		{
+			Group.ComputeElementsRect (rect, orientation, elements);
 
-	#region Class accesors
-	#endregion
+			List<Element> allElements = new List<Element> ();
 
-	#region Class overrides
-	#endregion
+			foreach (Element element in elements)
+				allElements.AddRange (GetElementsRecursively (element));
 
-	#region Class implementation
-	#endregion
+			Dictionary<string, Rect> rects = new Dictionary<string, Rect> ();
 
-	#region Interface implementation
-	#endregion
+			foreach (Element element in allElements)
+			{
+				if (element is Group)
+					(element as Group).ComputeElements ();
+			}
+
+			foreach (Element element in allElements)
+			{
+				if (element.Use & element.Key != string.Empty)
+					rects.Add (element.Key, element.Rect);
+			}
+
+			return rects;
+		}
+
+		private static List<Element> GetElementsRecursively (Element element)
+		{
+			List<Element> elements = new List<Element> { element };
+
+			Group group = element as Group;
+			if (group != null)
+			{
+				foreach (Element elementInGroup in group.Elements)
+					elements.AddRange (GetElementsRecursively (elementInGroup));
+			}
+
+			return elements;
+		}
+		#endregion
+	}
 }
