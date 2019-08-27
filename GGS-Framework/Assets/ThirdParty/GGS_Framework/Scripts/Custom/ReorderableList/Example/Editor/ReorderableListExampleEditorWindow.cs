@@ -5,55 +5,55 @@ using UnityEditor;
 
 namespace GGS_Framework
 {
-	public class ReorderableListExampleEditorWindow : EditorWindow
-	{
-		#region Class members
-		private ReorderableList reorderableList;
-		#endregion
+    public class ReorderableListExampleEditorWindow : EditorWindow
+    {
+        #region Class Members
+        private ReorderableList reorderableList;
+        #endregion
 
-		#region Class accesors
-		private ReorderableListExample Target
-		{
-			get { return FindObjectOfType<ReorderableListExample> (); }
-		}
+        #region Class Accesors
+        private ReorderableListExample Target
+        {
+            get { return FindObjectOfType<ReorderableListExample> (); }
+        }
 
-		private Rect Rect
-		{
-			get { return new Rect (Vector2.zero, position.size); }
-		}
-		#endregion
+        private Rect Rect
+        {
+            get { return new Rect (Vector2.zero, position.size); }
+        }
+        #endregion
 
-		#region Class overrides
-		private void OnEnable ()
-		{
-			Initialize ();
-		}
+        #region Class Overrides
+        private void OnEnable ()
+        {
+            Initialize ();
+        }
 
-		private void OnGUI ()
-		{
-			reorderableList.Draw (Rect);
-		}
-		#endregion
+        private void OnGUI ()
+        {
+            reorderableList.Draw (Rect);
+        }
+        #endregion
 
-		#region Class implementation
-		[MenuItem ("Window/GGS Framework/Reorderable List Example")]
-		public static void Open ()
-		{
-			ReorderableListExampleEditorWindow window = CreateInstance<ReorderableListExampleEditorWindow> ();
-			window.titleContent = new GUIContent ("RL Example");
-			window.Show ();
-		}
+        #region Class Implementation
+        [MenuItem ("Window/GGS Framework/Reorderable List Example")]
+        public static void Open ()
+        {
+            ReorderableListExampleEditorWindow window = CreateInstance<ReorderableListExampleEditorWindow> ();
+            window.titleContent = new GUIContent ("RL Example");
+            window.Show ();
+        }
 
-		private void Initialize ()
-		{
-			reorderableList = new ReorderableList (Target.exampleList, typeof (ReorderableListExampleStruct), "DisplayName");
-			reorderableList.onElementDraw += OnElementDraw;
-		}
+        private void Initialize ()
+        {
+            reorderableList = new ReorderableList (Target.exampleList, typeof (ReorderableListExampleStruct), "DisplayName");
+            reorderableList.onElementDraw += OnElementDraw;
+        }
 
-		private void OnElementDraw (Rect rect, int index)
-		{
-			GUI.Label (rect, Target.exampleList[index].DisplayName);
-		}
-		#endregion
-	}
+        private void OnElementDraw (Rect rect, int index)
+        {
+            GUI.Label (rect, Target.exampleList[index].DisplayName);
+        }
+        #endregion
+    }
 }

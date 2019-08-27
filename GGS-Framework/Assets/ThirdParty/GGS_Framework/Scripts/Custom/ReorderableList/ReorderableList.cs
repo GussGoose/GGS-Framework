@@ -1,68 +1,71 @@
 ﻿#if UNITY_EDITOR
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GGS_Framework
 {
-	public partial class ReorderableList
-	{
-		#region Class members
-		private TreeView treeView;
+    public partial class ReorderableList
+    {
+        #region Class Members
+        private TreeView treeView;
 
-		private IList list;
-		private System.Type elementType;
+        private IList list;
+        private System.Type elementType;
 
-		private string searchVariableName;
+        private string searchVariableName;
 
-		public string title;
+        public string title;
 
-		public delegate void AddElementDelegate (int addedIndex);
-		public AddElementDelegate onElementAdd;
+        public bool canAddAndRemove;
+        public delegate void AddElementDelegate (int addIndex);
+        public AddElementDelegate onElementAdd;
+        public AddElementDelegate onAfterElementAdd;
 
-		public delegate void DuplicateElementDelegate (int duplicatedIndex, int targetIndex);
-		public DuplicateElementDelegate onElementDuplicated;
+        public bool canCopyAndPaste;
+        public delegate void CopyElementDelegate (int copyIndex);
+        public CopyElementDelegate onElementCopy;
+        public CopyElementDelegate onAfterElementCopy;
 
-		public delegate void CopyElementDelegate (int copiedIndex);
-		public CopyElementDelegate onElementCopied;
+        public delegate void PasteElementDelegate (int copyIndex, int[] pasteIndexes);
+        public PasteElementDelegate onElementPaste;
+        public PasteElementDelegate onAfterElementPaste;
 
-		public delegate void PasteElementDelegate (int copiedIndex, int[] pastedIndexes);
-		public PasteElementDelegate onElementPasted;
+        public delegate void RemoveElementDelegate (List<int> removedIndexes);
+        public RemoveElementDelegate onAfterElementsRemove;
 
-		public delegate void RemoveElementDelegate (int removedIndex);
-		public RemoveElementDelegate onElementRemoved;
+        public delegate void DrawElementDelegate (Rect rect, int index);
+        public DrawElementDelegate onElementDraw;
+        #endregion
 
-		public delegate void DrawElementDelegate (Rect rect, int index);
-		public DrawElementDelegate onElementDraw;
-		#endregion
+        #region Class Accesors
+        public int Count
+        {
+            get { return list.Count; }
+        }
+        #endregion
 
-		#region Class accesors
-		public int Count
-		{
-			get { return list.Count; }
-		}
-		#endregion
+        #region Class Implementation
+        public ReorderableList (IList list, System.Type elementType, string searchVariableName, string title = "Reorderable List")
+        {
+            this.list = list;
+            this.elementType = elementType;
 
-		#region Class overrides
-		#endregion
+            this.searchVariableName = searchVariableName;
 
-		#region Class implementation
-		public ReorderableList (IList list, System.Type elementType, string searchVariableName, string title = "Reorderable List")
-		{
-			this.list = list;
-			this.elementType = elementType;
+            this.title = title;
 
-			this.searchVariableName = searchVariableName;
+            canAddAndRemove = true;
+            canCopyAndPaste = true;
 
-			this.title = title;
+            treeView = new TreeView (this);
+        }
 
-			treeView = new TreeView (this);
-		}
-
-		public void Draw (Rect rect)
-		{
-			treeView.Draw (rect);
-		}
-		#endregion
-	}
-} 
+        public void Draw (Rect rect)
+        {
+            treeView.Draw (rect);
+        }
+        #endregion
+    }
+}
 #endif

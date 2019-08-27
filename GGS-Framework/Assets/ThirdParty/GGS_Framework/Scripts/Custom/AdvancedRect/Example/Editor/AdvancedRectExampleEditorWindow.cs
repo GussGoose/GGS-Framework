@@ -28,7 +28,11 @@ namespace GGS_Framework
                         new AdvancedRect.FixedItem ("AddButton", 16)
                     ),
                     new AdvancedRect.Space (2),
-                    new AdvancedRect.ExpandedGroup ("Properties", AdvancedRect.Orientation.Vertical)
+                    new AdvancedRect.ExpandedGroup (AdvancedRect.Orientation.Vertical,
+                        new AdvancedRect.ExpandedItem ("PropertiesA"),
+                        new AdvancedRect.Space (2),
+                        new AdvancedRect.ExpandedItem ("PropertiesB")
+                    )
                 )
             );
 

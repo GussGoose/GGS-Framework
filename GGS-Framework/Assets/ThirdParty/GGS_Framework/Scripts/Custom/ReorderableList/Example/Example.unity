@@ -144,13 +144,10 @@ MonoBehaviour:
   - displayName: First
     exampleFloat: 0
     exampleBool: 0
-  - displayName: Second
+  - displayName: rrr
     exampleFloat: 0
     exampleBool: 0
-  - displayName: Third
-    exampleFloat: 0
-    exampleBool: 0
-  - displayName: Fourth
+  - displayName: rerere
     exampleFloat: 0
     exampleBool: 0
 --- !u!4 &1374321138

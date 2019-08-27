@@ -6,7 +6,7 @@ namespace GGS_Framework
 {
 	public class ReorderableListExample : MonoBehaviour
 	{
-		#region Class members
+		#region Class Members
 		public List<ReorderableListExampleStruct> exampleList = new List<ReorderableListExampleStruct> ();
 		#endregion
 	}
