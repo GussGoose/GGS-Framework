@@ -8,19 +8,20 @@ namespace GGS_Framework
 	public class IntRangeDrawer : PropertyDrawer
 	{
 		#region Class overrides
-		public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
+		public override void OnGUI (Rect rect, SerializedProperty property, GUIContent label)
 		{
-			EditorGUI.BeginProperty (position, label, property);
+			EditorGUI.BeginProperty (rect, label, property);
 
-			position = EditorGUI.PrefixLabel (position, GUIUtility.GetControlID (FocusType.Passive), label);
+			rect = EditorGUI.PrefixLabel (rect, GUIUtility.GetControlID (FocusType.Passive), label);
 
 			int indentLevel = EditorGUI.indentLevel;
 			EditorGUI.indentLevel = 0;
 
-			Dictionary<string, Rect> rects = ExtendedRect.HorizontalRects (position,
-				new RectLayoutElement ("Start"),
-				new RectLayoutElement (5),
-				new RectLayoutElement ("End"));
+			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
+				new AdvancedRect.ExpandedItem ("Start"),
+				new AdvancedRect.Space (5),
+				new AdvancedRect.ExpandedItem ("End")
+			);
 
 			EditorGUIUtility.labelWidth = 35;
 			EditorGUI.PropertyField (rects["Start"], property.FindPropertyRelative ("start"));

@@ -53,10 +53,11 @@ namespace GGS_Framework
 		{
 			windowRect = WindowOffset.Add (new Rect (Vector2.zero, position.size));
 
-			Dictionary<string, Rect> rects = ExtendedRect.VerticalRects (windowRect,
-				new RectLayoutElement ("Header", 24),
-				new RectLayoutElement (5),
-				new RectLayoutElement ("Easings"));
+			Dictionary<string, Rect> rects = AdvancedRect.GetRects (windowRect, AdvancedRect.Orientation.Vertical,
+				new AdvancedRect.FixedItem ("Header", 24),
+				new AdvancedRect.Space (5),
+				new AdvancedRect.ExpandedItem ("Easings")
+			);
 
 			DrawHeader (rects["Header"]);
 			DrawEasings (rects["Easings"]);
@@ -112,10 +113,11 @@ namespace GGS_Framework
 			if (!windowRect.Overlaps (rect))
 				return;
 
-			Dictionary<string, Rect> rects = ExtendedRect.VerticalRects (rect,
-			new RectLayoutElement ("Header", 20),
-			new RectLayoutElement (1),
-			new RectLayoutElement ("Ease"));
+			Dictionary<string, Rect> rects = AdvancedRect.GetRects (windowRect, AdvancedRect.Orientation.Vertical,
+				new AdvancedRect.FixedItem ("Header", 20),
+				new AdvancedRect.Space (1),
+				new AdvancedRect.ExpandedItem ("Ease")
+			);
 
 			Rect originalEaseRect = rects["Ease"];
 			Rect easeRect = originalEaseRect;

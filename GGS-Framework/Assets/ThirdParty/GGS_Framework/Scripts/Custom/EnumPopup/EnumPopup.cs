@@ -39,11 +39,10 @@ namespace GGS_Framework
 			string selectedEnum = serializedProperty.enumNames[serializedProperty.enumValueIndex];
 			float styleHeight = style.CalcHeight (new GUIContent (selectedEnum), 100);
 
-			List<RectLayoutElement> layoutElements = new List<RectLayoutElement> ();
-			layoutElements.Add (new RectLayoutElement ("Field"));
-			if (!labelEmpty)
-				layoutElements.Insert (0, new RectLayoutElement ("Label", EditorGUIUtility.labelWidth));
-			Dictionary<string, Rect> rects = ExtendedRect.HorizontalRects (rect, layoutElements.ToArray ());
+			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
+				new AdvancedRect.ExpandedItem ("Field"),
+				new AdvancedRect.FixedItem ("Label", EditorGUIUtility.labelWidth, !labelEmpty)
+			);
 
 			if (!labelEmpty)
 				GUI.Label (rects["Label"], label);

@@ -40,12 +40,13 @@ namespace GGS_Framework
 
 		public override void OnGUI (Rect rect)
 		{
-			Dictionary<string, Rect> rects = ExtendedRect.VerticalRects (rect,
-				new RectLayoutElement (4),
-				new RectLayoutElement ("SearchField", 18),
-				new RectLayoutElement ("List"));
+			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Vertical,
+				new AdvancedRect.Space (4),
+				new AdvancedRect.FixedItem ("SearchBar", 18, new AdvancedRect.Padding (-2, AdvancedRect.Padding.Type.Horizontal)),
+				new AdvancedRect.ExpandedItem ("List")
+			);
 
-			treeView.searchString = searchField.OnToolbarGUI (rects["SearchField"].HorizontalExpand (4), treeView.searchString);
+			treeView.searchString = searchField.OnToolbarGUI (rects["SearchBar"], treeView.searchString);
 			treeView.OnGUI (rects["List"]);
 		}
 		#endregion
