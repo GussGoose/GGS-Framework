@@ -9,7 +9,7 @@ namespace GGS_Framework
         #region Class implementation
         public static TimeObject TimeObject (GUIContent label, TimeObject value)
         {
-            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (18));
+            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (EditorGUIUtility.singleLineHeight));
             return ExtendedGUI.TimeObject (rect, label, value);
         }
 
@@ -20,7 +20,7 @@ namespace GGS_Framework
 
         public static void TimeObject (GUIContent label, SerializedProperty property)
         {
-            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (18));
+            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (EditorGUIUtility.singleLineHeight));
             ExtendedGUI.TimeObject (rect, label, property);
         }
 

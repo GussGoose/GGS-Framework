@@ -9,7 +9,7 @@ namespace GGS_Framework
         #region Class Implementation
         public static IntRange IntRange (GUIContent label, IntRange value)
         {
-            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (18));
+            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (EditorGUIUtility.singleLineHeight));
             return ExtendedGUI.IntRange (rect, label, value);
         }
 
@@ -20,7 +20,7 @@ namespace GGS_Framework
 
         public static void IntRange (GUIContent label, SerializedProperty property)
         {
-            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (18));
+            Rect rect = EditorGUILayout.GetControlRect (GUILayout.ExpandWidth (true), GUILayout.Height (EditorGUIUtility.singleLineHeight));
             ExtendedGUI.IntRange (rect, label, property);
         }
 
