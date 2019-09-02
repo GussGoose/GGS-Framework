@@ -6,8 +6,8 @@
 		public const string Slash = "/";
 		public const string Root = "Assets/ThirdParty/GGS_Framework";
 
-		public static readonly string Resources = string.Concat (Root, Slash, "Resources");
-		public static readonly string EditorResources = string.Concat (Root, Slash, "EditorResources");
+		public static readonly string ResourcesFolderFullPath = string.Concat (Root, Slash, "Resources");
+		public static readonly string EditorResourcesFolderFullPath = string.Concat (Root, Slash, "EditorResources");
 		#endregion
 	}
 }

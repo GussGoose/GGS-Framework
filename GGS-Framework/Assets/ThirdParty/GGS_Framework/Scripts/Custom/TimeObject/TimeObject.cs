@@ -5,12 +5,12 @@ namespace GGS_Framework
 	[Serializable]
 	public class TimeObject
 	{
-		#region Class members
-		public TimeObjectType type;
+		#region Class Members
 		public double value;
+		public TimeObjectType type;
 		#endregion
 
-		#region Class accesors
+		#region Class Accesors
 		public TimeSpan TimeSpan
 		{
 			get
@@ -32,10 +32,18 @@ namespace GGS_Framework
 				return TimeSpan.Zero;
 			}
 		}
-		#endregion
+        #endregion
 
-		#region Operators
-		public static implicit operator TimeSpan (TimeObject timeObject)
+        #region Class Implementation
+        public TimeObject (double value, TimeObjectType type)
+        {
+            this.value = value;
+            this.type = type;
+        }
+        #endregion
+
+        #region Operators
+        public static implicit operator TimeSpan (TimeObject timeObject)
 		{
 			return timeObject.TimeSpan;
 		}

@@ -12,13 +12,9 @@ namespace GGS_Framework
     [InitializeOnLoad]
     public class WorkSaver
     {
-        #region Class members
+        #region Class Members
         private static readonly Vector2 windowSize = new Vector2 (140, 59);
         private static readonly int windowOffset = 4;
-
-        private static WorkSaverSettings settings;
-        private static readonly string pathInResources = "WorkSaver";
-        private static readonly string dataAssetName = "WorkSaverSettings";
 
         #region Save
         private const string LastSaveDateKey = "WorkSaver_LastSaveDate";
@@ -31,34 +27,10 @@ namespace GGS_Framework
         #endregion
         #endregion
 
-        #region Class accesors
+        #region Class Accesors
         public static WorkSaverSettings Settings
         {
-            get
-            {
-                if (settings == null)
-                {
-                    string dataPathInResources = string.Concat (pathInResources, "/", dataAssetName);
-                    settings = Resources.Load<WorkSaverSettings> (dataPathInResources);
-
-                    if (settings == null)
-                    {
-                        string fullResourcesPath = string.Concat (GGS_FrameworkPaths.Resources, pathInResources);
-
-                        if (!Directory.Exists (fullResourcesPath))
-                        {
-                            Directory.CreateDirectory (fullResourcesPath);
-                            settings = WorkSaverSettings.Create (string.Concat (fullResourcesPath, "/", dataAssetName, ".asset"));
-                        }
-                    }
-                }
-
-                return settings;
-            }
-            set
-            {
-                settings = value;
-            }
+            get { return WorkSaverSettings.Instance; }
         }
 
         #region Save
@@ -141,7 +113,7 @@ namespace GGS_Framework
         #endregion
         #endregion
 
-        #region Class implementation
+        #region Class Implementation
         static WorkSaver ()
         {
             EditorApplication.update -= OnEditorUpdate;
