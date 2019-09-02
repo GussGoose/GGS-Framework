@@ -13,14 +13,19 @@ namespace GGS_Framework
             #endregion
 
             #region Class Implementation
-            public Padding (int size, Type type)
+            public Padding (int offset, Type type)
             {
-                int left = ((type & Type.Left) != 0) ? size : 0;
-                int right = ((type & Type.Right) != 0) ? size : 0;
-                int top = ((type & Type.Top) != 0) ? size : 0;
-                int bottom = ((type & Type.Bottom) != 0) ? size : 0;
+                int left = ((type & Type.Left) != 0) ? offset : 0;
+                int right = ((type & Type.Right) != 0) ? offset : 0;
+                int top = ((type & Type.Top) != 0) ? offset : 0;
+                int bottom = ((type & Type.Bottom) != 0) ? offset : 0;
 
-                offset = new RectOffset (left, right, top, bottom);
+                this.offset = new RectOffset (left, right, top, bottom);
+            }
+
+            public Padding (RectOffset offset)
+            {
+                this.offset = offset;
             }
 
             public Rect Apply (Rect rect)

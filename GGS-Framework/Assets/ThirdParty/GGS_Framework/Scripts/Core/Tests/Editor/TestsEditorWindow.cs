@@ -7,6 +7,9 @@ namespace GGS_Framework
 {
     public class TestsEditorWindow : EditorWindow
     {
+        #region Class Members
+        #endregion
+
         #region Class Accesors
         private Tests Target
         {
