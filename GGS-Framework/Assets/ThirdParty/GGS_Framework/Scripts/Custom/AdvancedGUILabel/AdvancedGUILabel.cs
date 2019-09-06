@@ -1,5 +1,4 @@
 ﻿#if UNITY_EDITOR
-using UnityEditor;
 using UnityEngine;
 
 namespace GGS_Framework
@@ -19,36 +18,36 @@ namespace GGS_Framework
 
         private static void DoDraw (AdvancedGUILabelConfig config)
         {
-            Rect rect = GUILayoutUtility.GetRect (new GUIContent (config.Content), GetConfiguredStyle (config), GUILayout.ExpandWidth (true));
+            Rect rect = GUILayoutUtility.GetRect (new GUIContent (config.content), GetConfiguredStyle (config), GUILayout.ExpandWidth (true));
             DoDraw (rect, config);
         }
 
         private static void DoDraw (Rect rect, AdvancedGUILabelConfig config)
         {
-            config.BackgroundStyle.fixedHeight = rect.height;
-            GUI.Box (rect, "", config.BackgroundStyle);
+            config.backgroundStyle.fixedHeight = rect.height;
+            GUI.Box (rect, "", config.backgroundStyle);
 
             GUIStyle labelStyle = GetConfiguredStyle (config);
-            GUI.Label (rect, config.Content, labelStyle);
+            GUI.Label (rect, config.content, labelStyle);
         }
 
         public static float GetRequieredHeight (AdvancedGUILabelConfig config, float width)
         {
             GUIStyle style = GetConfiguredStyle (config);
-            return style.CalcHeight (new GUIContent (config.Content), width);
+            return style.CalcHeight (new GUIContent (config.content), width);
         }
 
         public static GUIStyle GetConfiguredStyle (AdvancedGUILabelConfig config)
         {
             GUIStyle style = new GUIStyle (GUI.skin.GetStyle ("Label"));
 
-            style.normal.textColor = config.Color;
-            style.fontStyle = config.FontStyle;
-            style.fontSize = config.FontSize;
+            style.normal.textColor = config.color;
+            style.fontStyle = config.fontStyle;
+            style.fontSize = config.fontSize;
 
-            style.alignment = config.Alignment;
-            style.clipping = config.Clipping;
-            style.wordWrap = config.WordWrap;
+            style.alignment = config.alignment;
+            style.clipping = config.clipping;
+            style.wordWrap = config.wordWrap;
 
             return style;
         }

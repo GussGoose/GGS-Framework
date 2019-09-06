@@ -74,10 +74,10 @@ namespace GGS_Framework
         /// <summary>
         /// Aligns rect inside container
         /// </summary>
-        public static Rect AlignRect (Rect rect, Rect container, Aligment aligment)
+        public static Rect AlignRect (Vector2 rectSize, Rect container, Aligment aligment)
         {
             Vector2 position = Vector2.zero;
-            Vector2 middleRectSize = rect.size / 2f;
+            Vector2 middleRectSize = rectSize / 2f;
 
             switch (aligment)
             {
@@ -88,7 +88,7 @@ namespace GGS_Framework
                     position = new Vector2 (container.center.x - middleRectSize.x, container.yMin);
                     break;
                 case Aligment.TopRight:
-                    position = new Vector2 (container.xMax - rect.width, container.yMin);
+                    position = new Vector2 (container.xMax - rectSize.x, container.yMin);
                     break;
                 case Aligment.CenterLeft:
                     position = new Vector2 (container.xMin, container.center.y - middleRectSize.y);
@@ -97,20 +97,20 @@ namespace GGS_Framework
                     position = container.center - middleRectSize;
                     break;
                 case Aligment.CenterRight:
-                    position = new Vector2 (container.xMax - rect.width, container.center.y - middleRectSize.y);
+                    position = new Vector2 (container.xMax - rectSize.x, container.center.y - middleRectSize.y);
                     break;
                 case Aligment.BottomLeft:
-                    position = new Vector2 (container.xMin, container.yMax - rect.height);
+                    position = new Vector2 (container.xMin, container.yMax - rectSize.y);
                     break;
                 case Aligment.BottomCenter:
-                    position = new Vector2 (container.center.x - middleRectSize.x, container.yMax - rect.height);
+                    position = new Vector2 (container.center.x - middleRectSize.x, container.yMax - rectSize.y);
                     break;
                 case Aligment.BottomRight:
-                    position = new Vector2 (container.xMax - rect.width, container.yMax - rect.height);
+                    position = new Vector2 (container.xMax - rectSize.x, container.yMax - rectSize.y);
                     break;
             }
 
-            return new Rect (position, rect.size);
+            return new Rect (position, rectSize);
         }
 
         /// <summary>

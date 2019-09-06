@@ -21,45 +21,16 @@ namespace GGS_Framework
         #endregion
 
         #region Class Accesors
-        public string Content
-        {
-            get; internal set;
-        }
+        public string content;
+        public GUIStyle backgroundStyle;
 
-        public GUIStyle BackgroundStyle
-        {
-            get; internal set;
-        }
+        public Color color;
+        public FontStyle fontStyle;
+        public TextAnchor alignment;
 
-        public Color Color
-        {
-            get; internal set;
-        }
-
-        public FontStyle FontStyle
-        {
-            get; internal set;
-        }
-
-        public TextAnchor Alignment
-        {
-            get; internal set;
-        }
-
-        public TextClipping Clipping
-        {
-            get; internal set;
-        }
-
-        public bool WordWrap
-        {
-            get; internal set;
-        }
-
-        public int FontSize
-        {
-            get; internal set;
-        }
+        public TextClipping clipping;
+        public bool wordWrap;
+        public int fontSize;
         #endregion
 
         #region Class Implementation
@@ -92,20 +63,20 @@ namespace GGS_Framework
 
         private void Initialize (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
         {
-            Content = content;
-            BackgroundStyle = new GUIStyle (backgroundStyle);
-            Color = color;
-            FontStyle = fontStyle;
-            FontSize = fontSize;
-            Alignment = alignment;
-            Clipping = clipping;
-            WordWrap = wordWrap;
+            this.content = content;
+            this.backgroundStyle = new GUIStyle (backgroundStyle);
+            this.color = color;
+            this.fontStyle = fontStyle;
+            this.fontSize = fontSize;
+            this.alignment = alignment;
+            this.clipping = clipping;
+            this.wordWrap = wordWrap;
         }
 
         public float GetRequieredHeight (float width)
         {
             GUIStyle style = AdvancedGUILabel.GetConfiguredStyle (this);
-            return style.CalcHeight (new GUIContent (Content), width);
+            return style.CalcHeight (new GUIContent (content), width);
         }
 
         public Rect GetRectWithRequieredHeight (Rect rect)
