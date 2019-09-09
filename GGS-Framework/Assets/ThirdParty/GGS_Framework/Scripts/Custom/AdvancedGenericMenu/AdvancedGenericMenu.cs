@@ -24,6 +24,22 @@ namespace GGS_Framework
 			});
 		}
 
+		public static void Draw (Item[] items, Action<string> onItemSelected)
+		{
+			DoMenu (Rect.zero, items, item =>
+			{
+				onItemSelected (item);
+			});
+		}
+
+		public static void Draw (Rect rect, Item[] items, Action<string> onItemSelected)
+		{
+			DoMenu (rect, items, item =>
+			{
+				onItemSelected (item);
+			});
+		}
+
 		private static void DoMenu (Rect rect, Type enumValue, Item[] items, Action<object> onItemSelected)
 		{
 			GenericMenu menu = new GenericMenu ();
@@ -43,6 +59,34 @@ namespace GGS_Framework
 					{
 						object enumObject = Enum.Parse (enumValue, item.GetItemValue (), true);
 						onItemSelected (enumObject);
+					});
+				}
+			}
+
+			if (rect != Rect.zero)
+				menu.DropDown (rect);
+			else
+				menu.ShowAsContext ();
+		}
+
+		private static void DoMenu (Rect rect, Item[] items, Action<string> onItemSelected)
+		{
+			GenericMenu menu = new GenericMenu ();
+
+			for (int i = 0; i < items.Length; i++)
+			{
+				Item item = items[i];
+
+				if (!item.Use)
+					continue;
+
+				if (item as Separator != null)
+					menu.AddSeparator (item.Path);
+				else
+				{
+					menu.AddItem (new GUIContent (item.Path), item.Selected, delegate
+					{
+						onItemSelected (item.GetItemValue ());
 					});
 				}
 			}
