@@ -6,103 +6,107 @@ using UnityEditor.IMGUI.Controls;
 
 namespace GGS_Framework
 {
-	public partial class ReorderableList
-	{
-		public class TreeView : UnityEditor.IMGUI.Controls.TreeView
-		{
-			#region Class Members
-			private const string DragKey = "ReorderableListDrag";
+    public partial class ReorderableList<ElementType>
+    {
+        private class TreeView : UnityEditor.IMGUI.Controls.TreeView
+        {
+            #region Class Members
+            private const string DragKey = "ReorderableListDrag";
 
-			private ReorderableList reorderableList;
-			#endregion
+            private ReorderableList<ElementType> reorderableList;
+            #endregion
 
-			#region Class Accesors
-			public int ItemCount
-			{
-				get { return rootItem.children.Count; }
-			}
-			#endregion
+            #region Class Accesors
+            public int ItemCount
+            {
+                get { return rootItem.children.Count; }
+            }
+            #endregion
 
-			#region Class Overrides
-			protected override TreeViewItem BuildRoot ()
-			{
-				TreeViewItem root = new TreeViewItem (-1, -1, "Root");
+            #region Class Overrides
+            protected override TreeViewItem BuildRoot ()
+            {
+                TreeViewItem root = new TreeViewItem (-1, -1, "Root");
 
-				root.children = new List<TreeViewItem> ();
-				for (int i = 0; i < reorderableList.Count; i++)
-				{
-					string displayName = reorderableList.GetDisplayNameOfElement (i);
-					root.AddChild (new TreeViewItem (i, -1, displayName));
-				}
+                root.children = new List<TreeViewItem> ();
+                for (int i = 0; i < reorderableList.Count; i++)
+                {
+                    string displayName = reorderableList.GetNameOfElementForSearch (i);
 
-				return root;
-			}
+                    if (string.IsNullOrEmpty (displayName) || string.IsNullOrWhiteSpace (displayName))
+                        displayName = "Unnamed";
 
-			protected override void RowGUI (RowGUIArgs args)
-			{
-				reorderableList.DrawElement (args.rowRect, args.item.id);
-			}
+                    root.AddChild (new TreeViewItem (i, -1, displayName));
+                }
 
-			protected override void ContextClickedItem (int id)
-			{
-				base.ContextClickedItem (id);
-				reorderableList.ContextClickedElement (id);
-			}
+                return root;
+            }
 
-			#region Drag
-			protected override bool CanStartDrag (CanStartDragArgs args)
-			{
-				return reorderableList.draggable;
-			}
+            protected override void RowGUI (RowGUIArgs args)
+            {
+                reorderableList.DrawElementBase (args.rowRect, args.item.id);
+            }
 
-			protected override void SetupDragAndDrop (SetupDragAndDropArgs args)
-			{
-				if (hasSearch)
-					return;
+            protected override void ContextClickedItem (int id)
+            {
+                base.ContextClickedItem (id);
+                reorderableList.ContextClickElement (id);
+            }
 
-				DragAndDrop.PrepareStartDrag ();
+            #region Drag
+            protected override bool CanStartDrag (CanStartDragArgs args)
+            {
+                return reorderableList.draggable;
+            }
 
-				List<TreeViewItem> draggedItems = GetRows ().Where (item => args.draggedItemIDs.Contains (item.id)).ToList ();
+            protected override void SetupDragAndDrop (SetupDragAndDropArgs args)
+            {
+                if (hasSearch)
+                    return;
 
-				DragAndDrop.SetGenericData (DragKey, draggedItems);
-				DragAndDrop.objectReferences = new UnityEngine.Object[] { };
+                DragAndDrop.PrepareStartDrag ();
 
-				string dragTitle = (draggedItems.Count == 1) ? draggedItems[0].displayName : "<Multiple>";
-				DragAndDrop.StartDrag (dragTitle);
-			}
+                List<TreeViewItem> draggedItems = GetRows ().Where (item => args.draggedItemIDs.Contains (item.id)).ToList ();
 
-			protected override DragAndDropVisualMode HandleDragAndDrop (DragAndDropArgs args)
-			{
-				List<TreeViewItem> draggedItems = DragAndDrop.GetGenericData (DragKey) as List<TreeViewItem>;
-				List<int> draggedIds = draggedItems.Select (item => item.id).ToList ();
+                DragAndDrop.SetGenericData (DragKey, draggedItems);
+                DragAndDrop.objectReferences = new UnityEngine.Object[] { };
 
-				if (draggedItems == null)
-					return DragAndDropVisualMode.None;
+                string dragTitle = (draggedItems.Count == 1) ? draggedItems[0].displayName : "<Multiple>";
+                DragAndDrop.StartDrag (dragTitle);
+            }
 
-				switch (args.dragAndDropPosition)
-				{
-					case DragAndDropPosition.BetweenItems:
-						{
-							if (args.performDrop)
-								reorderableList.PerformDrop (args.insertAtIndex, draggedIds);
+            protected override DragAndDropVisualMode HandleDragAndDrop (DragAndDropArgs args)
+            {
+                List<TreeViewItem> draggedItems = DragAndDrop.GetGenericData (DragKey) as List<TreeViewItem>;
+                List<int> draggedIds = draggedItems.Select (item => item.id).ToList ();
 
-							return DragAndDropVisualMode.Move;
-						}
-					default:
-						return DragAndDropVisualMode.None;
-				}
-			}
-			#endregion
-			#endregion
+                if (draggedItems == null)
+                    return DragAndDropVisualMode.None;
 
-			#region Class Implementation
-			public TreeView (ReorderableList reorderableList, TreeViewState treeViewState) : base (treeViewState)
-			{
-				this.reorderableList = reorderableList;
-				Reload ();
-			}
-			#endregion
-		}
-	}
+                switch (args.dragAndDropPosition)
+                {
+                    case DragAndDropPosition.BetweenItems:
+                        {
+                            if (args.performDrop)
+                                reorderableList.PerformDrop (args.insertAtIndex, draggedIds);
+
+                            return DragAndDropVisualMode.Move;
+                        }
+                    default:
+                        return DragAndDropVisualMode.None;
+                }
+            }
+            #endregion
+            #endregion
+
+            #region Class Implementation
+            public TreeView (ReorderableList<ElementType> reorderableList, TreeViewState treeViewState) : base (treeViewState)
+            {
+                this.reorderableList = reorderableList;
+                Reload ();
+            }
+            #endregion
+        }
+    }
 }
 #endif

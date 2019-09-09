@@ -1,6 +1,6 @@
 ﻿namespace GGS_Framework
 {
-	public partial class ReorderableList
+	public partial class ReorderableList<ElementType>
 	{
 		public enum ElementOptions
 		{

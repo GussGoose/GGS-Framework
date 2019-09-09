@@ -150,6 +150,9 @@ MonoBehaviour:
   - displayName: Third
     exampleFloat: 0
     exampleBool: 0
+  - displayName: 
+    exampleFloat: 0
+    exampleBool: 0
 --- !u!4 &1374321138
 Transform:
   m_ObjectHideFlags: 0
