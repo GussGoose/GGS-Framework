@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-	public static class ExtendedGizmos
+	public static class AdvancedGizmos
 	{
-		#region Class members
+		#region Class Members
 #if UNITY_EDITOR
 		public static GUIStyle TextPointStyle
 		{
@@ -16,7 +16,7 @@ namespace GGS_Framework
 #endif
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public static void DrawTextPoint (Vector3 position, string text)
 		{
 #if UNITY_EDITOR

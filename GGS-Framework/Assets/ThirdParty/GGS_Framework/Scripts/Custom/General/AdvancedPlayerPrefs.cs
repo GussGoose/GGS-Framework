@@ -2,9 +2,9 @@
 
 namespace GGS_Framework
 {
-	public class ExtendedPlayerPrefs
+	public class AdvancedPlayerPrefs
 	{
-		#region Class implementation
+		#region Class Implementation
 		public static void SetBool (string key, bool value)
 		{
 			PlayerPrefs.SetInt (key, value ? 1 : 0);

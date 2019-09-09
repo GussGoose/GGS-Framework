@@ -2,9 +2,9 @@
 
 namespace GGS_Framework
 {
-	public static class ExtendedDebug
+	public static class AdvancedDebug
 	{
-		#region Class implementation
+		#region Class Implementation
 		#region Debug Draw Functions
 		#region Point
 		public static void DebugPoint (Vector3 position, Color color, float scale = 1, float duration = 0, bool depthTest = true)
@@ -240,9 +240,9 @@ namespace GGS_Framework
 			Vector3 right = Vector3.Cross (up, forward).normalized * radius;
 
 			//Radial circles
-			ExtendedDebug.DebugCircle (start, up, color, radius, duration, depthTest);
-			ExtendedDebug.DebugCircle (end, -up, color, radius, duration, depthTest);
-			ExtendedDebug.DebugCircle ((start + end) * 0.5f, up, color, radius, duration, depthTest);
+			AdvancedDebug.DebugCircle (start, up, color, radius, duration, depthTest);
+			AdvancedDebug.DebugCircle (end, -up, color, radius, duration, depthTest);
+			AdvancedDebug.DebugCircle ((start + end) * 0.5f, up, color, radius, duration, depthTest);
 
 			//Side lines
 			Debug.DrawLine (start + right, end + right, color, duration, depthTest);
@@ -338,8 +338,8 @@ namespace GGS_Framework
 			end = middle + ((end - middle).normalized * sideLength);
 
 			//Radial circles
-			ExtendedDebug.DebugCircle (start, up, color, radius, duration, depthTest);
-			ExtendedDebug.DebugCircle (end, -up, color, radius, duration, depthTest);
+			AdvancedDebug.DebugCircle (start, up, color, radius, duration, depthTest);
+			AdvancedDebug.DebugCircle (end, -up, color, radius, duration, depthTest);
 
 			//Side lines
 			Debug.DrawLine (start + right, end + right, color, duration, depthTest);

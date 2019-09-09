@@ -6,7 +6,7 @@ namespace GGS_Framework
 	[CustomPropertyDrawer (typeof (LayerAttribute))]
 	public class LayerAttributeDrawer : PropertyDrawer
 	{
-		#region Class overrides
+		#region Class Overrides
 		public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
 		{
 			if (property.propertyType != SerializedPropertyType.Integer)

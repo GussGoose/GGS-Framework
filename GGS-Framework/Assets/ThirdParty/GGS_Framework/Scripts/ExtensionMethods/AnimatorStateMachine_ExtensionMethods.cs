@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor.Animations;
-#endif
 
 namespace GGS_Framework
 {
 	public static partial class ExtensionMethods
 	{
+		#region Class Implementation
 		#region AnimatorStateMachine
-#if UNITY_EDITOR
 		public static List<ChildAnimatorState> GetAllStates (this AnimatorStateMachine animatorStateMachine)
 		{
 			ChildAnimatorStateMachine[] stateMachines = animatorStateMachine.stateMachines;
@@ -35,7 +34,8 @@ namespace GGS_Framework
 
 			return animatorStateMachineList;
 		}
-#endif
+		#endregion 
 		#endregion
 	}
 }
+#endif

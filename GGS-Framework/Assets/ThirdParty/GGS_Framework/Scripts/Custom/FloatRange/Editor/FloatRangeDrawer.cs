@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-    [CustomPropertyDrawer (typeof (FloatRange))]
-    public class FloatRangeDrawer : PropertyDrawer
-    {
-        #region Class overrides
-        public override void OnGUI (Rect rect, SerializedProperty property, GUIContent label)
-        {
-            ExtendedGUI.FloatRange (rect, label, property);
-        }
-        #endregion
-    }
+	[CustomPropertyDrawer (typeof (FloatRange))]
+	public class FloatRangeDrawer : PropertyDrawer
+	{
+		#region Class Overrides
+		public override void OnGUI (Rect rect, SerializedProperty property, GUIContent label)
+		{
+			ExtendedGUI.FloatRange (rect, label, property);
+		}
+		#endregion
+	}
 }

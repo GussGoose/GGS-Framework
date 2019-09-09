@@ -5,13 +5,13 @@ namespace GGS_Framework
 {
 	public class ButtonResizer : MonoBehaviour
 	{
-		#region Class members
+		#region Class Members
 		public float scaleMutiplier;
 
 		[SerializeField, HideInInspector] private RectTransform rectTransform;
 		#endregion
 
-		#region Class overrides
+		#region Class Overrides
 		private void Awake ()
 		{
 			if (rectTransform == null)
@@ -44,7 +44,7 @@ namespace GGS_Framework
 		}
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public void Create ()
 		{
 			GameObject gameObject = new GameObject ("ResizedButton", typeof (RectTransform), typeof (Image));
@@ -65,5 +65,4 @@ namespace GGS_Framework
 		}
 		#endregion
 	}
-
 }

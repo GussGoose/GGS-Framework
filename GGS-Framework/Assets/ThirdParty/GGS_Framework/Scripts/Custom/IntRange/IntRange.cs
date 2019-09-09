@@ -2,22 +2,22 @@
 
 namespace GGS_Framework
 {
-    [System.Serializable]
+	[System.Serializable]
     public class IntRange
     {
-        #region Class members
+        #region Class Members
         public int start;
         public int end;
         #endregion
 
-        #region Class accesors
+        #region Class Accesors
         public int Lenght
         {
             get { return end - start; }
         }
         #endregion
 
-        #region Class implementation
+        #region Class Implementation
         public IntRange ()
         {
             start = 0;

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-    [CustomPropertyDrawer (typeof (TimeObject))]
+	[CustomPropertyDrawer (typeof (TimeObject))]
     public class TimeObjectDrawer : PropertyDrawer
     {
-        #region Class overrides
+        #region Class Overrides
         public override void OnGUI (Rect rect, SerializedProperty property, GUIContent label)
         {
             ExtendedGUI.TimeObject (rect, label, property);

@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace GGS_Framework
 {
-    public static partial class ExtendedGUILayout
+	public static partial class ExtendedGUILayout
     {
         #region Class Implementation
         public static IntRange IntRange (GUIContent label, IntRange value)

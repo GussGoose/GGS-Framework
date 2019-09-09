@@ -4,11 +4,11 @@ namespace GGS_Framework
 {
 	public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
-		#region Class members
+		#region Class Members
 		private static T instance;
 		#endregion
 
-		#region Class accesors
+		#region Class Accesors
 		public static T Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace GGS_Framework
 		}
 		#endregion
 
-		#region Class overrides
+		#region Class Overrides
 		public virtual void Awake ()
 		{
 			if (instance == null)

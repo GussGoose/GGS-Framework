@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 0219
+
 namespace GGS_Framework.Development.Test
 {
 	[ExecuteInEditMode]

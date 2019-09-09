@@ -5,7 +5,7 @@ namespace GGS_Framework
 {
 	public static partial class ExtensionMethods
 	{
-		#region Class implementation
+		#region Class Implementation
 		public static string SplitByCapital (this string value)
 		{
 			string tempString = value;

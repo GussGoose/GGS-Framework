@@ -6,14 +6,14 @@ namespace GGS_Framework
 {
 	public static class DatesManager
 	{
-		#region Class members
+		#region Class Members
 		private const string DateKey = "SavedDateKey_";
 
 		private static Dictionary<string, DateTime> dates = new Dictionary<string, DateTime> ();
 		private static bool dataLoaded;
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		// Called to update the date of an existing key, if it doesnt it generates a new one.
 		public static void UpdateDate (string key, DateTime date)
 		{

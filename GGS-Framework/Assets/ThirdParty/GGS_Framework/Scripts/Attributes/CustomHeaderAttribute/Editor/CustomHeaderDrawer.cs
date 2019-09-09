@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace GGS_Framework
 {
 	[CustomPropertyDrawer (typeof (CustomHeaderAttribute))]
 	public class CustomHeaderDrawer : DecoratorDrawer
 	{
-		#region Class overrides
+		#region Class Overrides
 		public override void OnGUI (Rect position)
 		{
 			CustomHeaderAttribute targetScript = attribute as CustomHeaderAttribute;

@@ -41,7 +41,7 @@ namespace GGS_Framework
 		public override void OnGUI (Rect rect)
 		{
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Vertical,
-				new AdvancedRect.Space (4),
+				new AdvancedRect.FixedSpace (4),
 				new AdvancedRect.FixedItem ("SearchBar", 18, new AdvancedRect.Padding (-2, AdvancedRect.Padding.Type.Horizontal)),
 				new AdvancedRect.ExpandedItem ("List")
 			);

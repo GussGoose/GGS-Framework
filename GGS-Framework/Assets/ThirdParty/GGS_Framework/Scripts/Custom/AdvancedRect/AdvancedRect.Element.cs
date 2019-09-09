@@ -2,59 +2,60 @@
 
 namespace GGS_Framework
 {
-    public static partial class AdvancedRect
-    {
-        public class Element
-        {
-            #region Class Members
-            public Padding padding;
-            #endregion
+	public static partial class AdvancedRect
+	{
+		public abstract partial class Element
+		{
+			#region Class Members
+			private Padding padding;
+			#endregion
 
-            #region Class Accesors
-            public string Key
-            {
-                get; private set;
-            }
+			#region Class Accesors
+			public Type ElementType
+			{
+				get; private set;
+			}
 
-            public bool Use
-            {
-                get; private set;
-            }
+			public string Key
+			{
+				get; private set;
+			}
 
-            internal SizeType SizeType
-            {
-                get; private set;
-            }
+			public float Size
+			{
+				get; private set;
+			}
 
-            public float Size
-            {
-                get; private set;
-            }
+			public Rect Rect
+			{
+				get; internal set;
+			}
 
-            public Rect Rect
-            {
-                get; internal set;
-            }
-            #endregion
+			public bool Use
+			{
+				get; private set;
+			}
+			#endregion
 
-            #region Class Implementation
-            internal Element (string key, SizeType sizeType, float size, Padding padding, bool use)
-            {
-                Key = key;
-                Use = use;
+			#region Class Implementation
+			protected Element (Type type, string key, float size, Padding padding, bool use)
+			{
+				ElementType = type;
 
-                SizeType = sizeType;
-                Size = size;
+				Key = key;
+				Size = size;
 
-                this.padding = padding;
-            }
+				this.padding = padding;
 
-            public void ApplyPadding ()
-            {
-                if (padding != null)
-                    Rect = padding.Apply (Rect);
-            }
-            #endregion
-        }
-    }
+				Use = use;
+			}
+
+			public void ApplyPadding ()
+			{
+				if (padding != null)
+					Rect = padding.Apply (Rect);
+			}
+			#endregion
+		}
+	}
 }

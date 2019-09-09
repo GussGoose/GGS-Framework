@@ -4,7 +4,7 @@ namespace GGS_Framework
 {
 	public static partial class ExtensionMethods
 	{
-		#region Class members
+		#region Class Implementation
 		public static void GlobalReset (this Transform transform)
 		{
 			transform.position = Vector3.zero;

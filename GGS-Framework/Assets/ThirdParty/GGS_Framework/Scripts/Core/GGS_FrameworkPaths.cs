@@ -2,7 +2,7 @@
 {
 	public static class GGS_FrameworkPaths
 	{
-		#region Class members
+		#region Class Members
 		public const string Slash = "/";
 		public const string Root = "Assets/ThirdParty/GGS_Framework";
 

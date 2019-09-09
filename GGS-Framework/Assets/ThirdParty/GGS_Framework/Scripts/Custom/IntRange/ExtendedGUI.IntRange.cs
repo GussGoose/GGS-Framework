@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-    public static partial class ExtendedGUI
+	public static partial class ExtendedGUI
     {
         #region Class Implementation
         public static IntRange IntRange (Rect rect, GUIContent label, IntRange value)
@@ -17,7 +17,7 @@ namespace GGS_Framework
 
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
                 new AdvancedRect.ExpandedItem ("Start"),
-                new AdvancedRect.Space (5),
+                new AdvancedRect.FixedSpace (5),
                 new AdvancedRect.ExpandedItem ("End")
             );
 
@@ -50,7 +50,7 @@ namespace GGS_Framework
 
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
                 new AdvancedRect.ExpandedItem ("Start"),
-                new AdvancedRect.Space (5),
+                new AdvancedRect.FixedSpace (5),
                 new AdvancedRect.ExpandedItem ("End")
             );
 

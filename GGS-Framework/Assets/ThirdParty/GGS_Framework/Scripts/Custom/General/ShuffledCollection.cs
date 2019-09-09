@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-	public class ShuffleCollection<T>
+	public class ShuffledCollection<T>
 	{
-		#region Class members
+		#region Class Members
 		private List<T> elements;
 		private int currentShuffleListIndex;
 
@@ -13,7 +13,7 @@ namespace GGS_Framework
 		private bool preventShuffleStartsWithLastElement;
 		#endregion
 
-		#region Class accesors
+		#region Class Accesors
 		public int LeftElements
 		{
 			get { return elements.Count - currentShuffleListIndex; }
@@ -25,8 +25,8 @@ namespace GGS_Framework
 		}
 		#endregion
 
-		#region Class implementation
-		public ShuffleCollection (T[] array, bool preventShuffleStartsWithLastElement = false)
+		#region Class Implementation
+		public ShuffledCollection (T[] array, bool preventShuffleStartsWithLastElement = false)
 		{
 			this.preventShuffleStartsWithLastElement = preventShuffleStartsWithLastElement;
 
@@ -34,7 +34,7 @@ namespace GGS_Framework
 			Shuffle ();
 		}
 
-		public ShuffleCollection (List<T> list, bool preventShuffleStartsWithLastElement = false)
+		public ShuffledCollection (List<T> list, bool preventShuffleStartsWithLastElement = false)
 		{
 			this.preventShuffleStartsWithLastElement = preventShuffleStartsWithLastElement;
 

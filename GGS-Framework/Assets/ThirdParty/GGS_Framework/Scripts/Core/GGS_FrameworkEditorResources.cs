@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-    public static class GGS_FrameworkEditorResources
+	public static class GGS_FrameworkEditorResources
     {
-        #region Class implementation
+        #region Class Implementation
         public static Object LoadAsset<T> (string path)
         {
             string assetPath = string.Concat (GGS_FrameworkPaths.EditorResourcesFolderFullPath, "/", path);

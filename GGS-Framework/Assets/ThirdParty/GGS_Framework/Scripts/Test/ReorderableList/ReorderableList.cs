@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+#pragma warning disable 0414
+
 namespace GGS_Framework.Development.Test
 {
 	[Flags]
@@ -143,7 +145,7 @@ namespace GGS_Framework.Development.Test
 
 		private void DrawHeader (Rect rect)
 		{
-			AdvancedGUILabel.Draw (rect, new AdvancedGUILabelConfig (Config.headerTittle, Defaults.headerBackgroundStyle, Config.headerTittleFontStyle));
+			AdvancedLabel.Draw (rect, new AdvancedLabel.Config (Config.headerTittle, Defaults.headerBackgroundStyle, Config.headerTittleFontStyle));
 		}
 
 		private void DrawElements (Rect rect)

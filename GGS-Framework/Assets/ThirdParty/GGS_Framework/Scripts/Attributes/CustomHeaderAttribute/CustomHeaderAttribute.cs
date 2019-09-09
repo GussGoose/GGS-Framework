@@ -4,13 +4,13 @@ namespace GGS_Framework
 {
 	public class CustomHeaderAttribute : PropertyAttribute
 	{
-		#region Class members
+		#region Class Members
 		public string text;
 		public float spacing;
 		public FontStyle style;
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public CustomHeaderAttribute (string text, float spacing, FontStyle style = FontStyle.Normal)
 		{
 			this.text = text;

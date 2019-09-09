@@ -6,7 +6,7 @@ namespace GGS_Framework
 {
 	public class EasingCurvesWindow : EditorWindow
 	{
-		#region Class members
+		#region Class Members
 		private bool useScrollBar;
 		private float scrollPosition;
 
@@ -16,7 +16,7 @@ namespace GGS_Framework
 		private Rect windowRect;
 		#endregion
 
-		#region Class accesors
+		#region Class Accesors
 		public RectOffset WindowOffset
 		{
 			get { return new RectOffset (-5, (useScrollBar) ? -19 : -5, -5, -5); }
@@ -43,7 +43,7 @@ namespace GGS_Framework
 		}
 		#endregion
 
-		#region Class overrides
+		#region Class Overrides
 		private void OnEnable ()
 		{
 			EditorApplication.update += delegate { Repaint (); };
@@ -55,7 +55,7 @@ namespace GGS_Framework
 
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (windowRect, AdvancedRect.Orientation.Vertical,
 				new AdvancedRect.FixedItem ("Header", 24),
-				new AdvancedRect.Space (5),
+				new AdvancedRect.FixedSpace (5),
 				new AdvancedRect.ExpandedItem ("Easings")
 			);
 
@@ -113,9 +113,9 @@ namespace GGS_Framework
 			if (!windowRect.Overlaps (rect))
 				return;
 
-			Dictionary<string, Rect> rects = AdvancedRect.GetRects (windowRect, AdvancedRect.Orientation.Vertical,
+			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Vertical,
 				new AdvancedRect.FixedItem ("Header", 20),
-				new AdvancedRect.Space (1),
+				new AdvancedRect.FixedSpace (1),
 				new AdvancedRect.ExpandedItem ("Ease")
 			);
 

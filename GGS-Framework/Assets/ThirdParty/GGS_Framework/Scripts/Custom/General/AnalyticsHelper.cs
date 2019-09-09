@@ -5,11 +5,11 @@ namespace GGS_Framework
 {
 	public static class AnalyticsHelper
 	{
-		#region Class members
+		#region Class Members
 		private const bool DebugResult = true;
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public static void CustomEvent (string customEventName)
 		{
 			if (!Analytics.enabled)
@@ -22,5 +22,4 @@ namespace GGS_Framework
 		}
 		#endregion
 	}
-
 }

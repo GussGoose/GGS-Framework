@@ -1,6 +1,6 @@
 ﻿namespace GGS_Framework
 {
-    public partial class AdvancedRect
+	public partial class AdvancedRect
     {
         public partial class Padding
         {

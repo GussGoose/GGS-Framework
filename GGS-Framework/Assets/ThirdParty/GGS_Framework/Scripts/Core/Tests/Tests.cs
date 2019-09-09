@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-    public class Tests : MonoBehaviour
-    {
-        #region Class Members
-        #endregion
-    }
+	public class Tests : MonoBehaviour
+	{
+		#region Class Members
+		#endregion
+	}
 }

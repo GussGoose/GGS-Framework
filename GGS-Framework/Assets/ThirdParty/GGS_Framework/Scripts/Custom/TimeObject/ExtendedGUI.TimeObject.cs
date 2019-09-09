@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-    public static partial class ExtendedGUI
+	public static partial class ExtendedGUI
     {
         #region Class Implementation
         public static TimeObject TimeObject (Rect rect, GUIContent label, TimeObject value)
@@ -14,7 +14,7 @@ namespace GGS_Framework
 
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
                 new AdvancedRect.ExpandedItem ("Value"),
-                new AdvancedRect.Space (2),
+                new AdvancedRect.FixedSpace (2),
                 new AdvancedRect.FixedItem ("Type", 75)
             );
 
@@ -40,7 +40,7 @@ namespace GGS_Framework
 
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
                 new AdvancedRect.ExpandedItem ("Value"),
-                new AdvancedRect.Space (2),
+                new AdvancedRect.FixedSpace (2),
                 new AdvancedRect.FixedItem ("Type", 75)
             );
 

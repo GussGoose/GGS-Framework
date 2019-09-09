@@ -2,7 +2,7 @@
 {
 	public static partial class ExtensionMethods
 	{
-		#region Class implementation
+		#region Class Implementation
 		public static T CloneObject<T> (this T obj) where T : class
 		{
 			if (obj == null)
@@ -15,5 +15,5 @@
 				return null;
 		}
 		#endregion
-	} 
+	}
 }

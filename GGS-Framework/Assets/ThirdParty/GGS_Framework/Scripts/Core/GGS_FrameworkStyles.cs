@@ -6,7 +6,7 @@ namespace GGS_Framework
 {
 	public static class GGS_FrameworkStyles
 	{
-		#region Class accesors
+		#region Class Accesors
 		public static GUISkin Skin
 		{
 			get { return EditorGUIUtility.Load ("UtilityFramework/UtilityFrameworkGUISkin.guiskin") as GUISkin; }

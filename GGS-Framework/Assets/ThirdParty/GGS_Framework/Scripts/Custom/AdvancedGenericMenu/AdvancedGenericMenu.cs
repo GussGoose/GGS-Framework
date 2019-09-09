@@ -7,7 +7,7 @@ namespace GGS_Framework
 {
 	public static partial class AdvancedGenericMenu
 	{
-		#region Class implementation
+		#region Class Implementation
 		public static void Draw<T> (Item[] items, Action<object> onItemSelected)
 		{
 			DoMenu (Rect.zero, typeof (T), items, item =>
