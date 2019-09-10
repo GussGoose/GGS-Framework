@@ -8,6 +8,10 @@
 			public Item (string path, bool selected = false, bool use = true) : base (path, selected, use)
 			{
 			}
+
+			public Item (string path, object data, bool selected = false, bool use = true) : base (path, data, selected, use)
+			{
+			}
 			#endregion
 		}
 	}

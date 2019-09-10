@@ -10,7 +10,7 @@
 				get; private set;
 			}
 
-			public int Index
+			public object Data
 			{
 				get; private set;
 			}
@@ -30,6 +30,15 @@
 			protected Option (string path, bool selected = false, bool use = true)
 			{
 				Path = path;
+				Selected = selected;
+				Use = use;
+			}
+
+			protected Option (string path, object data, bool selected = false, bool use = true)
+			{
+				Path = path;
+				Data = data;
+
 				Selected = selected;
 				Use = use;
 			}
