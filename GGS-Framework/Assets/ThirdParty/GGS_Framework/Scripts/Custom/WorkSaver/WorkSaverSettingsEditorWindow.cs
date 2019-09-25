@@ -28,6 +28,12 @@ namespace GGS_Framework
 
 		private void OnGUI ()
 		{
+			if (Settings == null)
+			{
+				DrawNullSettingsMessage ();
+				return;
+			}
+
 			EditorGUI.BeginChangeCheck ();
 			Settings.State = GUILayout.Toggle (Settings.State, "State", "Button");
 			if (EditorGUI.EndChangeCheck ())
@@ -78,6 +84,25 @@ namespace GGS_Framework
 			if (GUILayout.Button ("Save Settings"))
 				SaveSettings ();
 			GUI.backgroundColor = Color.white;
+		}
+
+		private void DrawNullSettingsMessage ()
+		{
+			string message = string.Format ("{0} doesn't exist in {1}, press Create button to create it.", WorkSaverSettings.DataAssetName, WorkSaverSettings.DataFullPath);
+
+			GUILayout.FlexibleSpace ();
+
+			AdvancedLabel.Draw (new AdvancedLabel.Config (message, EditorStyles.helpBox, FontStyle.Bold, TextAnchor.MiddleCenter));
+
+			GUI.backgroundColor = Color.green;
+			if (GUILayout.Button ("Create"))
+			{
+				WorkSaverSettings.Create ();
+				Repaint ();
+			}
+			GUI.backgroundColor = Color.white;
+
+			GUILayout.FlexibleSpace ();
 		}
 
 		private void SaveSettings ()

@@ -86,14 +86,16 @@ namespace GGS_Framework
 		#endregion
 
 		#region Class Members
-		private const string FolderName = "WorkSaver";
-		private const string DataAssetName = "WorkSaverSettings";
+		private const string ResourcesFolderFullPath = "Assets/Resources";
 
-		private static readonly string FolderPathInResourcesFolder = FolderName;
-		private static readonly string DataPathInResourcesFolder = string.Concat (FolderPathInResourcesFolder, "/", DataAssetName);
+		public const string FolderName = "WorkSaver";
+		public const string DataAssetName = "WorkSaverSettings";
 
-		private static readonly string FolderFullPath = string.Concat (GGS_FrameworkPaths.ResourcesFolderFullPath, "/", FolderPathInResourcesFolder);
-		private static readonly string DataFullPath = string.Concat (GGS_FrameworkPaths.ResourcesFolderFullPath, "/", DataPathInResourcesFolder, ".asset");
+		public static readonly string FolderPathInResourcesFolder = FolderName;
+		public static readonly string DataPathInResourcesFolder = string.Concat (FolderPathInResourcesFolder, "/", DataAssetName);
+
+		public static readonly string FolderFullPath = string.Concat (ResourcesFolderFullPath, "/", FolderPathInResourcesFolder);
+		public static readonly string DataFullPath = string.Concat (ResourcesFolderFullPath, "/", DataPathInResourcesFolder, ".asset");
 
 		private const string StateKey = "WorkSaverState";
 
@@ -118,12 +120,7 @@ namespace GGS_Framework
 			get
 			{
 				if (instance == null)
-				{
 					instance = Resources.Load<WorkSaverSettings> (DataPathInResourcesFolder);
-
-					if (instance == null)
-						instance = Create ();
-				}
 
 				return instance;
 			}
@@ -147,7 +144,7 @@ namespace GGS_Framework
 		#endregion
 
 		#region Class Implementation
-		private static WorkSaverSettings Create ()
+		public static WorkSaverSettings Create ()
 		{
 			if (!Directory.Exists (FolderFullPath))
 				Directory.CreateDirectory (FolderFullPath);

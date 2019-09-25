@@ -160,6 +160,9 @@ namespace GGS_Framework
 
 		private static void OnEditorUpdate ()
 		{
+			if (Settings == null)
+				return;
+
 			if (!Settings.State)
 				return;
 
@@ -172,6 +175,9 @@ namespace GGS_Framework
 
 		private static void OnSceneView (SceneView sceneView)
 		{
+			if (Settings == null)
+				return;
+
 			if (!Settings.State)
 				return;
 

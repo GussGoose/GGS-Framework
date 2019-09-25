@@ -9,7 +9,7 @@ namespace GGS_Framework
 		public class Config
 		{
 			#region Class Members
-			public string content;
+			public GUIContent content;
 			public GUIStyle backgroundStyle;
 
 			public Color color;
@@ -28,28 +28,52 @@ namespace GGS_Framework
 				Initialize (Defaults.Content, Defaults.BackgroundStyle, Defaults.Color, Defaults.Style, Defaults.Alignment, Defaults.Clipping, Defaults.WordWrap, Defaults.FontSize);
 			}
 
-			public Config (string content, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			#region GUIContent
+			public Config (GUIContent content, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
 			{
 				Initialize (content, Defaults.BackgroundStyle, Defaults.Color, fontStyle, alignment, clipping, wordWrap, fontSize);
 			}
 
-			public Config (string content, GUIStyle backgroundStyle, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			public Config (GUIContent content, GUIStyle backgroundStyle, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
 			{
 				Initialize (content, backgroundStyle, Defaults.Color, fontStyle, alignment, clipping, wordWrap, fontSize);
 			}
 
-			public Config (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			public Config (GUIContent content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
 			{
 				Initialize (content, backgroundStyle, color, fontStyle, alignment, clipping, wordWrap, fontSize);
 			}
 
-			public Config (string content, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			public Config (GUIContent content, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
 			{
 				Initialize (content, Defaults.BackgroundStyle, color, fontStyle, alignment, clipping, wordWrap, fontSize);
 			}
 			#endregion
 
-			private void Initialize (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			#region String
+			public Config (string content, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			{
+				Initialize (new GUIContent (content), Defaults.BackgroundStyle, Defaults.Color, fontStyle, alignment, clipping, wordWrap, fontSize);
+			}
+
+			public Config (string content, GUIStyle backgroundStyle, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			{
+				Initialize (new GUIContent (content), backgroundStyle, Defaults.Color, fontStyle, alignment, clipping, wordWrap, fontSize);
+			}
+
+			public Config (string content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			{
+				Initialize (new GUIContent (content), backgroundStyle, color, fontStyle, alignment, clipping, wordWrap, fontSize);
+			}
+
+			public Config (string content, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
+			{
+				Initialize (new GUIContent (content), Defaults.BackgroundStyle, color, fontStyle, alignment, clipping, wordWrap, fontSize);
+			}
+			#endregion
+			#endregion
+
+			private void Initialize (GUIContent content, GUIStyle backgroundStyle, Color color, FontStyle fontStyle = Defaults.Style, TextAnchor alignment = Defaults.Alignment, TextClipping clipping = Defaults.Clipping, bool wordWrap = Defaults.WordWrap, int fontSize = Defaults.FontSize)
 			{
 				this.content = content;
 				this.backgroundStyle = new GUIStyle (backgroundStyle);
@@ -98,7 +122,7 @@ namespace GGS_Framework
 			#region Nested Classes
 			public static class Defaults
 			{
-				public static string Content = string.Empty;
+				public static GUIContent Content = GUIContent.none;
 				public static GUIStyle BackgroundStyle = GUIStyle.none;
 				public static Color Color = (EditorGUIUtility.isProSkin) ? new Color (0.705f, 0.705f, 0.705f, 1) : Color.black;
 				public const FontStyle Style = FontStyle.Normal;
