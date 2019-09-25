@@ -7,7 +7,7 @@ namespace GGS_Framework
 		public abstract partial class Element
 		{
 			#region Class Members
-			private Padding padding;
+			protected Padding padding;
 			#endregion
 
 			#region Class Accesors
@@ -23,7 +23,7 @@ namespace GGS_Framework
 
 			public float Size
 			{
-				get; private set;
+				get; protected set;
 			}
 
 			public Rect Rect
@@ -33,7 +33,7 @@ namespace GGS_Framework
 
 			public bool Use
 			{
-				get; private set;
+				get; protected set;
 			}
 			#endregion
 

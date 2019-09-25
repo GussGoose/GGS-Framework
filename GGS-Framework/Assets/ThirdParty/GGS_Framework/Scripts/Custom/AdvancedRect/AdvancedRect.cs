@@ -25,14 +25,18 @@ namespace GGS_Framework
 			foreach (Element element in allElements)
 			{
 				if (element is Group)
+				{
 					(element as Group).ComputeElements ();
+				}
 			}
 
 			foreach (Element element in allElements)
 			{
 				if (element.Use & element.Key != string.Empty)
 				{
-					element.ApplyPadding ();
+					if (!(element is Group))
+						element.ApplyPadding ();
+
 					rects.Add (element.Key, element.Rect);
 				}
 			}
@@ -54,7 +58,7 @@ namespace GGS_Framework
 			return elements;
 		}
 
-		private static void ComputeElementsRect (Rect rect, Orientation orientation, Element[] elements)
+		private static Vector2 ComputeElementsRect (Rect rect, Orientation orientation, Element[] elements)
 		{
 			int elementCount = elements.Length;
 			Vector2 currentSize = Vector2.zero;
@@ -166,6 +170,8 @@ namespace GGS_Framework
 
 				elements[i].Rect = rects[i];
 			}
+
+			return currentSize;
 		}
 
 		/// <summary>

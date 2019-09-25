@@ -6,8 +6,11 @@ namespace GGS_Framework
 	{
 		public partial class Padding
 		{
-			#region Class Members
-			private RectOffset offset;
+			#region Class Accesors
+			public RectOffset Offset
+			{
+				get; private set;
+			}
 			#endregion
 
 			#region Class Implementation
@@ -18,17 +21,17 @@ namespace GGS_Framework
 				int top = ((type & Type.Top) != 0) ? offset : 0;
 				int bottom = ((type & Type.Bottom) != 0) ? offset : 0;
 
-				this.offset = new RectOffset (left, right, top, bottom);
+				Offset = new RectOffset (left, right, top, bottom);
 			}
 
 			public Padding (RectOffset offset)
 			{
-				this.offset = offset;
+				Offset = offset;
 			}
 
 			public Rect Apply (Rect rect)
 			{
-				return offset.Add (rect);
+				return Offset.Add (rect);
 			}
 			#endregion
 		}
