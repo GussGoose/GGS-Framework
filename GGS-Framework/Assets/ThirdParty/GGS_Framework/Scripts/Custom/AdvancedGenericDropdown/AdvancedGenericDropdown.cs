@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,31 +9,31 @@ namespace GGS_Framework
 	public static partial class AdvancedGenericDropdown
 	{
 		#region Class Implementation
-		public static void Show (Option[] elements, Action<Option> onOptionSelected)
+		public static void Show (IList<Option> elements, Action<Option> onOptionSelected)
 		{
 			DoMenu (Rect.zero, elements, element => onOptionSelected (element));
 		}
 
-		public static void Show (Rect rect, Option[] elements, Action<Option> onOptionSelected)
+		public static void Show (Rect rect, IList<Option> elements, Action<Option> onOptionSelected)
 		{
 			DoMenu (rect, elements, element => onOptionSelected (element));
 		}
 
-		public static void Show<EnumType> (Option[] elements, Action<object> onOptionSelected)
+		public static void Show<EnumType> (IList<Option> elements, Action<object> onOptionSelected)
 		{
 			DoMenu (Rect.zero, typeof (EnumType), elements, element => onOptionSelected (element));
 		}
 
-		public static void Show<EnumType> (Rect rect, Option[] elements, Action<object> onOptionSelected)
+		public static void Show<EnumType> (Rect rect, IList<Option> elements, Action<object> onOptionSelected)
 		{
 			DoMenu (rect, typeof (EnumType), elements, element => onOptionSelected (element));
 		}
 
-		private static void DoMenu (Rect rect, Option[] elements, Action<Option> onOptionSelected)
+		private static void DoMenu (Rect rect, IList<Option> elements, Action<Option> onOptionSelected)
 		{
 			GenericMenu menu = new GenericMenu ();
 
-			for (int i = 0; i < elements.Length; i++)
+			for (int i = 0; i < elements.Count; i++)
 			{
 				Option element = elements[i];
 
@@ -51,7 +52,7 @@ namespace GGS_Framework
 				menu.ShowAsContext ();
 		}
 
-		private static void DoMenu (Rect rect, Type enumType, Option[] elements, Action<object> onOptionSelected)
+		private static void DoMenu (Rect rect, Type enumType, IList<Option> elements, Action<object> onOptionSelected)
 		{
 			DoMenu (rect, elements, option =>
 			{
