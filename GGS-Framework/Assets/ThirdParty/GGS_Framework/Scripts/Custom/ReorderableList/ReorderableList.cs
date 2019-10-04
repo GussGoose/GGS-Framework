@@ -13,18 +13,7 @@ namespace GGS_Framework
 
 		private TreeView treeView;
 		private TreeViewState treeViewState;
-
-		public bool drawBackground;
-
-		public string title;
-		public bool canSearch;
 		private SearchField searchBar;
-
-		public bool draggable;
-
-		public bool canAddAndRemove;
-		public bool canCopyAndPaste;
-		private int copiedElementHashCode;
 		#endregion
 
 		#region Class Accesors
@@ -33,15 +22,20 @@ namespace GGS_Framework
 			get { return list.Count; }
 		}
 
+		public string Title
+		{
+			get; private set;
+		}
+
 		public bool HasSearch
 		{
 			get { return treeView.hasSearch; }
 		}
 
-		protected string SearchString
+		public string SearchString
 		{
 			get { return treeView.searchString; }
-			set { treeView.searchString = value; }
+			private set { treeView.searchString = value; }
 		}
 
 		public List<int> Selection
@@ -58,6 +52,11 @@ namespace GGS_Framework
 		{
 			get { return Selection[Selection.Count - 1]; }
 		}
+
+		public int CopiedElementHashCode
+		{
+			get; private set;
+		}
 		#endregion
 
 		#region Class Implementation
@@ -68,17 +67,10 @@ namespace GGS_Framework
 			treeViewState = new TreeViewState ();
 			treeView = new TreeView (this, treeViewState);
 
-			drawBackground = true;
+			Title = title;
 
-			this.title = title;
-
-			canSearch = true;
 			searchBar = new SearchField ();
 			searchBar.downOrUpArrowKeyPressed += treeView.SetFocusAndEnsureSelectedItem;
-
-			draggable = true;
-			canAddAndRemove = true;
-			canCopyAndPaste = true;
 		}
 
 		#region Draw
@@ -99,8 +91,11 @@ namespace GGS_Framework
 
 			DrawHeader (rects["Header"]);
 
-			if (drawBackground)
+			if (CanDrawBackground ())
+			{
 				Styles.Background.Draw (rects["TreeView"]);
+				rects["TreeView"] = AdvancedRect.ExpandRect (rects["TreeView"], new AdvancedRect.Padding (Styles.DefaultPadding, AdvancedRect.Padding.Type.All));
+			}
 
 			if (Count > 0)
 				treeView.OnGUI (rects["TreeView"]);
@@ -110,14 +105,15 @@ namespace GGS_Framework
 
 		private void DrawHeader (Rect rect)
 		{
-			bool showAddButton = CanAddElement ();
+			bool canSearch = CanSearch ();
+			bool canAddElement = CanAddElement ();
 
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
 				new AdvancedRect.ExpandedGroup ("SearchBar", AdvancedRect.Orientation.Horizontal,
-					new AdvancedRect.FixedSpace (Styles.AddButtonWidth),
-					new AdvancedRect.ExpandedItem ("Label")
+					new AdvancedRect.FixedSpace (12, canSearch),
+					new AdvancedRect.ExpandedItem ("Title")
 				),
-				new AdvancedRect.FixedItem ("AddButton", Styles.AddButtonWidth, showAddButton)
+				new AdvancedRect.FixedItem ("AddButton", Styles.AddButtonWidth, canAddElement)
 			);
 
 			Styles.HeaderBackground.Draw (rect);
@@ -129,10 +125,9 @@ namespace GGS_Framework
 			}
 
 			if (!canSearch || (!searchBar.HasFocus () && string.IsNullOrEmpty (SearchString)))
-				GUI.Label (rects["Label"], title, Styles.Header);
+				GUI.Label (rects["Title"], Title, Styles.Header);
 
-			// Draw add button
-			if (showAddButton)
+			if (canAddElement)
 			{
 				if (GUI.Button (rects["AddButton"], string.Empty, Styles.AddButton))
 					AddElement ();
@@ -161,12 +156,12 @@ namespace GGS_Framework
 		private void DrawElementBase (Rect rect, int index)
 		{
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
-				new AdvancedRect.FixedItem ("DragIcon", Styles.DragIconWidth, draggable),
+				new AdvancedRect.FixedItem ("ReorderIcon", Styles.DragIconWidth, CanReorder ()),
 				new AdvancedRect.ExpandedItem ("Element")
 			);
 
-			if (draggable)
-				Styles.DragIcon.Draw (rects["DragIcon"]);
+			if (CanReorder ())
+				Styles.DragIcon.Draw (rects["ReorderIcon"]);
 
 			DrawElement (rects["Element"], index);
 		}
@@ -179,13 +174,14 @@ namespace GGS_Framework
 		{
 			RepaintTree ();
 
+			bool canRemove = CanRemoveSelection ();
 			bool canInsertElementAbove = CanInsertElementAbove ();
 			bool canInsertElementBelow = CanInsertElementBelow ();
 			bool canCopyElement = CanCopyElement ();
 			bool canPasteElement = CanPasteElement ();
 
 			AdvancedGenericDropdown.Option[] dropdownOptions = {
-				new AdvancedGenericDropdown.Item ("Remove", false, canAddAndRemove),
+				new AdvancedGenericDropdown.Item ("Remove", false, canRemove),
 				new AdvancedGenericDropdown.Separator (canCopyElement || canPasteElement),
 				new AdvancedGenericDropdown.Item ("Copy", false, canCopyElement),
 				new AdvancedGenericDropdown.Item ("Paste", false, canPasteElement),
@@ -242,11 +238,48 @@ namespace GGS_Framework
 		}
 		#endregion
 
+		#region Configuration
+		protected virtual bool CanDrawBackground ()
+		{
+			return true;
+		}
+
+		protected virtual bool CanSearch ()
+		{
+			return true;
+		}
+
+		protected virtual bool CanReorder ()
+		{
+			return true;
+		}
+
+		protected virtual bool CanAdd ()
+		{
+			return true;
+		}
+
+		protected virtual bool CanInsert ()
+		{
+			return true;
+		}
+
+		protected virtual bool CanRemove ()
+		{
+			return true;
+		}
+
+		protected virtual bool CanCopyAndPaste ()
+		{
+			return true;
+		}
+		#endregion
+
 		#region Element Management
 		#region Add
-		protected virtual bool CanAddElement ()
+		protected bool CanAddElement ()
 		{
-			return canAddAndRemove & !HasSearch;
+			return CanAdd () & !HasSearch;
 		}
 
 		protected virtual void AddElement ()
@@ -256,10 +289,15 @@ namespace GGS_Framework
 		#endregion
 
 		#region Insert
-		#region Above
-		protected virtual bool CanInsertElementAbove ()
+		protected bool CanInsertElement ()
 		{
-			if (!canAddAndRemove || HasSearch)
+			return CanInsert () && CanAddElement ();
+		}
+
+		#region Above
+		protected bool CanInsertElementAbove ()
+		{
+			if (!CanInsertElement ())
 				return false;
 
 			return (Selection.Count == 1);
@@ -272,9 +310,9 @@ namespace GGS_Framework
 		#endregion
 
 		#region Below
-		protected virtual bool CanInsertElementBelow ()
+		protected bool CanInsertElementBelow ()
 		{
-			if (!canAddAndRemove || HasSearch)
+			if (!CanInsertElement ())
 				return false;
 
 			return (Selection.Count == 1);
@@ -287,55 +325,18 @@ namespace GGS_Framework
 		#endregion
 		#endregion
 
-		#region Copy
-		protected virtual bool CanCopyElement ()
-		{
-			if (!canCopyAndPaste)
-				return false;
-
-			return (Selection.Count == 1);
-		}
-
-		protected virtual void CopyElement ()
-		{
-			copiedElementHashCode = list[FirstIdOfSelection].GetHashCode ();
-		}
-
-		public int GetCopiedElementIndex ()
-		{
-			int index = -1;
-
-			if (copiedElementHashCode == 0)
-				return index;
-
-			// Find for element with copied hash code
-			for (int i = 0; i < list.Count; i++)
-			{
-				if (list[i].GetHashCode () == copiedElementHashCode)
-					return i;
-			}
-
-			return index;
-		}
-		#endregion
-
-		#region Paste
-		protected virtual bool CanPasteElement ()
-		{
-			if (!canCopyAndPaste || GetCopiedElementIndex () == -1)
-				return false;
-
-			return true;
-		}
-
-		protected virtual void PasteElement ()
-		{
-			int copiedElementIndex = GetCopiedElementIndex ();
-		}
-		#endregion
-
 		#region Remove
+		protected bool CanRemoveSelection ()
+		{
+			return CanRemove ();
+		}
+
 		protected virtual void RemoveElementSelection ()
+		{
+			DoRemoveElementSelection ();
+		}
+
+		protected void DoRemoveElementSelection ()
 		{
 			List<int> selection = Selection;
 
@@ -351,8 +352,60 @@ namespace GGS_Framework
 		}
 		#endregion
 
+		#region Copy
+		protected bool CanCopyElement ()
+		{
+			if (!CanCopyAndPaste ())
+				return false;
+
+			return (Selection.Count == 1);
+		}
+
+		protected virtual void CopyElement ()
+		{
+			CopiedElementHashCode = list[FirstIdOfSelection].GetHashCode ();
+		}
+
+		protected int GetCopiedElementIndex ()
+		{
+			int index = -1;
+
+			if (CopiedElementHashCode == 0)
+				return index;
+
+			// Find for element with copied hash code
+			for (int i = 0; i < list.Count; i++)
+			{
+				if (list[i].GetHashCode () == CopiedElementHashCode)
+					return i;
+			}
+
+			return index;
+		}
+		#endregion
+
+		#region Paste
+		protected bool CanPasteElement ()
+		{
+			if (!CanCopyAndPaste () || GetCopiedElementIndex () == -1)
+				return false;
+
+			return true;
+		}
+
+		protected virtual void PasteElement ()
+		{
+			int copiedElementIndex = GetCopiedElementIndex ();
+		}
+		#endregion
+
 		#region General
-		private void MoveElementSelection (int insertIndex, List<int> selectedIds)
+		protected virtual void MoveElementSelection (int insertIndex, List<int> selectedIds)
+		{
+			DoMoveElementSelection (insertIndex, selectedIds);
+		}
+
+		protected void DoMoveElementSelection (int insertIndex, List<int> selectedIds)
 		{
 			if (insertIndex < 0)
 				return;
@@ -401,41 +454,21 @@ namespace GGS_Framework
 		}
 
 		protected abstract ElementType CreateElementObject ();
-
-		//protected virtual ElementType CreateObjectInstanceForAdd ()
-		//{
-		//    // This is ugly but there are a lot of cases like null types and default constructors
-		//    Type listType = list.GetType ();
-		//    Type elementType = listType.GetElementType ();
-
-		//    if (elementType == typeof (string))
-		//        return string.Empty as ElementType;
-		//    else if (elementType != null && elementType.GetConstructor (Type.EmptyTypes) == null)
-		//        Debug.LogErrorFormat ("Cannot add element. Type {0} has no default constructor. Implement a default constructor or implement your own add behaviour.", elementType);
-		//    else if (listType.GetGenericArguments ()[0] != null)
-		//        return Activator.CreateInstance (listType.GetGenericArguments ()[0]);
-		//    else if (elementType != null)
-		//        return Activator.CreateInstance (elementType);
-		//    else
-		//        Debug.LogError ("Cannot add element of type Null.");
-
-		//    return null;
-		//}
 		#endregion
 		#endregion
 
-		#region TreeView Sortcuts
-		private void ReloadTree ()
+		#region TreeView Shortcuts
+		protected void ReloadTree ()
 		{
 			treeView.Reload ();
 		}
 
-		private void RepaintTree ()
+		protected void RepaintTree ()
 		{
 			treeView.Repaint ();
 		}
 
-		private void SetSelection (IList<int> ids)
+		protected void SetSelection (IList<int> ids)
 		{
 			if (ids == null)
 				ids = new List<int> ();
@@ -443,7 +476,7 @@ namespace GGS_Framework
 			treeView.SetSelection (ids);
 		}
 
-		private void SetSelection (IList<int> ids, TreeViewSelectionOptions options)
+		protected void SetSelection (IList<int> ids, TreeViewSelectionOptions options)
 		{
 			treeView.SetSelection (ids, options);
 		}
