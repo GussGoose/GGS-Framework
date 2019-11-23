@@ -14,6 +14,14 @@ namespace GGS_Framework
 		private TreeView treeView;
 		private TreeViewState treeViewState;
 		private SearchField searchBar;
+
+		#region Events
+		public delegate void SelectionChangedDelegate (List<int> selection);
+		public SelectionChangedDelegate onSelectionChanged;
+
+		public delegate void RightClickElementDelegate (int index);
+		public RightClickElementDelegate onRightClickElement;
+		#endregion
 		#endregion
 
 		#region Class Accesors
@@ -24,7 +32,8 @@ namespace GGS_Framework
 
 		public string Title
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		public bool HasSearch
@@ -43,19 +52,32 @@ namespace GGS_Framework
 			get { return treeViewState.selectedIDs; }
 		}
 
-		protected int FirstIdOfSelection
+		public int FirstOfSelection
 		{
-			get { return Selection[0]; }
+			get
+			{
+				if (Selection.Count == 0)
+					return -1;
+
+				return Selection[0];
+			}
 		}
 
-		protected int LatestIdOfSelection
+		public int LatestOfSelection
 		{
-			get { return Selection[Selection.Count - 1]; }
+			get
+			{
+				if (Selection.Count == 0)
+					return -1;
+
+				return Selection[Selection.Count - 1];
+			}
 		}
 
 		public int CopiedElementHashCode
 		{
-			get; private set;
+			get;
+			private set;
 		}
 		#endregion
 
@@ -74,7 +96,7 @@ namespace GGS_Framework
 		}
 
 		#region Draw
-		public void Draw (Rect rect)
+		public virtual void Draw (Rect rect)
 		{
 			if (treeView.ItemCount != Count)
 			{
@@ -103,7 +125,7 @@ namespace GGS_Framework
 				AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config ("Nothing in list.", FontStyle.Bold));
 		}
 
-		private void DrawHeader (Rect rect)
+		protected virtual void DrawHeader (Rect rect)
 		{
 			bool canSearch = CanSearch ();
 			bool canAddElement = CanAddElement ();
@@ -170,7 +192,12 @@ namespace GGS_Framework
 		#endregion
 
 		#region General
-		protected virtual void ContextClickElement (int index)
+		protected virtual void SelectionChanged (List<int> selection)
+		{
+			onSelectionChanged?.Invoke (selection);
+		}
+
+		protected virtual void RightClickElement (int index)
 		{
 			RepaintTree ();
 
@@ -180,7 +207,8 @@ namespace GGS_Framework
 			bool canCopyElement = CanCopyElement ();
 			bool canPasteElement = CanPasteElement ();
 
-			AdvancedGenericDropdown.Option[] dropdownOptions = {
+			AdvancedGenericDropdown.Option[] dropdownOptions =
+			{
 				new AdvancedGenericDropdown.Item ("Remove", false, canRemove),
 				new AdvancedGenericDropdown.Separator (canCopyElement || canPasteElement),
 				new AdvancedGenericDropdown.Item ("Copy", false, canCopyElement),
@@ -191,48 +219,51 @@ namespace GGS_Framework
 			};
 
 			AdvancedGenericDropdown.Show<ElementOptions> (dropdownOptions, option =>
-			{
-				ElementOptions elementOption = (ElementOptions) option;
-
-				switch (elementOption)
 				{
-					case ElementOptions.Remove:
-						RemoveElementSelection ();
-						break;
-					case ElementOptions.Copy:
-						CopyElement ();
-						break;
-					case ElementOptions.Paste:
-						PasteElement ();
-						break;
-					case ElementOptions.InsertAbove:
-						InsertElementAbove ();
-						break;
-					case ElementOptions.InsertBelow:
-						InsertElementBelow ();
-						break;
+					ElementOptions elementOption = (ElementOptions) option;
+
+					switch (elementOption)
+					{
+						case ElementOptions.Remove:
+							RemoveElementSelection ();
+							break;
+						case ElementOptions.Copy:
+							CopyElement ();
+							break;
+						case ElementOptions.Paste:
+							PasteElement ();
+							break;
+						case ElementOptions.InsertAbove:
+							InsertElementAbove ();
+							break;
+						case ElementOptions.InsertBelow:
+							InsertElementBelow ();
+							break;
+					}
 				}
-			});
+			);
+			
+			onRightClickElement?.Invoke (index);
 		}
 
-		private void PerformDrop (int insertIndex, List<int> draggedIds)
+		private void PerformDrop (int insertIndex, List<int> draggedElements)
 		{
-			MoveElementSelection (insertIndex, draggedIds);
+			MoveElementSelection (insertIndex, draggedElements);
 		}
 
-		protected abstract string GetNameOfElementForSearch (int elementIndex);
+		protected abstract string GetNameOfElementForSearch (int index);
 
-		protected string FindNameOfElementForSearch (int elementIndex, string variableName)
+		protected string FindNameOfElementForSearch (int index, string variableName)
 		{
 			Type elementType = typeof (ElementType);
 			string name = string.Empty;
 
 			if (string.IsNullOrEmpty (variableName))
-				name = list[elementIndex] as string;
+				name = list[index] as string;
 			else if (elementType.GetField (variableName) != null)
-				name = elementType.GetField (variableName).GetValue (list[elementIndex]) as string;
+				name = elementType.GetField (variableName).GetValue (list[index]) as string;
 			else if (elementType.GetProperty (variableName) != null)
-				name = elementType.GetProperty (variableName).GetValue (list[elementIndex], null) as string;
+				name = elementType.GetProperty (variableName).GetValue (list[index], null) as string;
 
 			return name;
 		}
@@ -305,7 +336,7 @@ namespace GGS_Framework
 
 		protected virtual void InsertElementAbove ()
 		{
-			AddElementAtIndex (LatestIdOfSelection);
+			AddElementAtIndex (LatestOfSelection);
 		}
 		#endregion
 
@@ -320,7 +351,7 @@ namespace GGS_Framework
 
 		protected virtual void InsertElementBelow ()
 		{
-			AddElementAtIndex (LatestIdOfSelection + 1);
+			AddElementAtIndex (LatestOfSelection + 1);
 		}
 		#endregion
 		#endregion
@@ -363,7 +394,7 @@ namespace GGS_Framework
 
 		protected virtual void CopyElement ()
 		{
-			CopiedElementHashCode = list[FirstIdOfSelection].GetHashCode ();
+			CopiedElementHashCode = list[FirstOfSelection].GetHashCode ();
 		}
 
 		protected int GetCopiedElementIndex ()

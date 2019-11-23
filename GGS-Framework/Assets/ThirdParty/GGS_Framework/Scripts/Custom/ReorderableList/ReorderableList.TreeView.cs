@@ -1,7 +1,8 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
+using UnityEngine;
+using System.Linq;
 using UnityEditor.IMGUI.Controls;
 
 namespace GGS_Framework
@@ -50,7 +51,13 @@ namespace GGS_Framework
 			protected override void ContextClickedItem (int id)
 			{
 				base.ContextClickedItem (id);
-				reorderableList.ContextClickElement (id);
+				reorderableList.RightClickElement (id);
+			}
+
+			protected override void SelectionChanged (IList<int> selectedIds)
+			{
+				base.SelectionChanged (selectedIds);
+				reorderableList.SelectionChanged (selectedIds.ToList ());
 			}
 
 			#region Drag
@@ -69,7 +76,7 @@ namespace GGS_Framework
 				List<TreeViewItem> draggedItems = GetRows ().Where (item => args.draggedItemIDs.Contains (item.id)).ToList ();
 
 				DragAndDrop.SetGenericData (DragKey, draggedItems);
-				DragAndDrop.objectReferences = new UnityEngine.Object[] { };
+				DragAndDrop.objectReferences = new Object[] { };
 
 				string dragTitle = (draggedItems.Count == 1) ? draggedItems[0].displayName : "<Multiple>";
 				DragAndDrop.StartDrag (dragTitle);
@@ -86,12 +93,12 @@ namespace GGS_Framework
 				switch (args.dragAndDropPosition)
 				{
 					case DragAndDropPosition.BetweenItems:
-						{
-							if (args.performDrop)
-								reorderableList.PerformDrop (args.insertAtIndex, draggedIds);
+					{
+						if (args.performDrop)
+							reorderableList.PerformDrop (args.insertAtIndex, draggedIds);
 
-							return DragAndDropVisualMode.Move;
-						}
+						return DragAndDropVisualMode.Move;
+					}
 					default:
 						return DragAndDropVisualMode.None;
 				}

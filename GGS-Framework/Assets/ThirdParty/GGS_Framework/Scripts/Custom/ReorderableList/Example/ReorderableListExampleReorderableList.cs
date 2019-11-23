@@ -6,21 +6,15 @@ namespace GGS_Framework
 {
 	public class ReorderableListExampleReorderableList : ReorderableList<ReorderableListExampleStruct>
 	{
-		#region Class Members
-		#endregion
-
-		#region Class Accesors
-		#endregion
-
 		#region Class Overrides
 		protected override void DrawElement (Rect rect, int index)
 		{
 			GUI.Label (rect, list[index].displayName);
 		}
 
-		protected override string GetNameOfElementForSearch (int elementIndex)
+		protected override string GetNameOfElementForSearch (int index)
 		{
-			return list[elementIndex].displayName;
+			return list[index].displayName;
 		}
 
 		protected override ReorderableListExampleStruct CreateElementObject ()
