@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace GGS_Framework
@@ -12,15 +13,12 @@ namespace GGS_Framework
 		protected List<ElementType> list;
 
 		private TreeView treeView;
-		private TreeViewState treeViewState;
+		private ReorderableListState state;
 		private SearchField searchBar;
 
 		#region Events
-		public delegate void SelectionChangedDelegate (List<int> selection);
-		public SelectionChangedDelegate onSelectionChanged;
-
-		public delegate void RightClickElementDelegate (int index);
-		public RightClickElementDelegate onRightClickElement;
+		public Action<List<int>> onSelectionChanged;
+		public Action<int> onRightClickElement;
 		#endregion
 		#endregion
 
@@ -49,7 +47,7 @@ namespace GGS_Framework
 
 		public List<int> Selection
 		{
-			get { return treeViewState.selectedIDs; }
+			get { return state.TreeViewState.selectedIDs; }
 		}
 
 		public int FirstOfSelection
@@ -82,12 +80,15 @@ namespace GGS_Framework
 		#endregion
 
 		#region Class Implementation
-		protected ReorderableList (List<ElementType> list, string title = "Reorderable List")
+		protected ReorderableList (ReorderableListState state, List<ElementType> list, string title = "Reorderable List")
 		{
+			if (state == null)
+				state = new ReorderableListState ();
+			
+			this.state = state;
 			this.list = list;
-
-			treeViewState = new TreeViewState ();
-			treeView = new TreeView (this, treeViewState);
+			
+			treeView = new TreeView (this, state.TreeViewState);
 
 			Title = title;
 
@@ -242,7 +243,7 @@ namespace GGS_Framework
 					}
 				}
 			);
-			
+
 			onRightClickElement?.Invoke (index);
 		}
 

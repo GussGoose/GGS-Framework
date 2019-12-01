@@ -133,13 +133,13 @@
                     <e p="Editor" t="Include">
                       <e p="ReorderableListExampleEditorWindow.cs" t="Include" />
                     </e>
-                    <e p="ReorderableListExample.cs" t="Include" />
                     <e p="ReorderableListExampleClass.cs" t="Include" />
                     <e p="ReorderableListExampleReorderableList.cs" t="Include" />
                   </e>
                   <e p="ReorderableList.cs" t="Include" />
                   <e p="ReorderableList.Styles.cs" t="Include" />
                   <e p="ReorderableList.TreeView.cs" t="Include" />
+                  <e p="ReorderableListState.cs" t="Include" />
                 </e>
                 <e p="TimeObject" t="Include">
                   <e p="Editor" t="Include">

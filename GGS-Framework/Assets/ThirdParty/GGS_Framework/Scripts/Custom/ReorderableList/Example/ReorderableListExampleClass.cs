@@ -4,7 +4,7 @@
     public class ReorderableListExampleStruct
     {
         #region Class Members
-        public string displayName;
+        public string exampleName;
         public float exampleFloat;
         public bool exampleBool;
         #endregion

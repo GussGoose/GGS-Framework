@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace GGS_Framework
@@ -6,15 +7,13 @@ namespace GGS_Framework
 	public class ReorderableListExampleEditorWindow : EditorWindow
 	{
 		#region Class Members
+		[SerializeField] private List<ReorderableListExampleStruct> list = new List<ReorderableListExampleStruct> ();
+
 		private ReorderableListExampleReorderableList reorderableList;
+		[SerializeField] private ReorderableListState reorderableListState;
 		#endregion
 
 		#region Class Accesors
-		private ReorderableListExample Target
-		{
-			get { return FindObjectOfType<ReorderableListExample> (); }
-		}
-
 		private Rect Rect
 		{
 			get { return new Rect (Vector2.zero, position.size); }
@@ -29,20 +28,6 @@ namespace GGS_Framework
 
 		private void OnGUI ()
 		{
-			if (Target == null)
-			{
-				string message = "Go to Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/Example.unity and open the scene.";
-
-				GUILayout.FlexibleSpace ();
-				AdvancedLabel.Draw (new AdvancedLabel.Config (message));
-				GUILayout.FlexibleSpace ();
-
-				Initialize ();
-
-				if (Target == null)
-					return;
-			}
-
 			if (reorderableList == null)
 				Initialize ();
 
@@ -61,10 +46,10 @@ namespace GGS_Framework
 
 		private void Initialize ()
 		{
-			if (Target == null)
-				return;
+			if (reorderableListState == null)
+				reorderableListState = new ReorderableListState ();
 
-			reorderableList = new ReorderableListExampleReorderableList (Target.exampleList);
+			reorderableList = new ReorderableListExampleReorderableList (reorderableListState, list);
 		}
 		#endregion
 	}
