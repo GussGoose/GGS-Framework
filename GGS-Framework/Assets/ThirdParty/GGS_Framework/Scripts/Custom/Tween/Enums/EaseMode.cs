@@ -5,5 +5,5 @@
 		In,
 		Out,
 		InOut
-	} 
+	}
 }

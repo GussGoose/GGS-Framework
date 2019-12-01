@@ -6,12 +6,12 @@ namespace GGS_Framework
 {
 	public class Tween : MonoBehaviour
 	{
-		#region Class members
+		#region Class Members
 		private static GameObject root;
 		private static List<TweenElement> tweens = new List<TweenElement> ();
 		#endregion
 
-		#region Class overrides
+		#region MonoBehaviour Overrides
 		private void Update ()
 		{
 			for (int i = 0; i < tweens.Count; i++)
@@ -29,7 +29,7 @@ namespace GGS_Framework
 		}
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public static TweenElement Create (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Action<TweenElement> updateCallback)
 		{
 			return AddTween (reference, id, unscaledTime, start, end, duration, EasingCurves.Linear, null, updateCallback, null);

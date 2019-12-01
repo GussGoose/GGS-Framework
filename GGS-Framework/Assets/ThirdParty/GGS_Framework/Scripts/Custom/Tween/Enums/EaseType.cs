@@ -16,5 +16,5 @@
 		Bounce,
 		Back,
 		Elastic
-	} 
+	}
 }

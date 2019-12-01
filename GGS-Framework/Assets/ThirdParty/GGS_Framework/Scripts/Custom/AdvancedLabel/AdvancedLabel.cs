@@ -8,27 +8,39 @@ namespace GGS_Framework
 		#region Class Implementation
 		public static void Draw (Config config)
 		{
-			DoDraw (config);
+			DoDraw (config, config.GetConfiguredStyle ());
+		}
+
+		public static void Draw (Config config, GUIStyle configuredLabelStyle)
+		{
+			DoDraw (config, configuredLabelStyle);
 		}
 
 		public static void Draw (Rect rect, Config config)
 		{
-			DoDraw (rect, config);
+			DoDraw (rect, config, config.GetConfiguredStyle ());
 		}
 
-		private static void DoDraw (Config config)
+		public static void Draw (Rect rect, Config config, GUIStyle configuredLabelStyle)
+		{
+			DoDraw (rect, config, configuredLabelStyle);
+		}
+
+		private static void DoDraw (Config config, GUIStyle configuredLabelStyle)
 		{
 			Rect rect = GUILayoutUtility.GetRect (new GUIContent (config.content), config.GetConfiguredStyle (), GUILayout.ExpandWidth (true));
-			DoDraw (rect, config);
+			DoDraw (rect, config, configuredLabelStyle);
 		}
 
-		private static void DoDraw (Rect rect, Config config)
+		private static void DoDraw (Rect rect, Config config, GUIStyle configuredLabelStyle)
 		{
-			config.backgroundStyle.fixedHeight = rect.height;
-			GUI.Box (rect, "", config.backgroundStyle);
+			if (config.backgroundStyle != GUIStyle.none)
+			{
+				config.backgroundStyle.fixedHeight = rect.height;
+				GUI.Box (rect, "", config.backgroundStyle);
+			}
 
-			GUIStyle labelStyle = config.GetConfiguredStyle ();
-			GUI.Label (rect, config.content, labelStyle);
+			GUI.Label (rect, config.content, configuredLabelStyle);
 		}
 		#endregion
 	}

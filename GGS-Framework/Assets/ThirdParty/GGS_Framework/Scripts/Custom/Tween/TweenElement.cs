@@ -5,18 +5,19 @@ namespace GGS_Framework
 {
 	public class TweenElement
 	{
-		#region Class members
+		#region Class Members
 		private Action<TweenElement> updateCallback;
 		private Action<TweenElement> finishCallback;
 		#endregion
 
-		#region Class accesors
+		#region Class Accesors
 		/// <summary>
 		/// Current state
 		/// </summary>
 		public TweenState State
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -24,7 +25,8 @@ namespace GGS_Framework
 		/// </summary>
 		public GameObject Reference
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -32,7 +34,8 @@ namespace GGS_Framework
 		/// </summary>
 		public string Id
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -40,12 +43,14 @@ namespace GGS_Framework
 		/// </summary>
 		public string UniqueId
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		public bool UnscaledTime
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -53,7 +58,8 @@ namespace GGS_Framework
 		/// </summary>
 		public float StartValue
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -61,7 +67,8 @@ namespace GGS_Framework
 		/// </summary>
 		public float EndValue
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -69,15 +76,17 @@ namespace GGS_Framework
 		/// </summary>
 		public float Duration
 		{
-			get; set;
+			get;
+			private set;
 		}
 
 		/// <summary>
-		/// Current runing time of interpolation
+		/// Current running time of interpolation
 		/// </summary>
 		public float CurrentTime
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -85,12 +94,14 @@ namespace GGS_Framework
 		/// </summary>
 		public float Value
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		public float DeltaValue
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -98,12 +109,14 @@ namespace GGS_Framework
 		/// </summary>
 		public float Progress
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		public float DeltaProgress
 		{
-			get; private set;
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -111,7 +124,7 @@ namespace GGS_Framework
 		/// </summary>
 		public Func<float, float> Ease
 		{
-			get; private set;
+			get;
 		}
 
 		/// <summary>
@@ -119,11 +132,11 @@ namespace GGS_Framework
 		/// </summary>
 		public AnimationCurve CustomEase
 		{
-			get; private set;
+			get;
 		}
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public TweenElement (GameObject reference, string id, bool unscaledTime, float start, float end, float duration, Func<float, float> ease, AnimationCurve customEase, Action<TweenElement> updateCallback, Action<TweenElement> finishCallback)
 		{
 			Reference = reference;
@@ -155,7 +168,7 @@ namespace GGS_Framework
 				CurrentTime += elapsedTime;
 
 				if (CurrentTime >= Duration)
-					Stop (TweenStopAction.CompleteInterpolationMakeFinishCallback);
+					Stop (TweenStopAction.CompleteInterpolationAndCallFinish);
 				else
 					UpdateInterpolation ();
 			}
@@ -194,7 +207,7 @@ namespace GGS_Framework
 
 			State = TweenState.Stopped;
 
-			if (stopAction == TweenStopAction.CompleteInterpolationMakeFinishCallback)
+			if (stopAction == TweenStopAction.CompleteInterpolationAndCallFinish)
 			{
 				CurrentTime = Duration;
 				UpdateInterpolation ();
@@ -205,7 +218,7 @@ namespace GGS_Framework
 					finishCallback = null;
 				}
 			}
-			else if (stopAction == TweenStopAction.MakeFinishCallback)
+			else if (stopAction == TweenStopAction.CallFinish)
 			{
 				if (finishCallback != null)
 				{

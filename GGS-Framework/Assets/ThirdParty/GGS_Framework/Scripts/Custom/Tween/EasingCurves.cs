@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace GGS_Framework
 {
-	public class EasingCurves
+	public static class EasingCurves
 	{
+		#region Nested Classes
 		public enum List
 		{
 			Linear, Quadratic,
@@ -20,8 +21,9 @@ namespace GGS_Framework
 			EaseInBack, EaseOutBack, EaseInOutBack,
 			EaseInElastic, EaseOutElastic, EaseInOutElastic
 		}
+		#endregion
 
-		#region Class members
+		#region Class Members
 		public static readonly Func<float, float> Linear = ComputeLinear;
 		public static readonly Func<float, float> Quadratic = ComputeQuadratic;
 
@@ -69,7 +71,7 @@ namespace GGS_Framework
 		public static readonly Func<float, float> EaseInOutElastic = ComputeEaseInOutElastic;
 		#endregion
 
-		#region Class implementation
+		#region Class Implementation
 		public static float GetEaseValue (List ease, float value)
 		{
 			switch (ease)
@@ -236,19 +238,19 @@ namespace GGS_Framework
 		}
 
 		#region Methods
-		protected static float ComputeLinear (float value)
+		private static float ComputeLinear (float value)
 		{
 			float start = 0;
 			float end = 1;
 			return Mathf.Lerp (start, end, value);
 		}
 
-		protected static float ComputeQuadratic (float value)
+		private static float ComputeQuadratic (float value)
 		{
 			return -4 * Mathf.Pow (value, 2) + value * 4;
 		}
 
-		protected static float ComputeClerp (float value)
+		private static float ComputeClerp (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -269,10 +271,11 @@ namespace GGS_Framework
 				retval = start + diff;
 			}
 			else retval = start + (end - start) * value;
+
 			return retval;
 		}
 
-		protected static float ComputeSpring (float value)
+		private static float ComputeSpring (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -281,8 +284,8 @@ namespace GGS_Framework
 			return start + (end - start) * value;
 		}
 
-		// Not use by any method
-		protected static float ComputePunch (float amplitude, float value)
+		// Not used by any method
+		private static float ComputePunch (float amplitude, float value)
 		{
 			float s = 9;
 			if (value == 0)
@@ -295,7 +298,7 @@ namespace GGS_Framework
 			return (amplitude * Mathf.Pow (2, -10 * value) * Mathf.Sin ((value * 1 - s) * (2 * Mathf.PI) / period));
 		}
 
-		protected static float ComputeEaseInQuad (float value)
+		private static float ComputeEaseInQuad (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -303,7 +306,7 @@ namespace GGS_Framework
 			return end * value * value + start;
 		}
 
-		protected static float ComputeEaseOutQuad (float value)
+		private static float ComputeEaseOutQuad (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -311,7 +314,7 @@ namespace GGS_Framework
 			return -end * value * (value - 2) + start;
 		}
 
-		protected static float ComputeEaseInOutQuad (float value)
+		private static float ComputeEaseInOutQuad (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -325,7 +328,7 @@ namespace GGS_Framework
 			return -end * 0.5f * (value * (value - 2) - 1) + start;
 		}
 
-		protected static float ComputeEaseInCubic (float value)
+		private static float ComputeEaseInCubic (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -333,7 +336,7 @@ namespace GGS_Framework
 			return end * value * value * value + start;
 		}
 
-		protected static float ComputeEaseOutCubic (float value)
+		private static float ComputeEaseOutCubic (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -342,7 +345,7 @@ namespace GGS_Framework
 			return end * (value * value * value + 1) + start;
 		}
 
-		protected static float ComputeEaseInOutCubic (float value)
+		private static float ComputeEaseInOutCubic (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -356,7 +359,7 @@ namespace GGS_Framework
 			return end * 0.5f * (value * value * value + 2) + start;
 		}
 
-		protected static float ComputeEaseInQuart (float value)
+		private static float ComputeEaseInQuart (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -364,7 +367,7 @@ namespace GGS_Framework
 			return end * value * value * value * value + start;
 		}
 
-		protected static float ComputeEaseOutQuart (float value)
+		private static float ComputeEaseOutQuart (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -373,7 +376,7 @@ namespace GGS_Framework
 			return -end * (value * value * value * value - 1) + start;
 		}
 
-		protected static float ComputeEaseInOutQuart (float value)
+		private static float ComputeEaseInOutQuart (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -387,7 +390,7 @@ namespace GGS_Framework
 			return -end * 0.5f * (value * value * value * value - 2) + start;
 		}
 
-		protected static float ComputeEaseInQuint (float value)
+		private static float ComputeEaseInQuint (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -395,7 +398,7 @@ namespace GGS_Framework
 			return end * value * value * value * value * value + start;
 		}
 
-		protected static float ComputeEaseOutQuint (float value)
+		private static float ComputeEaseOutQuint (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -404,7 +407,7 @@ namespace GGS_Framework
 			return end * (value * value * value * value * value + 1) + start;
 		}
 
-		protected static float ComputeEaseInOutQuint (float value)
+		private static float ComputeEaseInOutQuint (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -418,7 +421,7 @@ namespace GGS_Framework
 			return end * 0.5f * (value * value * value * value * value + 2) + start;
 		}
 
-		protected static float ComputeEaseInSine (float value)
+		private static float ComputeEaseInSine (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -426,7 +429,7 @@ namespace GGS_Framework
 			return -end * Mathf.Cos (value * (Mathf.PI * 0.5f)) + end + start;
 		}
 
-		protected static float ComputeEaseOutSine (float value)
+		private static float ComputeEaseOutSine (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -434,7 +437,7 @@ namespace GGS_Framework
 			return end * Mathf.Sin (value * (Mathf.PI * 0.5f)) + start;
 		}
 
-		protected static float ComputeEaseInOutSine (float value)
+		private static float ComputeEaseInOutSine (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -442,7 +445,7 @@ namespace GGS_Framework
 			return -end * 0.5f * (Mathf.Cos (Mathf.PI * value) - 1) + start;
 		}
 
-		protected static float ComputeEaseInExpo (float value)
+		private static float ComputeEaseInExpo (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -450,7 +453,7 @@ namespace GGS_Framework
 			return end * Mathf.Pow (2, 10 * (value - 1)) + start;
 		}
 
-		protected static float ComputeEaseOutExpo (float value)
+		private static float ComputeEaseOutExpo (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -458,7 +461,7 @@ namespace GGS_Framework
 			return end * (-Mathf.Pow (2, -10 * value) + 1) + start;
 		}
 
-		protected static float ComputeEaseInOutExpo (float value)
+		private static float ComputeEaseInOutExpo (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -472,7 +475,7 @@ namespace GGS_Framework
 			return end * 0.5f * (-Mathf.Pow (2, -10 * value) + 2) + start;
 		}
 
-		protected static float ComputeEaseInCirc (float value)
+		private static float ComputeEaseInCirc (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -480,7 +483,7 @@ namespace GGS_Framework
 			return -end * (Mathf.Sqrt (1 - value * value) - 1) + start;
 		}
 
-		protected static float ComputeEaseOutCirc (float value)
+		private static float ComputeEaseOutCirc (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -489,7 +492,7 @@ namespace GGS_Framework
 			return end * Mathf.Sqrt (1 - value * value) + start;
 		}
 
-		protected static float ComputeEaseInOutCirc (float value)
+		private static float ComputeEaseInOutCirc (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -501,7 +504,7 @@ namespace GGS_Framework
 			return end * 0.5f * (Mathf.Sqrt (1 - value * value) + 1) + start;
 		}
 
-		protected static float ComputeEaseInBounce (float value)
+		private static float ComputeEaseInBounce (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -510,7 +513,7 @@ namespace GGS_Framework
 			return end - ComputeEaseOutBounce (d - value) + start;
 		}
 
-		protected static float ComputeEaseOutBounce (float value)
+		private static float ComputeEaseOutBounce (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -536,7 +539,7 @@ namespace GGS_Framework
 			}
 		}
 
-		protected static float ComputeEaseInOutBounce (float value)
+		private static float ComputeEaseInOutBounce (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -549,7 +552,7 @@ namespace GGS_Framework
 				return ComputeEaseOutBounce (value * 2 - d) * 0.5f + end * 0.5f + start;
 		}
 
-		protected static float ComputeEaseInBack (float value)
+		private static float ComputeEaseInBack (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -559,7 +562,7 @@ namespace GGS_Framework
 			return end * (value) * value * ((s + 1) * value - s) + start;
 		}
 
-		protected static float ComputeEaseOutBack (float value)
+		private static float ComputeEaseOutBack (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -569,7 +572,7 @@ namespace GGS_Framework
 			return end * ((value) * value * ((s + 1) * value + s) + 1) + start;
 		}
 
-		protected static float ComputeEaseInOutBack (float value)
+		private static float ComputeEaseInOutBack (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -582,12 +585,13 @@ namespace GGS_Framework
 				s *= (1.525f);
 				return end * 0.5f * (value * value * (((s) + 1) * value - s)) + start;
 			}
+
 			value -= 2;
 			s *= (1.525f);
 			return end * 0.5f * ((value) * value * (((s) + 1) * value + s) + 2) + start;
 		}
 
-		protected static float ComputeEaseInElastic (float value)
+		private static float ComputeEaseInElastic (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -615,7 +619,7 @@ namespace GGS_Framework
 			return -(a * Mathf.Pow (2, 10 * (value -= 1)) * Mathf.Sin ((value * d - s) * (2 * Mathf.PI) / p)) + start;
 		}
 
-		protected static float ComputeEaseOutElastic (float value)
+		private static float ComputeEaseOutElastic (float value)
 		{
 			float start = 0;
 			float end = 1;
@@ -643,7 +647,7 @@ namespace GGS_Framework
 			return (a * Mathf.Pow (2, -10 * value) * Mathf.Sin ((value * d - s) * (2 * Mathf.PI) / p) + end + start);
 		}
 
-		protected static float ComputeEaseInOutElastic (float value)
+		private static float ComputeEaseInOutElastic (float value)
 		{
 			float start = 0;
 			float end = 1;

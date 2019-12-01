@@ -5,5 +5,5 @@
 		Running,
 		Paused,
 		Stopped
-	} 
+	}
 }

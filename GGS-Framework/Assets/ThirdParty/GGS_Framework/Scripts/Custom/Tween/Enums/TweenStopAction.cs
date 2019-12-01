@@ -2,8 +2,8 @@
 {
 	public enum TweenStopAction
 	{
-		CompleteInterpolationMakeFinishCallback,
-		MakeFinishCallback,
+		CompleteInterpolationAndCallFinish,
+		CallFinish,
 		Nothing
-	} 
+	}
 }

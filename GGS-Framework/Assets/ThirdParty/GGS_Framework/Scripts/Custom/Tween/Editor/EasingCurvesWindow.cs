@@ -75,12 +75,12 @@ namespace GGS_Framework
 
 		private void DrawHeader (Rect rect)
 		{
-			GUI.Label (rect, "Tween Easing Curves", EasingCurvesStyles.header);
+			GUI.Label (rect, "Tween Easing Curves", EasingCurvesStyles.Header);
 		}
 
 		private void DrawEasings (Rect rect)
 		{
-			EasingCurvesStyles.background.Draw (rect);
+			EasingCurvesStyles.Background.Draw (rect);
 			rect = new RectOffset (0, 0, -4, -4).Add (rect);
 
 			int easeCount = System.Enum.GetValues (typeof (EasingCurves.List)).Length;
@@ -94,7 +94,8 @@ namespace GGS_Framework
 			{
 				Rect scrollBarRect = new Rect (position.width - 14, rect.yMin, 14, rect.height);
 
-				scrollPosition += Event.current.delta.y * 5;
+				if (Event.current.type == EventType.ScrollWheel)
+					scrollPosition += Event.current.delta.y * 5;
 				scrollPosition = GUI.VerticalScrollbar (scrollBarRect, scrollPosition, scrollBarRect.height, 0, tableSize.y);
 			}
 
@@ -105,6 +106,7 @@ namespace GGS_Framework
 				easeRect.y -= scrollPosition;
 				DrawEase (easeRect, (EasingCurves.List) System.Enum.GetValues (typeof (EasingCurves.List)).GetValue (i));
 			}
+
 			GUI.EndGroup ();
 		}
 
@@ -122,8 +124,8 @@ namespace GGS_Framework
 			Rect originalEaseRect = rects["Ease"];
 			Rect easeRect = originalEaseRect;
 
-			GUI.Label (rects["Header"], ease.ToString ().ToTitleCase (), EasingCurvesStyles.header);
-			EasingCurvesStyles.ease.Draw (easeRect);
+			GUI.Label (rects["Header"], ease.ToString ().ToTitleCase (), EasingCurvesStyles.Header);
+			EasingCurvesStyles.Ease.Draw (easeRect);
 
 			GUI.BeginGroup (easeRect);
 			easeRect.position = Vector2.zero;
@@ -173,10 +175,10 @@ namespace GGS_Framework
 				Vector2 position = new Vector2 (offset.x + previewTime * easeRect.width, offset.y + -EasingCurves.GetEaseValue (ease, previewTime) * (easeRect.height - verticalOffset * 2));
 
 				Rect circleRect = new Rect (originalEaseRect.position + position - Vector2.one * 4f, Vector2.one * 8);
-				EasingCurvesStyles.circle.Draw (circleRect);
+				EasingCurvesStyles.Circle.Draw (circleRect);
 
 				Rect arrowRect = new Rect (originalEaseRect.xMax + 5, originalEaseRect.y + position.y - 6, 20, 12);
-				EasingCurvesStyles.arrow.Draw (arrowRect);
+				EasingCurvesStyles.Arrow.Draw (arrowRect);
 			}
 		}
 

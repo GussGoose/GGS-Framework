@@ -8,6 +8,20 @@ namespace GGS_Framework
 	{
 		public class Config
 		{
+			#region Nested Classes
+			public static class Defaults
+			{
+				public static GUIContent Content = GUIContent.none;
+				public static GUIStyle BackgroundStyle = GUIStyle.none;
+				public static Color Color = (EditorGUIUtility.isProSkin) ? new Color (0.705f, 0.705f, 0.705f, 1) : Color.black;
+				public const FontStyle Style = FontStyle.Normal;
+				public const TextAnchor Alignment = TextAnchor.MiddleCenter;
+				public const TextClipping Clipping = TextClipping.Clip;
+				public const bool WordWrap = true;
+				public const int FontSize = 11;
+			}
+			#endregion
+
 			#region Class Members
 			public GUIContent content;
 			public GUIStyle backgroundStyle;
@@ -100,36 +114,22 @@ namespace GGS_Framework
 				return style;
 			}
 
-			public Vector2 GetRequieredSize ()
+			public Vector2 GetRequiredSize ()
 			{
 				GUIStyle style = GetConfiguredStyle ();
 				return style.CalcSize (new GUIContent (content));
 			}
 
-			public float GetRequieredHeight (float width)
+			public float GetRequiredHeight (float width)
 			{
 				GUIStyle style = GetConfiguredStyle ();
 				return style.CalcHeight (new GUIContent (content), width);
 			}
 
-			public Rect GetRectWithRequieredHeight (Rect rect)
+			public Rect GetRectWithRequiredHeight (Rect rect)
 			{
-				float height = GetRequieredHeight (rect.width);
+				float height = GetRequiredHeight (rect.width);
 				return new Rect (rect.x, rect.y, rect.width, height);
-			}
-			#endregion
-
-			#region Nested Classes
-			public static class Defaults
-			{
-				public static GUIContent Content = GUIContent.none;
-				public static GUIStyle BackgroundStyle = GUIStyle.none;
-				public static Color Color = (EditorGUIUtility.isProSkin) ? new Color (0.705f, 0.705f, 0.705f, 1) : Color.black;
-				public const FontStyle Style = FontStyle.Normal;
-				public const TextAnchor Alignment = TextAnchor.MiddleCenter;
-				public const TextClipping Clipping = TextClipping.Clip;
-				public const bool WordWrap = true;
-				public const int FontSize = 11;
 			}
 			#endregion
 		}
