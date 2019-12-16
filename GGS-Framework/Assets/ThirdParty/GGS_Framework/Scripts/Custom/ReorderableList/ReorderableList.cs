@@ -17,6 +17,7 @@ namespace GGS_Framework
 		private SearchField searchBar;
 
 		#region Events
+		public Action onChanged;
 		public Action<List<int>> onSelectionChanged;
 		public Action<int> onRightClickElement;
 		#endregion
@@ -84,10 +85,10 @@ namespace GGS_Framework
 		{
 			if (state == null)
 				state = new ReorderableListState ();
-			
+
 			this.state = state;
 			this.list = list;
-			
+
 			treeView = new TreeView (this, state.TreeViewState);
 
 			Title = title;
@@ -381,6 +382,8 @@ namespace GGS_Framework
 
 			ReloadTree ();
 			SetSelection (null);
+
+			onChanged?.Invoke ();
 		}
 		#endregion
 
@@ -470,6 +473,8 @@ namespace GGS_Framework
 			SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame);
 
 			ReloadTree ();
+
+			onChanged?.Invoke ();
 		}
 
 		protected virtual void AddElementAtIndex (int insertIndex)
@@ -483,6 +488,8 @@ namespace GGS_Framework
 
 			ReloadTree ();
 			SetSelection (new List<int> { insertIndex });
+
+			onChanged?.Invoke ();
 		}
 
 		protected abstract ElementType CreateElementObject ();

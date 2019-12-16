@@ -18,7 +18,9 @@
       <Path>Builds</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Resources</Path>
       <Path>Temp</Path>
+      <Path>WorkSaver</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>
