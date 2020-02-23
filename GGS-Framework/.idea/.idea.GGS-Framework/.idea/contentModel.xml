@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_GGS-Framework.1825322994.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -126,9 +128,6 @@
                   <e p="PopupMenuWindow.cs" t="Include" />
                 </e>
                 <e p="ReorderableList" t="Include">
-                  <e p="Enums" t="Include">
-                    <e p="ReorderableList.ElementOptions.cs" t="Include" />
-                  </e>
                   <e p="Example" t="Include">
                     <e p="Editor" t="Include">
                       <e p="ReorderableListExampleEditorWindow.cs" t="Include" />
@@ -137,7 +136,6 @@
                     <e p="ReorderableListExampleReorderableList.cs" t="Include" />
                   </e>
                   <e p="ReorderableList.cs" t="Include" />
-                  <e p="ReorderableList.Styles.cs" t="Include" />
                   <e p="ReorderableList.TreeView.cs" t="Include" />
                   <e p="ReorderableListState.cs" t="Include" />
                 </e>
@@ -201,7 +199,5 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp/bin" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_GGS-Framework.1542117438.00" t="ExcludeRecursive" />
   </component>
 </project>

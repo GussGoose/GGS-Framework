@@ -30,8 +30,8 @@ namespace GGS_Framework
 		{
 			if (reorderableList == null)
 				Initialize ();
-
-			reorderableList.Draw (AdvancedRect.ExpandRect (Rect, new AdvancedRect.Padding (-2, AdvancedRect.Padding.Type.All)));
+			
+			reorderableList.Draw (Rect);
 		}
 		#endregion
 
