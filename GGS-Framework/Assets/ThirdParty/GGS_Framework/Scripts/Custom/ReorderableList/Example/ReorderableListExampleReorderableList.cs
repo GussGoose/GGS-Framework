@@ -42,6 +42,7 @@ namespace GGS_Framework
 		#region Class Implementation
 		public ReorderableListExampleReorderableList (ReorderableListState state, List<ReorderableListExampleStruct> list) : base (state, list)
 		{
+			ShowAlternatingRowBackgrounds = true;
 		}
 		#endregion
 	}

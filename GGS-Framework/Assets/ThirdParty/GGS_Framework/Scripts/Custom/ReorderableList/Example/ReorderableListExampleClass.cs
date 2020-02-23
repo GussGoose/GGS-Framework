@@ -1,12 +1,14 @@
-﻿namespace GGS_Framework
+﻿using System;
+
+namespace GGS_Framework
 {
-    [System.Serializable]
-    public class ReorderableListExampleStruct
-    {
-        #region Class Members
-        public string exampleName;
-        public float exampleFloat;
-        public bool exampleBool;
-        #endregion
-    }
+	[Serializable]
+	public class ReorderableListExampleStruct
+	{
+		#region Class Members
+		public string exampleName;
+		public float exampleFloat;
+		public bool exampleBool;
+		#endregion
+	}
 }

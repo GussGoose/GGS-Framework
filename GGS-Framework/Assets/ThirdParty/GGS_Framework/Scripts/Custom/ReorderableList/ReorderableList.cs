@@ -1,14 +1,55 @@
 ﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEditor.IMGUI.Controls;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace GGS_Framework
 {
 	public abstract partial class ReorderableList<ElementType>
 	{
+		#region Nested Classes
+		private enum ElementOptions
+		{
+			Remove,
+			Copy,
+			Paste,
+			InsertAbove,
+			InsertBelow
+		}
+
+		private static class Styles
+		{
+			#region Class Members
+			public static readonly GUISkin DarkSkin = GGS_FrameworkEditorResources.LoadAsset<GUISkin> ("ReorderableList/ReorderableList_DarkGUISkin.guiskin") as GUISkin;
+			public static readonly GUISkin Lightkin = GGS_FrameworkEditorResources.LoadAsset<GUISkin> ("ReorderableList/ReorderableList_LightGUISkin.guiskin") as GUISkin;
+
+			public static readonly GUISkin Skin = DarkSkin;
+
+			public static readonly int DefaultSpacing = 2;
+			public static readonly int DefaultPadding = -1;
+
+			public static readonly GUIStyle Background = EditorStyles.helpBox;
+
+			public static readonly float HeaderHeight = 16;
+			public static readonly GUIStyle HeaderBackground = Skin.GetStyle ("HeaderBackground");
+			public static readonly GUIStyle Header = Skin.GetStyle ("Header");
+
+			public static readonly GUIStyle SearchBar = Skin.GetStyle ("SearchBar");
+			public static readonly int SearchBarCancelButtonPadding = -3;
+			public static readonly GUIStyle SearchBarCancelButton = Skin.GetStyle ("SearchBarCancelButton");
+
+			public static readonly float AddButtonWidth = 16;
+			public static readonly GUIStyle AddButton = Skin.GetStyle ("AddButton");
+
+			public static readonly float DragIconWidth = 16;
+			public static readonly GUIStyle DragIcon = Skin.GetStyle ("DragIcon");
+			#endregion
+		}
+		#endregion
+
 		#region Class Members
 		protected List<ElementType> list;
 
@@ -16,7 +57,10 @@ namespace GGS_Framework
 		private ReorderableListState state;
 		private SearchField searchBar;
 
+		private bool showContextMenuInNextDraw;
+
 		#region Events
+		public Action onChanged;
 		public Action<List<int>> onSelectionChanged;
 		public Action<int> onRightClickElement;
 		#endregion
@@ -34,6 +78,12 @@ namespace GGS_Framework
 			private set;
 		}
 
+		public bool ShowAlternatingRowBackgrounds
+		{
+			get { return treeView.ShowAlternatingRowBackgrounds; }
+			set { treeView.ShowAlternatingRowBackgrounds = value; }
+		}
+
 		public bool HasSearch
 		{
 			get { return treeView.hasSearch; }
@@ -47,7 +97,7 @@ namespace GGS_Framework
 
 		public List<int> Selection
 		{
-			get { return state.TreeViewState.selectedIDs; }
+			get { return state.TreeViewState.selectedIDs.Select (id => id - state.UniqueId).ToList (); }
 		}
 
 		public int FirstOfSelection
@@ -84,10 +134,10 @@ namespace GGS_Framework
 		{
 			if (state == null)
 				state = new ReorderableListState ();
-			
+
 			this.state = state;
 			this.list = list;
-			
+
 			treeView = new TreeView (this, state.TreeViewState);
 
 			Title = title;
@@ -121,7 +171,15 @@ namespace GGS_Framework
 			}
 
 			if (Count > 0)
+			{
+				if (showContextMenuInNextDraw)
+				{
+					showContextMenuInNextDraw = false;
+					ShowContextMenu ();
+				}
+
 				treeView.OnGUI (rects["TreeView"]);
+			}
 			else
 				AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config ("Nothing in list.", FontStyle.Bold));
 		}
@@ -176,6 +234,11 @@ namespace GGS_Framework
 			}
 		}
 
+		public virtual float GetElementHeight (int index)
+		{
+			return 16;
+		}
+
 		private void DrawElementBase (Rect rect, int index)
 		{
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
@@ -184,7 +247,7 @@ namespace GGS_Framework
 			);
 
 			if (CanReorder ())
-				Styles.DragIcon.Draw (rects["ReorderIcon"]);
+				Styles.DragIcon.Draw (AdvancedRect.AlignRect (new Vector2 (rects["ReorderIcon"].width, 16), rects["ReorderIcon"], AdvancedRect.Alignment.Center));
 
 			DrawElement (rects["Element"], index);
 		}
@@ -200,8 +263,14 @@ namespace GGS_Framework
 
 		protected virtual void RightClickElement (int index)
 		{
+			showContextMenuInNextDraw = true;
 			RepaintTree ();
 
+			onRightClickElement?.Invoke (index);
+		}
+
+		private void ShowContextMenu ()
+		{
 			bool canRemove = CanRemoveSelection ();
 			bool canInsertElementAbove = CanInsertElementAbove ();
 			bool canInsertElementBelow = CanInsertElementBelow ();
@@ -243,8 +312,6 @@ namespace GGS_Framework
 					}
 				}
 			);
-
-			onRightClickElement?.Invoke (index);
 		}
 
 		private void PerformDrop (int insertIndex, List<int> draggedElements)
@@ -381,6 +448,8 @@ namespace GGS_Framework
 
 			ReloadTree ();
 			SetSelection (null);
+
+			onChanged?.Invoke ();
 		}
 		#endregion
 
@@ -470,6 +539,8 @@ namespace GGS_Framework
 			SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame);
 
 			ReloadTree ();
+
+			onChanged?.Invoke ();
 		}
 
 		protected virtual void AddElementAtIndex (int insertIndex)
@@ -483,6 +554,8 @@ namespace GGS_Framework
 
 			ReloadTree ();
 			SetSelection (new List<int> { insertIndex });
+
+			onChanged?.Invoke ();
 		}
 
 		protected abstract ElementType CreateElementObject ();
@@ -505,12 +578,12 @@ namespace GGS_Framework
 			if (ids == null)
 				ids = new List<int> ();
 
-			treeView.SetSelection (ids);
+			treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList ());
 		}
 
 		protected void SetSelection (IList<int> ids, TreeViewSelectionOptions options)
 		{
-			treeView.SetSelection (ids, options);
+			treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList (), options);
 		}
 		#endregion
 		#endregion
