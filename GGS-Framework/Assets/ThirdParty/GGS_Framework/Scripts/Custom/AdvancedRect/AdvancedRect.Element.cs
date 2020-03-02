@@ -13,27 +13,32 @@ namespace GGS_Framework
 			#region Class Accesors
 			public Type ElementType
 			{
-				get; private set;
+				get;
+				private set;
 			}
 
 			public string Key
 			{
-				get; private set;
+				get;
+				internal set;
 			}
 
 			public float Size
 			{
-				get; protected set;
+				get;
+				protected set;
 			}
 
 			public Rect Rect
 			{
-				get; internal set;
+				get;
+				internal set;
 			}
 
 			public bool Use
 			{
-				get; protected set;
+				get;
+				protected set;
 			}
 			#endregion
 
