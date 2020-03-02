@@ -44,6 +44,35 @@ namespace GGS_Framework
 			return rects;
 		}
 
+		public static Dictionary<string, Rect> GetRectsByPrefix (Dictionary<string, Rect> originalRects, string prefix)
+		{
+			Dictionary<string, Rect> rects = new Dictionary<string, Rect> ();
+
+			foreach (KeyValuePair<string, Rect> keyValuePair in originalRects)
+			{
+				string currentKey = keyValuePair.Key;
+				string fullPrefix = string.Concat (prefix, ".");
+
+				if (currentKey.Contains (prefix))
+					rects.Add (currentKey.Replace (fullPrefix, string.Empty), keyValuePair.Value);
+			}
+
+			return rects;
+		}
+
+		public static Element AddPrefixToElement (string prefix, Element element)
+		{
+			List<Element> allElements = GetElementsRecursively (element);
+
+			foreach (Element currentElement in allElements)
+			{
+				if (!string.IsNullOrEmpty (currentElement.Key))
+					currentElement.Key = $"{prefix}.{currentElement.Key}";
+			}
+
+			return element;
+		}
+
 		private static List<Element> GetElementsRecursively (Element element)
 		{
 			List<Element> elements = new List<Element> { element };

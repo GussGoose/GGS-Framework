@@ -9,12 +9,14 @@ namespace GGS_Framework
 			#region Class Accesors
 			public Orientation Orientation
 			{
-				get; private set;
+				get;
+				private set;
 			}
 
 			public Element[] Elements
 			{
-				get; private set;
+				get;
+				private set;
 			}
 			#endregion
 
