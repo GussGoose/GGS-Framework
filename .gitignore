@@ -33,5 +33,4 @@ sysinfo.txt
 
 # Builds
 *.apk
-GGS-Framework/Assets/Plugins/Editor/JetBrains/
-GGS-Framework/Assets/TreeviewExamples/
+Assets/Plugins/Editor/JetBrains/
