@@ -7,6 +7,9 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Item.cs" t="Include" />
+        <e p="NewBehaviourScript.cs" t="Include" />
+        <e p="NewTween.cs" t="Include" />
         <e p="ThirdParty" t="Include">
           <e p="GGS_Framework" t="Include">
             <e p="Scripts" t="Include">
@@ -79,6 +82,12 @@
                     <e p="AdvancedRect.ProportionalSpace.cs" t="Include" />
                   </e>
                 </e>
+                <e p="Easings" t="Include">
+                  <e p="Easings.cs" t="Include" />
+                  <e p="Editor" t="Include">
+                    <e p="EasingsEditorWindow.cs" t="Include" />
+                  </e>
+                </e>
                 <e p="EnumPopup" t="Include">
                   <e p="Editor" t="Include">
                     <e p="EnumPopupDrawer.cs" t="Include" />
@@ -122,6 +131,17 @@
                   <e p="ExtendedGUILayout.IntRange.cs" t="Include" />
                   <e p="IntRange.cs" t="Include" />
                 </e>
+                <e p="OldEasings" t="Include">
+                  <e p="EasingCurves.cs" t="Include" />
+                  <e p="EasingCurvesStyles.cs" t="Include" />
+                  <e p="Editor" t="Include">
+                    <e p="EasingCurvesWindow.cs" t="Include" />
+                  </e>
+                  <e p="Enums" t="Include">
+                    <e p="EaseMode.cs" t="Include" />
+                    <e p="EaseType.cs" t="Include" />
+                  </e>
+                </e>
                 <e p="PopupMenu" t="Include">
                   <e p="PopupMenu.cs" t="Include" />
                   <e p="PopupMenuTreeView.cs" t="Include" />
@@ -150,20 +170,9 @@
                   <e p="ExtendedGUILayout.TimeObject.cs" t="Include" />
                   <e p="TimeObject.cs" t="Include" />
                 </e>
-                <e p="Tween" t="Include">
-                  <e p="EasingCurves.cs" t="Include" />
-                  <e p="EasingCurvesStyles.cs" t="Include" />
-                  <e p="Editor" t="Include">
-                    <e p="EasingCurvesWindow.cs" t="Include" />
-                  </e>
-                  <e p="Enums" t="Include">
-                    <e p="EaseMode.cs" t="Include" />
-                    <e p="EaseType.cs" t="Include" />
-                    <e p="TweenState.cs" t="Include" />
-                    <e p="TweenStopAction.cs" t="Include" />
-                  </e>
+                <e p="Twen" t="Include">
                   <e p="Tween.cs" t="Include" />
-                  <e p="TweenElement.cs" t="Include" />
+                  <e p="TweenManager.cs" t="Include" />
                 </e>
                 <e p="WorkSaver" t="Include">
                   <e p="Editor" t="Include">
