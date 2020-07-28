@@ -20,247 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c6df8d7-8d57-4416-ba3c-b092b98fd41d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/CustomHeaderAttribute.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/CustomHeaderAttribute/CustomHeaderAttribute.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/CustomHeaderAttribute/CustomHeaderAttribute.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/CustomHeaderAttribute/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/CustomHeaderAttribute/Editor/CustomHeaderDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/CustomHeaderAttribute/Editor/CustomHeaderDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/LayerAttribute.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/LayerAttribute/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/LayerAttribute/Editor/LayerAttributeDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/LayerAttribute/Editor/LayerAttributeDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/LayerAttribute/LayerAttribute.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Attributes/LayerAttribute/LayerAttribute.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Core.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/GGS_FrameworkEditorResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Core/GGS_FrameworkEditorResources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/GGS_FrameworkEditorResources.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Core/GGS_FrameworkEditorResources.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/GGS_FrameworkPaths.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Core/GGS_FrameworkPaths.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/GGS_FrameworkPaths.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Core/GGS_FrameworkPaths.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/GGS_FrameworkStyles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Core/GGS_FrameworkStyles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/GGS_FrameworkStyles.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Core/GGS_FrameworkStyles.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/Tests.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/Tests/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/Tests/Editor/TestsEditorWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/Tests/Editor/TestsEditorWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/Tests/Tests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Core/Tests/Tests.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Item.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.Item.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Item.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.Option.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Option.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.Option.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Option.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.Separator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Separator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.Separator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Separator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedGenericDropdown/AdvancedGenericDropdown.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedLabel.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedLabel/AdvancedLabel.Config.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel/AdvancedLabel.Config.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedLabel/AdvancedLabel.Config.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel/AdvancedLabel.Config.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedLabel/AdvancedLabel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel/AdvancedLabel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedLabel/AdvancedLabel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel/AdvancedLabel.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Alignment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Alignment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Alignment.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Alignment.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Element.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Element.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Element.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Element.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Group.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Group.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Group.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Group.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Padding.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Padding.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.Padding.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Padding.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/AdvancedRect.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums/AdvancedRect.Element.Type.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Element.Type.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums/AdvancedRect.Element.Type.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Element.Type.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums/AdvancedRect.Orientation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Orientation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums/AdvancedRect.Orientation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Orientation.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums/AdvancedRect.Padding.Type.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Padding.Type.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Enums/AdvancedRect.Padding.Type.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Padding.Type.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Example.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Example.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Example/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Example/Editor/AdvancedRectExampleEditorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Example/AdvancedRectExampleEditorWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Example/Editor/AdvancedRectExampleEditorWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Example/AdvancedRectExampleEditorWindow.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.AutomaticGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.AutomaticGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.AutomaticGroup.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.AutomaticGroup.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.ExpandedGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.ExpandedGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.ExpandedGroup.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.ExpandedGroup.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.FixedGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.FixedGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.FixedGroup.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.FixedGroup.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.ProportionalGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.ProportionalGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Group/AdvancedRect.ProportionalGroup.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.ProportionalGroup.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item/AdvancedRect.ExpandedItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.ExpandedItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item/AdvancedRect.ExpandedItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.ExpandedItem.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item/AdvancedRect.FixedItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.FixedItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item/AdvancedRect.FixedItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.FixedItem.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item/AdvancedRect.ProportionalItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.ProportionalItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Item/AdvancedRect.ProportionalItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.ProportionalItem.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space/AdvancedRect.ExpandedSpace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ExpandedSpace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space/AdvancedRect.ExpandedSpace.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ExpandedSpace.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space/AdvancedRect.FixedSpace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.FixedSpace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space/AdvancedRect.FixedSpace.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.FixedSpace.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Easings.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Easings/Easings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Easings/Easings.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Easings/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Easings/Editor/EasingsEditorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Easings/EasingsEditorWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Easings/Editor/EasingsEditorWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Easings/EasingsEditorWindow.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Editor/EnumPopupDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Editor/EnumPopupDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopupAttribute.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopupAttribute.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopupTreeView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopupTreeView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopupWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/EnumPopupWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Example.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Example/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Example/Editor/EnumPopupExampleEditorInspector.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Example/Editor/EnumPopupExampleEditorInspector.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Example/EnumPopupExample.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/EnumPopup/Example/EnumPopupExample.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/Editor/FloatRangeDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/Editor/FloatRangeDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/ExtendedGUI.FloatRange.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/ExtendedGUI.FloatRange.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/ExtendedGUILayout.FloatRange.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/ExtendedGUILayout.FloatRange.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/FloatRange.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/FloatRange/FloatRange.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AdvancedDebug.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AdvancedDebug.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AdvancedGizmos.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AdvancedGizmos.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AdvancedPlayerPrefs.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AdvancedPlayerPrefs.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AnalyticsHelper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/AnalyticsHelper.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/ButtonResizer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/ButtonResizer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/DatesManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/DatesManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/EditorBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/EditorBase.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/ShuffledCollection.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/ShuffledCollection.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/Singleton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/Singleton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/UnityEventT.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/General/UnityEventT.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/Editor/IntRangeDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/Editor/IntRangeDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/ExtendedGUI.IntRange.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/ExtendedGUI.IntRange.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/ExtendedGUILayout.IntRange.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/ExtendedGUILayout.IntRange.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/IntRange.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/IntRange/IntRange.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/EasingCurves.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/EasingCurves.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/EasingCurvesStyles.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/EasingCurvesStyles.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Editor/EasingCurvesWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Editor/EasingCurvesWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Enums.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Enums/EaseMode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Enums/EaseMode.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Enums/EaseType.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/OldEasings/Enums/EaseType.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu/PopupMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu/PopupMenu.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu/PopupMenuTreeView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu/PopupMenuTreeView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu/PopupMenuWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/PopupMenu/PopupMenuWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/Editor/ReorderableListExampleEditorWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/Editor/ReorderableListExampleEditorWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/ReorderableListExampleClass.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/ReorderableListExampleClass.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/ReorderableListExampleReorderableList.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/Example/ReorderableListExampleReorderableList.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/ReorderableList.TreeView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/ReorderableList.TreeView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/ReorderableList.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/ReorderableList.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/ReorderableListState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/ReorderableList/ReorderableListState.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/Editor/TimeObjectDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/Editor/TimeObjectDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/Enums.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/Enums/TimeObjectType.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/Enums/TimeObjectType.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/ExtendedGUI.TimeObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/ExtendedGUI.TimeObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/ExtendedGUILayout.TimeObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/ExtendedGUILayout.TimeObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/TimeObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/TimeObject/TimeObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Twen.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Twen/Tween.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Twen/Tween.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Twen/TweenManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/Twen/TweenManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/Editor/WorkSaverSettingsEditorInspector.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/Editor/WorkSaverSettingsEditorInspector.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/WorkSaver.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/WorkSaver.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/WorkSaverSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/WorkSaverSettings.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/WorkSaverSettingsEditorWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Custom/WorkSaver/WorkSaverSettingsEditorWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/AnimatorStateMachine_ExtensionMethods.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/AnimatorStateMachine_ExtensionMethods.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/GUIStyle_ExtensionMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ExtensionMethods/GUIStyle_ExtensionMethods.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/GUIStyle_ExtensionMethods.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ExtensionMethods/GUIStyle_ExtensionMethods.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/String_ExtensionMethods.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/String_ExtensionMethods.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/T_ExtensionMethods.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/T_ExtensionMethods.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/Transform_ExtensionMethods.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/ExtensionMethods/Transform_ExtensionMethods.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/Editor/ReorderableListExampleEditorWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/Editor/ReorderableListExampleEditorWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/ReorderableList.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/ReorderableList.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/ReorderableListExample.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/ReorderableListExample.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/ReorderableListExample.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Test/ReorderableList/ReorderableListExample.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/Packages-Update.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGS-Framework/riderModule.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,41 +34,26 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/WorkSaver/WorkSaverSettingsEditorInspector.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/FloatRange/FloatRangeDrawer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.FixedSpace.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListElementOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ExpandedSpace.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@1.4.1/Scripts/Editor/TMP_FontAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.FixedGroup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/OldEasings/EasingCurvesWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Test/ReorderableList/ReorderableListExample.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/TimeObject/Enums/TimeObjectType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Test/ReorderableList/ReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/TimeObject/TimeObjectDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Library/Unity/cache/packages/packages.unity.com/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/InputActionAsset/InputActionWindowToolbar.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Test/ReorderableList/ReorderableListExampleEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListStyles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Easings/EasingsEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/Example/ReorderableListExampleEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Library/Unity/cache/packages/packages.unity.com/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/InputActionAsset/InputActionAssetManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.AutomaticGroup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/7f/a672fbe7/TreeView.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListTreeView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/Serialized/SerializableReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Library/Unity/cache/packages/packages.unity.com/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/InputActionAsset/ActionMapsTree.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.ProportionalGroup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Group/AdvancedRect.ExpandedGroup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Element.Type.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/NonSerialized/NonSerializableReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/6a/7f0d4082/TreeViewItem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Orientation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.ProportionalItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Enums/AdvancedRect.Padding.Type.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.ExpandedItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Library/Unity/cache/packages/packages.unity.com/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/InputActionAsset/AssetInspectorWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Item/AdvancedRect.FixedItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Attributes/LayerAttribute/LayerAttributeDrawer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Furnitour/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/IInputDiagnostics.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Attributes/CustomHeader/CustomHeaderDrawer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Twen/Tween.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ExtensionMethods/GUIStyle_ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.cs" root0="FORCE_HIGHLIGHTING" />
@@ -316,7 +64,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Miscellaneous/AdvancedGizmos.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Element.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Padding.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/EnumPopup/EnumPopup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/IntRange/ExtendedGUILayout.IntRange.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/IntRange/ExtendedGUI.IntRange.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel/AdvancedLabel.Config.cs" root0="FORCE_HIGHLIGHTING" />
@@ -340,41 +87,55 @@
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/FloatRange/ExtendedGUILayout.FloatRange.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedLabel/AdvancedLabel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/OldEasings/EasingCurves.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/66/4c27a05b/TreeViewState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/OldEasings/EasingCurvesStyles.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Core/GGS_FrameworkEditorResources.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/00/b41f49ef/SerializedObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Core/GGS_FrameworkPaths.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/TimeObject/ExtendedGUI.TimeObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/TimeObject/ExtendedGUILayout.TimeObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/TimeObject/TimeObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/af/38124afe/ReorderableList.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Core/GGS_FrameworkStyles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/IntRange/IntRangeDrawer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/EnumPopup/EnumPopupDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/WorkSaver/WorkSaverSettingsEditorInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/FloatRange/FloatRangeDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/CallbackDataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/AdvancedDropdown.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListElementOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/AdvancedDropdownItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@1.4.1/Scripts/Editor/TMP_FontAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/AdvancedDropdownGUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/OldEasings/EasingCurvesWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/MultiLevelDataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/TimeObject/Enums/TimeObjectType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/AdvancedDropdownWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/AdvancedDropdownState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/TimeObject/TimeObjectDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListStyles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedDropdown/AdvancedDropdownDataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/Example/ReorderableListExampleEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/7f/a672fbe7/TreeView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListTreeView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/Serialized/SerializableReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F9D1B832-704F-410A-A8EC-771F4FE80552/fe/fd82743a/IComparable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/dc/63fd7979/L10n.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/NonSerialized/NonSerializableReorderableList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/6a/7f0d4082/TreeViewItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Attributes/CustomHeader/CustomHeaderAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Attributes/LayerAttribute/LayerAttributeDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Furnitour/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/IInputDiagnostics.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Attributes/CustomHeader/CustomHeaderDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/EnumPopup/EnumPopup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Library/Unity/cache/packages/packages.unity.com/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/InputActionAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/66/4c27a05b/TreeViewState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/00/b41f49ef/SerializedObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F37CFE93-AA00-4231-9484-6635369FDF07/af/38124afe/ReorderableList.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.FixedSpace.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/Space/AdvancedRect.ProportionalSpace.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Alignment.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Element.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Group.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedRect/AdvancedRect.Padding.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Tests/ReorderableList/Editor/ReorderableListExampleEditorWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Option.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/AdvancedGenericDropdown/AdvancedGenericDropdown.Separator.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/EnumPopup/Editor/EnumPopupDrawer.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/EnumPopup/Example/Editor/EnumPopupExampleEditorInspector.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/EnumPopup/Example/EnumPopup.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/FloatRange/Editor/FloatRangeDrawer.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/IntRange/Editor/IntRangeDrawer.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Runtime/Custom/General/AdvancedGizmos.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/OldEasings/Editor/EasingCurvesWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/WorkSaver/Editor/WorkSaverSettingsEditorInspector.cs" />
         <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/TimeObject/Editor/TimeObjectDrawer.cs" />
         <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Test/ReorderableList/Editor/ReorderableListExampleEditorWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/Test/ReorderableList/ReorderableListExample.cs" />
@@ -408,6 +169,24 @@
         <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/TimeObject/ExtendedGUILayout.TimeObject.cs" />
         <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/WorkSaver/WorkSaver.cs" />
         <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/WorkSaver/WorkSaverSettingsEditorWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/ThirdParty/GGS_Framework/Scripts/Editor/ReorderableList/ReorderableListStylesData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Test.cs" />
+        <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/InputControlPicker/AdvancedDropdown/AdvancedDropdown.cs" />
+        <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@0.2.1-preview/InputSystem/Editor/Internal/InputActionTreeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/InputControlPicker/InputControlPickerDropdown.cs" />
+        <option value="$PROJECT_DIR$/Assets/InputControlPicker/InputControlPickerGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/InputControlPicker/InputControlPickerPopup.cs" />
+        <option value="$PROJECT_DIR$/Assets/InputControlPicker/InputControlPickerState.cs" />
+        <option value="$PROJECT_DIR$/Assets/InputControlPicker/InputControlTreeViewItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdownEditorTest.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/AdvancedDropdownGUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/AdvancedDropdown.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/AdvancedDropdownItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/AdvancedDropdownState.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/AdvancedDropdownWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/AdvancedDropdownDataSource.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/CallbackDataSource.cs" />
+        <option value="$PROJECT_DIR$/Assets/AdvancedDropdown/MultiLevelDataSource.cs" />
       </list>
     </option>
   </component>
@@ -425,6 +204,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -448,7 +228,8 @@
       <option name="presentableId" value="Default" />
       <updated>1595654438357</updated>
       <workItem from="1595654446942" duration="47562000" />
-      <workItem from="1595819066422" duration="338000" />
+      <workItem from="1595819066422" duration="485000" />
+      <workItem from="1595905333517" duration="6536000" />
     </task>
     <servers />
   </component>
@@ -478,14 +259,19 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="733" y="232" key="RiderGenerateDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1595808982373" />
+    <state x="461" y="190" key="SettingsEditor" timestamp="1595912592412">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="461" y="190" key="SettingsEditor/1920.408.1440.877/0.23.1920.1057@0.23.1920.1057" timestamp="1595912592412" />
     <state x="746" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595817875087">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="746" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1057@0.23.1920.1057" timestamp="1595817875087" />
-    <state x="623" y="256" width="672" height="678" key="search.everywhere.popup" timestamp="1595817882280">
+    <state x="623" y="256" width="672" height="678" key="search.everywhere.popup" timestamp="1595913781530">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="623" y="256" width="672" height="678" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1595817882280" />
+    <state x="623" y="256" width="672" height="678" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1595907514868" />
+    <state x="623" y="256" width="672" height="678" key="search.everywhere.popup/1920.408.1440.877/0.23.1920.1057@0.23.1920.1057" timestamp="1595913781530" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
