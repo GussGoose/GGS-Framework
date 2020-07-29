@@ -5,9 +5,8 @@ namespace GGS_Framework
 	public static class AdvancedDebug
 	{
 		#region Class Implementation
-		#region Debug Draw Functions
 		#region Point
-		public static void DebugPoint (Vector3 position, Color color, float scale = 1, float duration = 0, bool depthTest = true)
+		public static void Point (Vector3 position, Color color, float scale = 1, float duration = 0, bool depthTest = true)
 		{
 			color = (color == default (Color)) ? Color.white : color;
 
@@ -16,14 +15,19 @@ namespace GGS_Framework
 			Debug.DrawRay (position + (Vector3.forward * (scale * 0.5f)), -Vector3.forward * scale, color, duration, depthTest);
 		}
 
-		public static void DebugPoint (Vector3 position, float scale = 1, float duration = 0, bool depthTest = true)
+		public static void Point (Vector3 position, float scale = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugPoint (position, Color.white, scale, duration, depthTest);
+			Point (position, Color.white, scale, duration, depthTest);
 		}
 		#endregion
 
 		#region Bounds
-		public static void DoDebugBounds (Bounds bounds, Color color, float duration = 0, bool depthTest = true)
+		public static void Bounds (Bounds bounds, float duration = 0, bool depthTest = true)
+		{
+			Bounds (bounds, Color.white, duration, depthTest);
+		}
+
+		public static void Bounds (Bounds bounds, Color color, float duration = 0, bool depthTest = true)
 		{
 			Vector3 center = bounds.center;
 
@@ -54,22 +58,11 @@ namespace GGS_Framework
 			Debug.DrawLine (rdf, lfd, color, duration, depthTest);
 			Debug.DrawLine (rdf, rdb, color, duration, depthTest);
 			Debug.DrawLine (lfd, lbd, color, duration, depthTest);
-			Debug.DrawLine (lbd, rdb, color, duration, depthTest);
-		}
-
-		public static void DebugBounds (Bounds bounds, float duration = 0, bool depthTest = true)
-		{
-			DoDebugBounds (bounds, Color.white, duration, depthTest);
-		}
-
-		public static void DebugBounds (Bounds bounds, Color color, float duration = 0, bool depthTest = true)
-		{
-			DoDebugBounds (bounds, color, duration, depthTest);
-		}
+			Debug.DrawLine (lbd, rdb, color, duration, depthTest);		}
 		#endregion
 
 		#region Local
-		public static void DebugLocalCube (Transform transform, Vector3 size, Color color, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
+		public static void LocalCube (Transform transform, Vector3 size, Color color, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
 		{
 			Vector3 lbb = transform.TransformPoint (center + ((-size) * 0.5f));
 			Vector3 rbb = transform.TransformPoint (center + (new Vector3 (size.x, -size.y, -size.z) * 0.5f));
@@ -99,12 +92,12 @@ namespace GGS_Framework
 			Debug.DrawLine (rbf, ruf, color, duration, depthTest);
 		}
 
-		public static void DebugLocalCube (Transform transform, Vector3 size, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
+		public static void LocalCube (Transform transform, Vector3 size, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
 		{
-			DebugLocalCube (transform, size, Color.white, center, duration, depthTest);
+			LocalCube (transform, size, Color.white, center, duration, depthTest);
 		}
 
-		public static void DebugLocalCube (Matrix4x4 space, Vector3 size, Color color, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
+		public static void LocalCube (Matrix4x4 space, Vector3 size, Color color, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
 		{
 			color = (color == default (Color)) ? Color.white : color;
 
@@ -136,14 +129,14 @@ namespace GGS_Framework
 			Debug.DrawLine (rbf, ruf, color, duration, depthTest);
 		}
 
-		public static void DebugLocalCube (Matrix4x4 space, Vector3 size, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
+		public static void LocalCube (Matrix4x4 space, Vector3 size, Vector3 center = default (Vector3), float duration = 0, bool depthTest = true)
 		{
-			DebugLocalCube (space, size, Color.white, center, duration, depthTest);
+			LocalCube (space, size, Color.white, center, duration, depthTest);
 		}
 		#endregion
 
 		#region Circle
-		public static void DebugCircle (Vector3 position, Vector3 up, Color color, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Circle (Vector3 position, Vector3 up, Color color, float radius = 1, float duration = 0, bool depthTest = true)
 		{
 			up = up.normalized * radius;
 			Vector3 forward = Vector3.Slerp (up, -up, 0.5f);
@@ -181,24 +174,24 @@ namespace GGS_Framework
 			}
 		}
 
-		public static void DebugCircle (Vector3 position, Color color, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Circle (Vector3 position, Color color, float radius = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugCircle (position, Vector3.up, color, radius, duration, depthTest);
+			Circle (position, Vector3.up, color, radius, duration, depthTest);
 		}
 
-		public static void DebugCircle (Vector3 position, Vector3 up, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Circle (Vector3 position, Vector3 up, float radius = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugCircle (position, up, Color.white, radius, duration, depthTest);
+			Circle (position, up, Color.white, radius, duration, depthTest);
 		}
 
-		public static void DebugCircle (Vector3 position, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Circle (Vector3 position, float radius = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugCircle (position, Vector3.up, Color.white, radius, duration, depthTest);
+			Circle (position, Vector3.up, Color.white, radius, duration, depthTest);
 		}
 		#endregion
 
 		#region Wire Sphere
-		public static void DebugWireSphere (Vector3 position, Color color, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void WireSphere (Vector3 position, Color color, float radius = 1, float duration = 0, bool depthTest = true)
 		{
 			float angle = 10;
 
@@ -226,23 +219,23 @@ namespace GGS_Framework
 			}
 		}
 
-		public static void DebugWireSphere (Vector3 position, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void WireSphere (Vector3 position, float radius = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugWireSphere (position, Color.white, radius, duration, depthTest);
+			WireSphere (position, Color.white, radius, duration, depthTest);
 		}
 		#endregion
 
 		#region Cylinder
-		public static void DebugCylinder (Vector3 start, Vector3 end, Color color, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Cylinder (Vector3 start, Vector3 end, Color color, float radius = 1, float duration = 0, bool depthTest = true)
 		{
 			Vector3 up = (end - start).normalized * radius;
 			Vector3 forward = Vector3.Slerp (up, -up, 0.5f);
 			Vector3 right = Vector3.Cross (up, forward).normalized * radius;
 
 			//Radial circles
-			AdvancedDebug.DebugCircle (start, up, color, radius, duration, depthTest);
-			AdvancedDebug.DebugCircle (end, -up, color, radius, duration, depthTest);
-			AdvancedDebug.DebugCircle ((start + end) * 0.5f, up, color, radius, duration, depthTest);
+			AdvancedDebug.Circle (start, up, color, radius, duration, depthTest);
+			AdvancedDebug.Circle (end, -up, color, radius, duration, depthTest);
+			AdvancedDebug.Circle ((start + end) * 0.5f, up, color, radius, duration, depthTest);
 
 			//Side lines
 			Debug.DrawLine (start + right, end + right, color, duration, depthTest);
@@ -260,14 +253,14 @@ namespace GGS_Framework
 			Debug.DrawLine (end - forward, end + forward, color, duration, depthTest);
 		}
 
-		public static void DebugCylinder (Vector3 start, Vector3 end, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Cylinder (Vector3 start, Vector3 end, float radius = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugCylinder (start, end, Color.white, radius, duration, depthTest);
+			Cylinder (start, end, Color.white, radius, duration, depthTest);
 		}
 		#endregion
 
 		#region Cone
-		public static void DebugCone (Vector3 position, Vector3 direction, Color color, float angle = 45, float duration = 0, bool depthTest = true)
+		public static void Cone (Vector3 position, Vector3 direction, Color color, float angle = 45, float duration = 0, bool depthTest = true)
 		{
 			float length = direction.magnitude;
 
@@ -290,41 +283,41 @@ namespace GGS_Framework
 			Debug.DrawRay (position, Vector3.Slerp (forward, right, angle / 90).normalized * dist, color, duration, depthTest);
 			Debug.DrawRay (position, Vector3.Slerp (forward, -right, angle / 90).normalized * dist, color, duration, depthTest);
 
-			DebugCircle (position + forward, direction, color, (forward - (slerpedVector.normalized * dist)).magnitude, duration, depthTest);
-			DebugCircle (position + (forward * 0.5f), direction, color, ((forward * 0.5f) - (slerpedVector.normalized * (dist * 0.5f))).magnitude, duration, depthTest);
+			Circle (position + forward, direction, color, (forward - (slerpedVector.normalized * dist)).magnitude, duration, depthTest);
+			Circle (position + (forward * 0.5f), direction, color, ((forward * 0.5f) - (slerpedVector.normalized * (dist * 0.5f))).magnitude, duration, depthTest);
 		}
 
-		public static void DebugCone (Vector3 position, Vector3 direction, float angle = 45, float duration = 0, bool depthTest = true)
+		public static void Cone (Vector3 position, Vector3 direction, float angle = 45, float duration = 0, bool depthTest = true)
 		{
-			DebugCone (position, direction, Color.white, angle, duration, depthTest);
+			Cone (position, direction, Color.white, angle, duration, depthTest);
 		}
 
-		public static void DebugCone (Vector3 position, Color color, float angle = 45, float duration = 0, bool depthTest = true)
+		public static void Cone (Vector3 position, Color color, float angle = 45, float duration = 0, bool depthTest = true)
 		{
-			DebugCone (position, Vector3.up, color, angle, duration, depthTest);
+			Cone (position, Vector3.up, color, angle, duration, depthTest);
 		}
 
-		public static void DebugCone (Vector3 position, float angle = 45, float duration = 0, bool depthTest = true)
+		public static void Cone (Vector3 position, float angle = 45, float duration = 0, bool depthTest = true)
 		{
-			DebugCone (position, Vector3.up, Color.white, angle, duration, depthTest);
+			Cone (position, Vector3.up, Color.white, angle, duration, depthTest);
 		}
 		#endregion
 
 		#region Arrow
-		public static void DebugArrow (Vector3 position, Vector3 direction, Color color, float duration = 0, bool depthTest = true)
+		public static void Arrow (Vector3 position, Vector3 direction, Color color, float duration = 0, bool depthTest = true)
 		{
 			Debug.DrawRay (position, direction, color, duration, depthTest);
-			DebugCone (position + direction, -direction * 0.25f, color, 15, duration, depthTest);
+			Cone (position + direction, -direction * 0.25f, color, 15, duration, depthTest);
 		}
 
-		public static void DebugArrow (Vector3 position, Vector3 direction, float duration = 0, bool depthTest = true)
+		public static void Arrow (Vector3 position, Vector3 direction, float duration = 0, bool depthTest = true)
 		{
-			DebugArrow (position, direction, Color.white, duration, depthTest);
+			Arrow (position, direction, Color.white, duration, depthTest);
 		}
 		#endregion
 
 		#region Capsule
-		public static void DebugCapsule (Vector3 start, Vector3 end, Color color, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Capsule (Vector3 start, Vector3 end, Color color, float radius = 1, float duration = 0, bool depthTest = true)
 		{
 			Vector3 up = (end - start).normalized * radius;
 			Vector3 forward = Vector3.Slerp (up, -up, 0.5f);
@@ -338,8 +331,8 @@ namespace GGS_Framework
 			end = middle + ((end - middle).normalized * sideLength);
 
 			//Radial circles
-			AdvancedDebug.DebugCircle (start, up, color, radius, duration, depthTest);
-			AdvancedDebug.DebugCircle (end, -up, color, radius, duration, depthTest);
+			AdvancedDebug.Circle (start, up, color, radius, duration, depthTest);
+			AdvancedDebug.Circle (end, -up, color, radius, duration, depthTest);
 
 			//Side lines
 			Debug.DrawLine (start + right, end + right, color, duration, depthTest);
@@ -364,9 +357,9 @@ namespace GGS_Framework
 			}
 		}
 
-		public static void DebugCapsule (Vector3 start, Vector3 end, float radius = 1, float duration = 0, bool depthTest = true)
+		public static void Capsule (Vector3 start, Vector3 end, float radius = 1, float duration = 0, bool depthTest = true)
 		{
-			DebugCapsule (start, end, Color.white, radius, duration, depthTest);
+			Capsule (start, end, Color.white, radius, duration, depthTest);
 		}
 
 		public static void DebugCapsule2D (Vector3 start, Vector3 end, Color color, float radius = 1, float duration = 0, bool depthTest = true)
@@ -397,7 +390,6 @@ namespace GGS_Framework
 				Debug.DrawLine (Vector3.Slerp (-right, up, i / 25) + end, Vector3.Slerp (-right, up, (i - 1) / 25) + end, color, duration, depthTest);
 			}
 		}
-		#endregion
 		#endregion
 		#endregion
 	}

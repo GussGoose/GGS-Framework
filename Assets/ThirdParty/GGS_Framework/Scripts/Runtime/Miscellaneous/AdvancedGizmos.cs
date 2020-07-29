@@ -17,7 +17,7 @@ namespace GGS_Framework
 		#endregion
 
 		#region Class Implementation
-		public static void DrawTextPoint (Vector3 position, string text)
+		public static void TextPoint (Vector3 position, string text)
 		{
 #if UNITY_EDITOR
 			SceneView sceneView = SceneView.currentDrawingSceneView;
@@ -36,7 +36,7 @@ namespace GGS_Framework
 #endif
 		}
 
-		public static void DrawBracketIndicator (Vector3 startPosition, Vector3 endPosition, string text, Color color, float spacing = 1, float arrowSize = 2)
+		public static void BracketIndicator (Vector3 startPosition, Vector3 endPosition, string text, Color color, float spacing = 1, float arrowSize = 2)
 		{
 #if UNITY_EDITOR
 			Vector3 lineDirection = endPosition - startPosition;
@@ -63,12 +63,12 @@ namespace GGS_Framework
 			SceneView sceneView = SceneView.currentDrawingSceneView;
 			Rect sceneViewRect = sceneView.camera.pixelRect;
 
-			DrawTextPoint (middleArrowPos, text);
+			TextPoint (middleArrowPos, text);
 #endif
 		}
 
 		#region Point
-		public static void DrawPoint (Vector3 position, Color color, float size = 1)
+		public static void Point (Vector3 position, Color color, float size = 1)
 		{
 			Color oldColor = Gizmos.color;
 
@@ -80,14 +80,14 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawPoint (Vector3 position, float size = 1)
+		public static void Point (Vector3 position, float size = 1)
 		{
-			DrawPoint (position, Color.white, size);
+			Point (position, Color.white, size);
 		}
 		#endregion
 
 		#region Bounds
-		public static void DrawBounds (Bounds bounds, Color color)
+		public static void Bounds (Bounds bounds, Color color)
 		{
 			Vector3 center = bounds.center;
 
@@ -126,14 +126,14 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawBounds (Bounds bounds)
+		public static void Bounds (Bounds bounds)
 		{
-			DrawBounds (bounds, Color.white);
+			Bounds (bounds, Color.white);
 		}
 		#endregion
 
 		#region Local Cube
-		public static void DrawLocalCube (Transform transform, Vector3 size, Color color, Vector3 center = default (Vector3))
+		public static void LocalCube (Transform transform, Vector3 size, Color color, Vector3 center = default (Vector3))
 		{
 			Color oldColor = Gizmos.color;
 			Gizmos.color = color;
@@ -168,12 +168,12 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawLocalCube (Transform transform, Vector3 size, Vector3 center = default (Vector3))
+		public static void LocalCube (Transform transform, Vector3 size, Vector3 center = default (Vector3))
 		{
-			DrawLocalCube (transform, size, Color.white, center);
+			LocalCube (transform, size, Color.white, center);
 		}
 
-		public static void DrawLocalCube (Matrix4x4 space, Vector3 size, Color color, Vector3 center = default (Vector3))
+		public static void LocalCube (Matrix4x4 space, Vector3 size, Color color, Vector3 center = default (Vector3))
 		{
 			Color oldColor = Gizmos.color;
 			Gizmos.color = color;
@@ -208,14 +208,14 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawLocalCube (Matrix4x4 space, Vector3 size, Vector3 center = default (Vector3))
+		public static void LocalCube (Matrix4x4 space, Vector3 size, Vector3 center = default (Vector3))
 		{
-			DrawLocalCube (space, size, Color.white, center);
+			LocalCube (space, size, Color.white, center);
 		}
 		#endregion
 
 		#region Circle
-		public static void DrawCircle (Vector3 position, Vector3 up, Color color, float radius = 1)
+		public static void Circle (Vector3 position, Vector3 up, Color color, float radius = 1)
 		{
 			up = ((up == Vector3.zero) ? Vector3.up : up).normalized * radius;
 			Vector3 forward = Vector3.Slerp (up, -up, 0.5f);
@@ -256,33 +256,33 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawCircle (Vector3 position, Color color, float radius = 1)
+		public static void Circle (Vector3 position, Color color, float radius = 1)
 		{
-			DrawCircle (position, Vector3.up, color, radius);
+			Circle (position, Vector3.up, color, radius);
 		}
 
-		public static void DrawCircle (Vector3 position, Vector3 up, float radius = 1)
+		public static void Circle (Vector3 position, Vector3 up, float radius = 1)
 		{
-			DrawCircle (position, up, Color.white, radius);
+			Circle (position, up, Color.white, radius);
 		}
 
-		public static void DrawCircle (Vector3 position, float radius = 1)
+		public static void Circle (Vector3 position, float radius = 1)
 		{
-			DrawCircle (position, Vector3.up, Color.white, radius);
+			Circle (position, Vector3.up, Color.white, radius);
 		}
 		#endregion
 
 		#region Cylinder
-		public static void DrawCylinder (Vector3 start, Vector3 end, Color color, float radius = 1)
+		public static void Cylinder (Vector3 start, Vector3 end, Color color, float radius = 1)
 		{
 			Vector3 up = (end - start).normalized * radius;
 			Vector3 forward = Vector3.Slerp (up, -up, 0.5f);
 			Vector3 right = Vector3.Cross (up, forward).normalized * radius;
 
 			//Radial circles
-			DrawCircle (start, up, color, radius);
-			DrawCircle (end, -up, color, radius);
-			DrawCircle ((start + end) * 0.5f, up, color, radius);
+			Circle (start, up, color, radius);
+			Circle (end, -up, color, radius);
+			Circle ((start + end) * 0.5f, up, color, radius);
 
 			Color oldColor = Gizmos.color;
 			Gizmos.color = color;
@@ -305,14 +305,14 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawCylinder (Vector3 start, Vector3 end, float radius = 1)
+		public static void Cylinder (Vector3 start, Vector3 end, float radius = 1)
 		{
-			DrawCylinder (start, end, Color.white, radius);
+			Cylinder (start, end, Color.white, radius);
 		}
 		#endregion
 
 		#region Cone
-		public static void DrawCone (Vector3 position, Vector3 direction, Color color, float angle = 45)
+		public static void Cone (Vector3 position, Vector3 direction, Color color, float angle = 45)
 		{
 			float length = direction.magnitude;
 
@@ -338,48 +338,48 @@ namespace GGS_Framework
 			Gizmos.DrawRay (position, Vector3.Slerp (forward, right, angle / 90).normalized * distance);
 			Gizmos.DrawRay (position, Vector3.Slerp (forward, -right, angle / 90).normalized * distance);
 
-			DrawCircle (position + forward, direction, color, (forward - (slerpedVector.normalized * distance)).magnitude);
-			DrawCircle (position + (forward * 0.5f), direction, color, ((forward * 0.5f) - (slerpedVector.normalized * (distance * 0.5f))).magnitude);
+			Circle (position + forward, direction, color, (forward - (slerpedVector.normalized * distance)).magnitude);
+			Circle (position + (forward * 0.5f), direction, color, ((forward * 0.5f) - (slerpedVector.normalized * (distance * 0.5f))).magnitude);
 
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawCone (Vector3 position, Vector3 direction, float angle = 45)
+		public static void Cone (Vector3 position, Vector3 direction, float angle = 45)
 		{
-			DrawCone (position, direction, Color.white, angle);
+			Cone (position, direction, Color.white, angle);
 		}
 
-		public static void DrawCone (Vector3 position, Color color, float angle = 45)
+		public static void Cone (Vector3 position, Color color, float angle = 45)
 		{
-			DrawCone (position, Vector3.up, color, angle);
+			Cone (position, Vector3.up, color, angle);
 		}
 
-		public static void DrawCone (Vector3 position, float angle = 45)
+		public static void Cone (Vector3 position, float angle = 45)
 		{
-			DrawCone (position, Vector3.up, Color.white, angle);
+			Cone (position, Vector3.up, Color.white, angle);
 		}
 		#endregion
 
 		#region Arrow
-		public static void DrawArrow (Vector3 position, Vector3 direction, Color color)
+		public static void Arrow (Vector3 position, Vector3 direction, Color color)
 		{
 			Color oldColor = Gizmos.color;
 			Gizmos.color = color;
 
 			Gizmos.DrawRay (position, direction);
-			DrawCone (position + direction, -direction * 0.333f, color, 15);
+			Cone (position + direction, -direction * 0.333f, color, 15);
 
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawArrow (Vector3 position, Vector3 direction)
+		public static void Arrow (Vector3 position, Vector3 direction)
 		{
-			DrawArrow (position, direction, Color.white);
+			Arrow (position, direction, Color.white);
 		}
 		#endregion
 
 		#region Capsule
-		public static void DrawCapsule (Vector3 start, Vector3 end, Color color, float radius = 1)
+		public static void Capsule (Vector3 start, Vector3 end, Color color, float radius = 1)
 		{
 			Vector3 up = (end - start).normalized * radius;
 			Vector3 forward = Vector3.Slerp (up, -up, 0.5f);
@@ -396,8 +396,8 @@ namespace GGS_Framework
 			end = middle + ((end - middle).normalized * sideLength);
 
 			//Radial circles
-			DrawCircle (start, up, color, radius);
-			DrawCircle (end, -up, color, radius);
+			Circle (start, up, color, radius);
+			Circle (end, -up, color, radius);
 
 			//Side lines
 			Gizmos.DrawLine (start + right, end + right);
@@ -424,9 +424,9 @@ namespace GGS_Framework
 			Gizmos.color = oldColor;
 		}
 
-		public static void DrawCapsule (Vector3 start, Vector3 end, float radius = 1)
+		public static void Capsule (Vector3 start, Vector3 end, float radius = 1)
 		{
-			DrawCapsule (start, end, Color.white, radius);
+			Capsule (start, end, Color.white, radius);
 		}
 		#endregion
 		#endregion
