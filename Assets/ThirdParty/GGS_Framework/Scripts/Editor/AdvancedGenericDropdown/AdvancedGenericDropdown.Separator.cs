@@ -15,7 +15,7 @@
 
             private static string ModifyPath (string path)
             {
-                return path += "/";
+                return path;
             }
             #endregion
         }
