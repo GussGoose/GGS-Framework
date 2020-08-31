@@ -11,12 +11,14 @@ namespace GGS_Framework.Editor
         private static readonly AdvancedDropdownItem SeparatorItem = new SeparatorDropdownItem ();
 
         private string name;
-        private Texture2D icon;
         private int id;
         private int elementIndex = -1;
+        
         private bool enabled = true;
+        private Texture2D icon;
         private List<AdvancedDropdownItem> children = new List<AdvancedDropdownItem> ();
 
+        protected object additionalData;
         protected string searchableName;
         #endregion
 
@@ -25,12 +27,6 @@ namespace GGS_Framework.Editor
         {
             get { return name; }
             set { name = value; }
-        }
-
-        public Texture2D Icon
-        {
-            get { return icon; }
-            set { icon = value; }
         }
 
         public int Id
@@ -51,6 +47,12 @@ namespace GGS_Framework.Editor
             set { enabled = value; }
         }
 
+        public Texture2D Icon
+        {
+            get { return icon; }
+            set { icon = value; }
+        }
+
         public IEnumerable<AdvancedDropdownItem> Children
         {
             get { return children; }
@@ -60,6 +62,11 @@ namespace GGS_Framework.Editor
         {
             get { return string.IsNullOrEmpty (searchableName) ? Name : searchableName; }
         }
+
+        public virtual object AdditionalData
+        {
+            get { return additionalData; }
+        }
         #endregion
 
         #region Constructors
@@ -67,6 +74,14 @@ namespace GGS_Framework.Editor
         {
             this.name = name;
             id = name.GetHashCode ();
+        }
+        
+        public AdvancedDropdownItem (string name, object additionalData)
+        {
+            this.name = name;
+            id = name.GetHashCode ();
+            
+            this.additionalData = additionalData;
         }
         #endregion
 
