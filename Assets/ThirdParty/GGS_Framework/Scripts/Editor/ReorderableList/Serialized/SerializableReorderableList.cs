@@ -40,17 +40,17 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region Overrides
-        public override void Draw (Rect rect)
+        protected internal override void DoDraw (Rect rect)
         {
             serializedObject.Update ();
-            base.Draw (rect);
+            base.DoDraw (rect);
         }
 
         protected SerializedProperty GetPropertyAtIndex (int index)
         {
             return elements.GetArrayElementAtIndex (index);
         }
-        
+
         protected override void DoMoveElementSelection (int insertIndex, int[] selectedIds)
         {
             int originalInsert = insertIndex;
@@ -94,7 +94,7 @@ namespace GGS_Framework.Editor
             SetSelection (new List<int> {insertIndex});
             onChanged?.Invoke ();
         }
-        
+
         protected override void DoRemoveElementSelection ()
         {
             List<int> selection = new List<int> (Selection);
@@ -104,7 +104,13 @@ namespace GGS_Framework.Editor
                 selection.Sort ((a, b) => -1 * a.CompareTo (b));
 
             foreach (int id in selection)
+            {
+                SerializedProperty elementProperty = elements.GetArrayElementAtIndex (id);
+                if (elementProperty.objectReferenceValue != null)
+                    elementProperty.objectReferenceValue = null;
+                
                 elements.DeleteArrayElementAtIndex (id);
+            }
 
             serializedObject.ApplyModifiedProperties ();
             serializedObject.Update ();

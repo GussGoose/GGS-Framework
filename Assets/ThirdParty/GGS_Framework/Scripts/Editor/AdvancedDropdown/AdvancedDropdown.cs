@@ -37,6 +37,12 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region Implementation
+        public void Show ()
+        {
+            Rect rect = new Rect (Event.current.mousePosition, Vector2.zero);
+            Show (rect);
+        }
+        
         public void Show (Rect rect)
         {
             if (windowInstance != null)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using Styles = GGS_Framework.Editor.ReorderableListStyles;
@@ -103,6 +104,12 @@ namespace GGS_Framework.Editor
         }
 
         #region Draw
+        public virtual void Draw (float height)
+        {
+            Rect rect = EditorGUILayout.GetControlRect (false, height);
+            DoDraw (rect);
+        }
+
         public virtual void Draw (Rect rect)
         {
             DoDraw (rect);
