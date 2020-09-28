@@ -8,7 +8,7 @@ namespace GGS_Framework.Editor
         #region Class Implementation
         public static bool PopupField (string label, string selected)
         {
-            return PopupField (label, selected);
+            return PopupField (new GUIContent (label), selected);
         }
 
         public static bool PopupField (GUIContent label, string selected)
