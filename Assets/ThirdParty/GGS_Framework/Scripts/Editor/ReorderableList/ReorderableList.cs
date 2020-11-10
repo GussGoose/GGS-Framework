@@ -482,6 +482,11 @@ namespace GGS_Framework.Editor
         {
             treeView.Repaint ();
         }
+        
+        protected internal void RefreshCustomRowHeights ()
+        {
+            treeView.RefreshCustomRowHeights ();
+        }
 
         protected void SetSelection (IList<int> ids)
         {

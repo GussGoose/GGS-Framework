@@ -140,5 +140,12 @@ namespace GGS_Framework.Editor
         }
         #endregion
         #endregion
+
+        #region Implementation
+        internal void RefreshCustomRowHeights ()
+        {
+            RefreshCustomRowHeights ();
+        }
+        #endregion
     }
 }
