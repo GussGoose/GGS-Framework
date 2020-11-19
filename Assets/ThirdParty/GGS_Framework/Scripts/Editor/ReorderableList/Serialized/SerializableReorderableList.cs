@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
@@ -80,19 +81,45 @@ namespace GGS_Framework.Editor
             onChanged?.Invoke ();
         }
 
-        protected abstract void ElementAdded (SerializedProperty element, int index);
-
         protected override void DoAddElementAtIndex (int insertIndex)
         {
-            elements.InsertArrayElementAtIndex (insertIndex);
-            ElementAdded (GetPropertyAtIndex (insertIndex), insertIndex);
+            DoAddElementAtIndex (insertIndex, null);
+        }
 
-            serializedObject.ApplyModifiedProperties ();
+        protected void DoAddElementAtIndex (int insertIndex, object value)
+        {
+            elements.InsertArrayElementAtIndex (insertIndex);
+
+            if (value != null)
+            {
+                string valueType = value.GetType ().Name;
+                string elementType = elements.arrayElementType;
+
+                if (valueType.Equals (elementType))
+                {
+                    serializedObject.ApplyModifiedProperties ();
+                    elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
+                }
+                else
+                    Debug.LogError ($"The type '{valueType}' of the value that you're trying to set isn't equal to the type '{elementType}' of the element in the array.");
+            }
+            else
+            {
+                serializedObject.ApplyModifiedProperties ();
+                elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
+            }
+
+            serializedObject.ApplyModifiedPropertiesWithoutUndo ();
             serializedObject.Update ();
 
             ReloadTree ();
             SetSelection (new List<int> {insertIndex});
             onChanged?.Invoke ();
+        }
+
+        [Obsolete ("This function is no longer used. You should remove inheritance and references to it.")]
+        protected virtual void ElementAdded (SerializedProperty element, int index)
+        {
         }
 
         protected override void DoRemoveElementSelection ()
@@ -106,9 +133,13 @@ namespace GGS_Framework.Editor
             foreach (int id in selection)
             {
                 SerializedProperty elementProperty = elements.GetArrayElementAtIndex (id);
-                if (elementProperty.objectReferenceValue != null)
-                    elementProperty.objectReferenceValue = null;
-                
+
+                if (elementProperty.propertyType == SerializedPropertyType.ObjectReference)
+                {
+                    if (elementProperty.objectReferenceValue != null)
+                        elementProperty.objectReferenceValue = null;
+                }
+
                 elements.DeleteArrayElementAtIndex (id);
             }
 

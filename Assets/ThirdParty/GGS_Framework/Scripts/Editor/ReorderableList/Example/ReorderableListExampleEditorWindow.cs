@@ -74,11 +74,6 @@ namespace GGS_Framework.Editor.Examples
         public class ExampleNonSerializableReorderableList : NonSerializableReorderableList<ReorderableListExampleClass>
         {
             #region Class Overrides
-            protected override string GetDisplayName (int index)
-            {
-                return list[index].name;
-            }
-
             protected override void DrawElement (Rect rect, int index)
             {
                 Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
@@ -111,7 +106,7 @@ namespace GGS_Framework.Editor.Examples
 
             protected override ReorderableListExampleClass CreateElementObject ()
             {
-                return new ReorderableListExampleClass ();
+                return new ReorderableListExampleClass ("Tonais", 0, true);
             }
             #endregion
 
@@ -131,13 +126,8 @@ namespace GGS_Framework.Editor.Examples
                 ShowAlternatingRowBackgrounds = true;
             }
             #endregion
-            
-            #region Class Overrides
-            protected override string GetDisplayName (int index)
-            {
-                return GetPropertyAtIndex (index).FindPropertyRelative ("name").stringValue;
-            }
 
+            #region Class Overrides
             protected override void DrawElement (Rect rect, int index)
             {
                 Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
@@ -158,16 +148,7 @@ namespace GGS_Framework.Editor.Examples
 
                 serializedObject.ApplyModifiedProperties ();
 
-                // element.name = EditorGUI.TextField (rects["Name"], element.name);
-                // element.value = EditorGUI.Slider (rects["Float"], "Float", element.value, -10, 10);
-                // element.boolean = EditorGUI.Toggle (rects["Bool"], "Bool", element.boolean);
-
                 EditorGUIUtility.labelWidth = 0;
-            }
-
-            protected override void ElementAdded (SerializedProperty property, int index)
-            {
-                property.FindPropertyRelative ("name").stringValue = "NewElement";
             }
 
             protected override int GetElementHashCode (int index)
@@ -177,7 +158,12 @@ namespace GGS_Framework.Editor.Examples
 
             protected override bool DoesElementMatchSearch (int index, string search)
             {
-                return GetPropertyAtIndex(index).FindPropertyRelative ("name").stringValue.Contains (search);
+                return GetPropertyAtIndex (index).FindPropertyRelative ("name").stringValue.Contains (search);
+            }
+
+            protected override void AddElementAtIndex (int insertIndex)
+            {
+                DoAddElementAtIndex (insertIndex, new ReorderableListExampleClass ("Tonais", 0, true));
             }
             #endregion
         }
@@ -191,6 +177,15 @@ namespace GGS_Framework.Editor.Examples
         public string name;
         public float value;
         public bool boolean;
+        #endregion
+
+        #region Constructors
+        public ReorderableListExampleClass (string name, float value, bool boolean)
+        {
+            this.name = name;
+            this.value = value;
+            this.boolean = boolean;
+        }
         #endregion
     }
 }

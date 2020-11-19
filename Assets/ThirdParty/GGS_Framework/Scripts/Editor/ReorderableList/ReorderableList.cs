@@ -150,9 +150,14 @@ namespace GGS_Framework.Editor
                 treeView.OnGUI (rects["TreeView"]);
             }
             else
-                AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config ("Nothing in list.", FontStyle.Bold));
+                AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config (GetEmptyListMessage(), FontStyle.Bold));
         }
 
+        protected virtual string GetEmptyListMessage ()
+        {
+            return "Nothing in list.";
+        }
+        
         protected internal virtual void DrawHeader (Rect rect)
         {
             bool canSearch = CanSearch ();
@@ -208,12 +213,11 @@ namespace GGS_Framework.Editor
             return 16;
         }
 
-        internal string PerformGetDisplayName (int index)
+        [Obsolete ("This function is no longer used, you should remove the override.")]
+        protected virtual string GetDisplayName (int index)
         {
-            return GetDisplayName (index);
+            return string.Empty;
         }
-
-        protected abstract string GetDisplayName (int index);
 
         internal void DrawElementBase (Rect rect, int index)
         {

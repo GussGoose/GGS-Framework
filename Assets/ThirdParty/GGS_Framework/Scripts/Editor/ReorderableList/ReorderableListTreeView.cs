@@ -65,7 +65,7 @@ namespace GGS_Framework.Editor
         {
             int index = args.item.id - UniqueId;
 
-            args.item.displayName = list.PerformGetDisplayName (index);
+            args.item.displayName = "Item";
             list.DrawElementBase (args.rowRect, index);
         }
 

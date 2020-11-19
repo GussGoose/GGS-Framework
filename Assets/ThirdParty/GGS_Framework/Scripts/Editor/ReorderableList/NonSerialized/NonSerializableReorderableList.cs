@@ -1,122 +1,128 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
+using UnityEngine;
 using Styles = GGS_Framework.Editor.ReorderableListStyles;
 using ElementOptions = GGS_Framework.Editor.ReorderableListElementOptions;
 
 namespace GGS_Framework.Editor
 {
-	public abstract class NonSerializableReorderableList<TElement> : ReorderableList
-	{
-		#region Class Members
-		protected List<TElement> list;
-		#endregion
+    public abstract class NonSerializableReorderableList<TElement> : ReorderableList
+    {
+        #region Class Members
+        protected List<TElement> list;
+        #endregion
 
-		#region Class Accesors
-		public override int Count
-		{
-			get { return list.Count; }
-		}
-		#endregion
+        #region Class Accesors
+        public override int Count
+        {
+            get { return list.Count; }
+        }
+        #endregion
 
-		#region Constructors
-		protected NonSerializableReorderableList (ReorderableListState state, List<TElement> list, string title = "Reorderable List")
-		{
-			this.list = list;
-			Initialize (state, title);
-		}
-		#endregion
-		
-		#region Class Implementation
-		#region General
-		protected override void DoRemoveElementSelection ()
-		{
-			List<int> selection = new List<int> (Selection);
+        #region Constructors
+        protected NonSerializableReorderableList (ReorderableListState state, List<TElement> list, string title = "Reorderable List")
+        {
+            this.list = list;
+            Initialize (state, title);
+        }
+        #endregion
 
-			// Sort elements by descending 
-			if (selection.Count > 1)
-				selection.Sort ((a, b) => -1 * a.CompareTo (b));
+        #region Class Implementation
+        #region General
+        protected override void DoRemoveElementSelection ()
+        {
+            List<int> selection = new List<int> (Selection);
 
-			foreach (int id in selection)
-				list.RemoveAt (id);
+            // Sort elements by descending 
+            if (selection.Count > 1)
+                selection.Sort ((a, b) => -1 * a.CompareTo (b));
 
-			ReloadTree ();
-			SetSelection (null);
+            foreach (int id in selection)
+                list.RemoveAt (id);
 
-			onChanged?.Invoke ();
-		}
-		#endregion
+            ReloadTree ();
+            SetSelection (null);
 
-		#region Copy
-		protected override int GetCopiedElementIndex ()
-		{
-			int index = -1;
+            onChanged?.Invoke ();
+        }
+        #endregion
 
-			if (CopiedElementHashCode == 0)
-				return index;
+        #region Copy
+        protected override int GetCopiedElementIndex ()
+        {
+            int index = -1;
 
-			// Find for element with copied hash code
-			for (int i = 0; i < list.Count; i++)
-			{
-				if (list[i].GetHashCode () == CopiedElementHashCode)
-					return i;
-			}
+            if (CopiedElementHashCode == 0)
+                return index;
 
-			return index;
-		}
-		#endregion
+            // Find for element with copied hash code
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].GetHashCode () == CopiedElementHashCode)
+                    return i;
+            }
 
-		#region General
-		protected override void DoMoveElementSelection (int insertIndex, int[] selectedIds)
-		{
-			if (insertIndex < 0)
-				return;
+            return index;
+        }
+        #endregion
 
-			List<object> selection = new List<object> ();
+        #region General
+        protected override void DoMoveElementSelection (int insertIndex, int[] selectedIds)
+        {
+            if (insertIndex < 0)
+                return;
 
-			for (int i = 0; i < selectedIds.Length; i++)
-				selection.Add (list[selectedIds[i]]);
+            List<object> selection = new List<object> ();
 
-			foreach (TElement item in selection)
-				list.Remove (item);
+            for (int i = 0; i < selectedIds.Length; i++)
+                selection.Add (list[selectedIds[i]]);
 
-			int itemsAboveInsertIndex = 0;
-			foreach (int selectedElement in selectedIds)
-			{
-				if (selectedElement < insertIndex)
-					itemsAboveInsertIndex++;
-			}
+            foreach (TElement item in selection)
+                list.Remove (item);
 
-			insertIndex -= itemsAboveInsertIndex;
+            int itemsAboveInsertIndex = 0;
+            foreach (int selectedElement in selectedIds)
+            {
+                if (selectedElement < insertIndex)
+                    itemsAboveInsertIndex++;
+            }
 
-			selection.Reverse ();
-			foreach (TElement item in selection)
-				list.Insert (insertIndex, item);
+            insertIndex -= itemsAboveInsertIndex;
 
-			List<int> newSelection = new List<int> ();
-			for (int i = insertIndex; i < insertIndex + selection.Count; i++)
-				newSelection.Add (i);
+            selection.Reverse ();
+            foreach (TElement item in selection)
+                list.Insert (insertIndex, item);
 
-			SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame);
-			ReloadTree ();
-			onChanged?.Invoke ();
-		}
+            List<int> newSelection = new List<int> ();
+            for (int i = insertIndex; i < insertIndex + selection.Count; i++)
+                newSelection.Add (i);
 
-		protected override void DoAddElementAtIndex (int insertIndex)
-		{
-			DoAddElementAtIndex (insertIndex, CreateElementObject ());
-		}
+            SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame);
+            ReloadTree ();
+            onChanged?.Invoke ();
+        }
 
-		protected void DoAddElementAtIndex (int insertIndex, TElement value)
-		{
-			list.Insert (insertIndex, value);
+        protected override void DoAddElementAtIndex (int insertIndex)
+        {
+            DoAddElementAtIndex (insertIndex, CreateElementObject ());
+        }
 
-			ReloadTree ();
-			SetSelection (new List<int> { insertIndex });
-			onChanged?.Invoke ();
-		}
+        protected void DoAddElementAtIndex (int insertIndex, TElement value)
+        {
+            list.Insert (insertIndex, value);
 
-		protected abstract TElement CreateElementObject ();
-		#endregion
-		#endregion
-	}
+            ReloadTree ();
+            SetSelection (new List<int> {insertIndex});
+            onChanged?.Invoke ();
+        }
+
+        protected virtual TElement CreateElementObject ()
+        {
+            Debug.LogError ("You should override this method from the derived class, unless you call DoAddElementAtIndex and create your own instance of the object.");
+            return Activator.CreateInstance<TElement> ();
+        }
+        #endregion
+        #endregion
+    }
 }
