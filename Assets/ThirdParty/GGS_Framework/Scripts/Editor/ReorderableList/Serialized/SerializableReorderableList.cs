@@ -90,24 +90,8 @@ namespace GGS_Framework.Editor
         {
             elements.InsertArrayElementAtIndex (insertIndex);
 
-            if (value != null)
-            {
-                string valueType = value.GetType ().Name;
-                string elementType = elements.arrayElementType;
-
-                if (valueType.Equals (elementType))
-                {
-                    serializedObject.ApplyModifiedProperties ();
-                    elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
-                }
-                else
-                    Debug.LogError ($"The type '{valueType}' of the value that you're trying to set isn't equal to the type '{elementType}' of the element in the array.");
-            }
-            else
-            {
-                serializedObject.ApplyModifiedProperties ();
-                elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
-            }
+            serializedObject.ApplyModifiedProperties ();
+            elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
 
             serializedObject.ApplyModifiedPropertiesWithoutUndo ();
             serializedObject.Update ();
