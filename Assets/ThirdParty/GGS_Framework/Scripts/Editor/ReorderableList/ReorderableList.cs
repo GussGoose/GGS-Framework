@@ -126,7 +126,7 @@ namespace GGS_Framework.Editor
 
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Vertical,
                 new AdvancedRect.FixedSpace (Styles.DefaultSpacing),
-                new AdvancedRect.FixedItem ("Header", Styles.HeaderHeight, new AdvancedRect.Padding (Styles.DefaultPadding, AdvancedRect.Padding.Type.Horizontal)),
+                new AdvancedRect.FixedItem ("Header", Styles.HeaderHeight, new RectPadding (Styles.DefaultPadding, RectPaddingType.Horizontal)),
                 new AdvancedRect.FixedSpace (Styles.DefaultSpacing),
                 new AdvancedRect.ExpandedItem ("TreeView")
             );
@@ -136,7 +136,9 @@ namespace GGS_Framework.Editor
             if (CanDrawBackground ())
             {
                 Styles.Background.Draw (rects["TreeView"]);
-                rects["TreeView"] = AdvancedRect.ExpandRect (rects["TreeView"], new AdvancedRect.Padding (Styles.DefaultPadding, AdvancedRect.Padding.Type.All));
+                rects["TreeView"] = rects["TreeView"].Expand (new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
+                // rects["TreeView"] = AdvancedRect.ExpandRect (rects["TreeView"], new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
+                // rects["TreeView"] = ExtendedRect.Expand (rects["TreeView"], new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
             }
 
             if (Count > 0)
@@ -150,14 +152,14 @@ namespace GGS_Framework.Editor
                 treeView.OnGUI (rects["TreeView"]);
             }
             else
-                AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config (GetEmptyListMessage(), FontStyle.Bold));
+                AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config (GetEmptyListMessage (), FontStyle.Bold));
         }
 
         protected virtual string GetEmptyListMessage ()
         {
             return "Nothing in list.";
         }
-        
+
         protected internal virtual void DrawHeader (Rect rect)
         {
             bool canSearch = CanSearch ();
@@ -193,7 +195,7 @@ namespace GGS_Framework.Editor
         {
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
                 new AdvancedRect.ExpandedItem ("Bar"),
-                new AdvancedRect.FixedItem ("CancelButton", Styles.HeaderHeight, new AdvancedRect.Padding (Styles.SearchBarCancelButtonPadding, AdvancedRect.Padding.Type.All))
+                new AdvancedRect.FixedItem ("CancelButton", Styles.HeaderHeight, new RectPadding (Styles.SearchBarCancelButtonPadding, RectPaddingType.All))
             );
 
             SearchString = searchBar.OnGUI (rects["Bar"], SearchString, Styles.SearchBar, GUIStyle.none, GUIStyle.none);
@@ -227,7 +229,7 @@ namespace GGS_Framework.Editor
             );
 
             if (CanReorder ())
-                Styles.DragIcon.Draw (AdvancedRect.AlignRect (new Vector2 (rects["ReorderIcon"].width, 16), rects["ReorderIcon"], AdvancedRect.Alignment.Center));
+                Styles.DragIcon.Draw (ExtendedRect.Align (new Vector2 (rects["ReorderIcon"].width, 16), rects["ReorderIcon"], RectAlignment.Center));
 
             DrawElement (rects["Element"], index);
         }
@@ -236,6 +238,15 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region General
+        internal void PerformSingleClickedItem (int index)
+        {
+            SingleClickedItem (index);
+        }
+
+        protected virtual void SingleClickedItem (int index)
+        {
+        }
+
         internal void PerformSelectionChanged (int[] selection)
         {
             SelectionChanged (selection);
@@ -486,7 +497,7 @@ namespace GGS_Framework.Editor
         {
             treeView.Repaint ();
         }
-        
+
         protected internal void RefreshCustomRowHeights ()
         {
             treeView.RefreshCustomRowHeights ();
@@ -497,7 +508,7 @@ namespace GGS_Framework.Editor
             if (ids == null)
                 ids = new List<int> ();
 
-            treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList ());
+            treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList (), TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
         }
 
         protected void SetSelection (IList<int> ids, TreeViewSelectionOptions options)

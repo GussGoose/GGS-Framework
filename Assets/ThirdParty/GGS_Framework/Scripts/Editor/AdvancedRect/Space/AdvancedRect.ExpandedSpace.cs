@@ -5,7 +5,7 @@
 		public class ExpandedSpace : Element
 		{
 			#region Class Implementation
-			public ExpandedSpace (bool use = true) : base (Type.Expanded, string.Empty, 0, null, use)
+			public ExpandedSpace (bool use = true) : base (Type.Expanded, string.Empty, 0, (RectPadding) null, use)
 			{
 			}
 			#endregion

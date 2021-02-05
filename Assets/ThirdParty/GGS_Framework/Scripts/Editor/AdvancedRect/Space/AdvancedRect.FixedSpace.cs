@@ -5,7 +5,7 @@
 		public class FixedSpace : Element
 		{
 			#region Class Implementation
-			public FixedSpace (float size, bool use = true) : base (Type.Fixed, string.Empty, size, null, use)
+			public FixedSpace (float size, bool use = true) : base (Type.Fixed, string.Empty, size, (RectPadding) null, use)
 			{
 			}
 			#endregion

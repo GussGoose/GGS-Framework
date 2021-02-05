@@ -1,4 +1,6 @@
-﻿namespace GGS_Framework.Editor
+﻿using System;
+
+namespace GGS_Framework.Editor
 {
 	public static partial class AdvancedRect
 	{

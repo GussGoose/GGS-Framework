@@ -98,7 +98,7 @@ namespace GGS_Framework.Editor
             for (int i = insertIndex; i < insertIndex + selection.Count; i++)
                 newSelection.Add (i);
 
-            SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame);
+            SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
             onChanged?.Invoke ();
         }

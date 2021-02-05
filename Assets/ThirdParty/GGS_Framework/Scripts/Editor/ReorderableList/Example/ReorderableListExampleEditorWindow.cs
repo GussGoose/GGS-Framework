@@ -156,6 +156,11 @@ namespace GGS_Framework.Editor.Examples
                 return GetPropertyAtIndex (index).GetHashCode ();
             }
 
+            public override float GetElementHeight (int index)
+            {
+                return 30;
+            }
+
             protected override bool DoesElementMatchSearch (int index, string search)
             {
                 return GetPropertyAtIndex (index).FindPropertyRelative ("name").stringValue.Contains (search);
@@ -164,6 +169,11 @@ namespace GGS_Framework.Editor.Examples
             protected override void AddElementAtIndex (int insertIndex)
             {
                 DoAddElementAtIndex (insertIndex, new ReorderableListExampleClass ("Tonais", 0, true));
+            }
+
+            protected override void SelectionChanged (int[] selection)
+            {
+                base.SelectionChanged (selection);
             }
             #endregion
         }

@@ -1,10 +1,13 @@
-﻿namespace GGS_Framework.Editor
+﻿using System;
+
+namespace GGS_Framework.Editor
 {
-	public partial class AdvancedRect
+    public partial class AdvancedRect
     {
         public partial class Padding
         {
-            [System.Flags]
+            [Flags]
+            [Obsolete ("The use of AdvancedRect.Padding.Type has been replaced with RectPadding.Type and it would be removed soon. You should change all the references to this enum.")]
             public enum Type
             {
                 Left = 1 << 0,

@@ -76,7 +76,7 @@ namespace GGS_Framework.Editor
             serializedObject.ApplyModifiedProperties ();
             serializedObject.Update ();
 
-            SetSelection (selectedIds, TreeViewSelectionOptions.RevealAndFrame);
+            SetSelection (selectedIds, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
             onChanged?.Invoke ();
         }

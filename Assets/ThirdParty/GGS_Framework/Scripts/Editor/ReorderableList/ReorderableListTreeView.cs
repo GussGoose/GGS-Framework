@@ -77,6 +77,14 @@ namespace GGS_Framework.Editor
             list.PerformRightClickElement (index);
         }
 
+        protected override void SingleClickedItem (int id)
+        {
+            base.SingleClickedItem (id);
+
+            int index = id - UniqueId;
+            list.PerformSingleClickedItem (index);
+        }
+
         protected override void SelectionChanged (IList<int> selectedIds)
         {
             base.SelectionChanged (selectedIds);

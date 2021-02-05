@@ -14,7 +14,7 @@ namespace GGS_Framework.Editor
 				Size += GetSize (orientation, elements);
 			}
 
-			public AutomaticGroup (string key, Orientation orientation, Padding padding, params Element[] elements) : base (Type.Fixed, key, orientation, 0, padding, elements, true)
+			public AutomaticGroup (string key, Orientation orientation, RectPadding padding, params Element[] elements) : base (Type.Fixed, key, orientation, 0, padding, elements, true)
 			{
 				Size += GetSize (orientation, elements);
 			}
@@ -24,7 +24,7 @@ namespace GGS_Framework.Editor
 				Size += GetSize (orientation, elements);
 			}
 
-			public AutomaticGroup (string key, Orientation orientation, Padding padding, bool use, params Element[] elements) : base (Type.Fixed, key, orientation, 0, padding, elements, use)
+			public AutomaticGroup (string key, Orientation orientation, RectPadding padding, bool use, params Element[] elements) : base (Type.Fixed, key, orientation, 0, padding, elements, use)
 			{
 				Size += GetSize (orientation, elements);
 			}
@@ -34,7 +34,7 @@ namespace GGS_Framework.Editor
 				Size += GetSize (orientation, elements);
 			}
 
-			public AutomaticGroup (Orientation orientation, Padding padding, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, 0, padding, elements, true)
+			public AutomaticGroup (Orientation orientation, RectPadding padding, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, 0, padding, elements, true)
 			{
 				Size += GetSize (orientation, elements);
 			}
@@ -44,7 +44,7 @@ namespace GGS_Framework.Editor
 				Size += GetSize (orientation, elements);
 			}
 
-			public AutomaticGroup (Orientation orientation, Padding padding, bool use, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, 0, padding, elements, use)
+			public AutomaticGroup (Orientation orientation, RectPadding padding, bool use, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, 0, padding, elements, use)
 			{
 				Size += GetSize (orientation, elements);
 			}
