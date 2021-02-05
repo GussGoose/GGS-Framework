@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace GGS_Framework.Editor
 {
-// Provide simple value get/set methods for SerializedProperty.  Can be used with
-// any data types and with arbitrarily deeply-pathed properties.
+    /// Original by aholkner https://gist.github.com/aholkner/214628a05b15f0bb169660945ac7923b
+    /// Provide simple value get/set methods for SerializedProperty. Can be used with any data types and with arbitrarily deeply-pathed properties.
     public static class SerializedPropertyExtensions
     {
         #region Members
@@ -22,7 +22,7 @@ namespace GGS_Framework.Editor
             string propertyPath = property.propertyPath;
             object value = property.serializedObject.targetObject;
             int i = 0;
-            
+
             while (NextPathComponent (propertyPath, ref i, out PropertyPathComponent token))
                 value = GetPathComponentValue (value, token);
             return value;
@@ -155,13 +155,12 @@ namespace GGS_Framework.Editor
                 }
             }
 
-            Debug.Assert (false, $"Failed to set member {container}.{name} via reflection");
+            Debug.Assert (false, $"Failed to set member {container}.{name} via reflection.");
         }
         #endregion
 
         #region Nested Classes
-        // Union type representing either a property name or array element index.  The element
-        // index is valid only if propertyName is null.
+        /// Union type representing either a property name or array element index.  The element index is valid only if propertyName is null.
         private struct PropertyPathComponent
         {
             #region Members

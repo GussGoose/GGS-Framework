@@ -76,7 +76,7 @@ namespace GGS_Framework.Editor
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (WindowRect, AdvancedRect.Orientation.Vertical,
 				new AdvancedRect.FixedItem ("Header", 24),
 				new AdvancedRect.FixedSpace (2),
-				new AdvancedRect.FixedGroup ("Settings", AdvancedRect.Orientation.Horizontal, 18, new AdvancedRect.Padding (-2, AdvancedRect.Padding.Type.All),
+				new AdvancedRect.FixedGroup ("Settings", AdvancedRect.Orientation.Horizontal, 18, new RectPadding (-2, RectPaddingType.All),
 					new AdvancedRect.FixedItem ("PreviewTime", 150),
 					new AdvancedRect.FixedSpace (6),
 					new AdvancedRect.FixedItem ("FilteredEasingsModes", 200),
@@ -155,7 +155,7 @@ namespace GGS_Framework.Editor
 			bool needsScrollBar = viewOffset > 0;
 
 			Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Horizontal,
-				new AdvancedRect.ExpandedItem ("Easings", new AdvancedRect.Padding (Styles.Padding, AdvancedRect.Padding.Type.Vertical)),
+				new AdvancedRect.ExpandedItem ("Easings", new RectPadding (Styles.Padding, RectPaddingType.Vertical)),
 				new AdvancedRect.FixedItem ("Scrollbar", 16, needsScrollBar)
 			);
 

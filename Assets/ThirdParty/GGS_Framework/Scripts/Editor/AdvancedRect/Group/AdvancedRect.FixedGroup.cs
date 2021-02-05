@@ -9,7 +9,7 @@
 			{
 			}
 
-			public FixedGroup (string key, Orientation orientation, float size, Padding padding, params Element[] elements) : base (Type.Fixed, key, orientation, size, padding, elements, true)
+			public FixedGroup (string key, Orientation orientation, float size, RectPadding padding, params Element[] elements) : base (Type.Fixed, key, orientation, size, padding, elements, true)
 			{
 			}
 
@@ -17,11 +17,11 @@
 			{
 			}
 
-			public FixedGroup (string key, Orientation orientation, float size, Padding padding, bool use, params Element[] elements) : base (Type.Fixed, key, orientation, size, padding, elements, use)
+			public FixedGroup (string key, Orientation orientation, float size, RectPadding padding, bool use, params Element[] elements) : base (Type.Fixed, key, orientation, size, padding, elements, use)
 			{
 			}
 
-			public FixedGroup (Orientation orientation, float size, Padding padding, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, size, padding, elements, true)
+			public FixedGroup (Orientation orientation, float size, RectPadding padding, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, size, padding, elements, true)
 			{
 			}
 
@@ -33,7 +33,7 @@
 			{
 			}
 
-			public FixedGroup (Orientation orientation, float size, Padding padding, bool use, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, size, padding, elements, use)
+			public FixedGroup (Orientation orientation, float size, RectPadding padding, bool use, params Element[] elements) : base (Type.Fixed, string.Empty, orientation, size, padding, elements, use)
 			{
 			}
 			#endregion

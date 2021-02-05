@@ -41,7 +41,7 @@ namespace GGS_Framework.Editor
         {
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (rect, AdvancedRect.Orientation.Vertical,
                 new AdvancedRect.FixedSpace (4),
-                new AdvancedRect.FixedItem ("SearchBar", 18, new AdvancedRect.Padding (-2, AdvancedRect.Padding.Type.Horizontal)),
+                new AdvancedRect.FixedItem ("SearchBar", 18, new RectPadding (-2, RectPaddingType.Horizontal)),
                 new AdvancedRect.ExpandedItem ("List")
             );
 

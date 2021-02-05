@@ -56,7 +56,7 @@ namespace GGS_Framework.Editor
             bool didMatchAll = true;
             bool didMatchStart = false;
 
-            // See if we match ALL the seaarch words.
+            // See if we match ALL the search words.
             for (int w = 0; w < searchWords.Length; w++)
             {
                 string search = searchWords[w];
