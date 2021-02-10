@@ -28,16 +28,8 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region Implementation
-        public static void DateField (Rect rect, GUIContent label, SerializedProperty property)
+        public static string DateField (Rect rect, GUIContent label, string date)
         {
-            if (property.propertyType != SerializedPropertyType.String)
-            {
-                EditorGUI.HelpBox (rect, "The type must be a string.", MessageType.Error);
-                return;
-            }
-
-            EditorGUI.BeginProperty (rect, label, property);
-
             Rect contentRect = EditorGUI.PrefixLabel (rect, label);
 
             Dictionary<string, Rect> rects = AdvancedRect.GetRects (contentRect, AdvancedRect.Orientation.Horizontal,
@@ -48,17 +40,43 @@ namespace GGS_Framework.Editor
                 new AdvancedRect.FixedItem ("Year", 40)
             );
 
+            DateTime dateTime = DateTime.ParseExact (date, DateTimeFormat, null);
+
+            EditorGUI.BeginChangeCheck ();
+            int year = EditorGUI.IntField (rects["Year"], GUIContent.none, dateTime.Year);
+            int month = EditorGUI.Popup (rects["Month"], dateTime.Month - 1, Months) + 1;
+            int day = EditorGUI.IntField (rects["Day"], GUIContent.none, dateTime.Day);
+            if (EditorGUI.EndChangeCheck ())
+                dateTime = ApplyToDate (day, month, year);
+
+            return dateTime.ToString (DateTimeFormat);
+        }
+
+        public static string DateField (Rect rect, string label, string date)
+        {
+            return DateField (rect, new GUIContent (label), date);
+        }
+
+        public static void DateField (Rect rect, GUIContent label, SerializedProperty property)
+        {
+            if (property.propertyType != SerializedPropertyType.String)
+            {
+                EditorGUI.HelpBox (rect, "The type must be a string.", MessageType.Error);
+                return;
+            }
+
+            EditorGUI.BeginProperty (rect, label, property);
+
             if (string.IsNullOrEmpty (property.stringValue))
                 property.stringValue = DateTime.Now.ToString (DateTimeFormat);
 
-            DateTime currentDate = DateTime.ParseExact (property.stringValue, DateTimeFormat, null);
-
             EditorGUI.BeginChangeCheck ();
-            int year = EditorGUI.IntField (rects["Year"], GUIContent.none, currentDate.Year);
-            int month = EditorGUI.Popup (rects["Month"], currentDate.Month - 1, Months) + 1;
-            int day = EditorGUI.IntField (rects["Day"], GUIContent.none, currentDate.Day);
+            string dateValue = DateField (rect, label, property.stringValue);
             if (EditorGUI.EndChangeCheck ())
-                ApplyChangesToString (property, day, month, year);
+            {
+                property.stringValue = dateValue;
+                property.serializedObject.ApplyModifiedProperties ();
+            }
 
             EditorGUI.EndProperty ();
         }
@@ -68,14 +86,13 @@ namespace GGS_Framework.Editor
             DateField (rect, new GUIContent (label), property);
         }
 
-        private static void ApplyChangesToString (SerializedProperty serializedProperty, int day, int month, int year)
+        private static DateTime ApplyToDate (int day, int month, int year)
         {
             year = Mathf.Clamp (year, DateTime.MinValue.Year, DateTime.MaxValue.Year);
             month = Mathf.Clamp (month, 0, 11);
             day = Mathf.Clamp (day, 1, DateTime.DaysInMonth (year, month));
 
-            serializedProperty.stringValue = new DateTime (year, month, day).ToString (DateTimeFormat);
-            serializedProperty.serializedObject.ApplyModifiedProperties ();
+            return new DateTime (year, month, day);
         }
         #endregion
     }
