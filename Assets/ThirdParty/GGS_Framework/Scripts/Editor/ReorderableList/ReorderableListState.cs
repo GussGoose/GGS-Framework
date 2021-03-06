@@ -1,41 +1,162 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Random = System.Random;
 
 namespace GGS_Framework.Editor
 {
-	[Serializable]
-	public class ReorderableListState
-	{
-		#region Class Members
-		[SerializeField] private TreeViewState treeViewState;
-		[SerializeField] private int uniqueId;
-		#endregion
+    [Serializable]
+    public class ReorderableListState
+    {
+        #region Members
+        [SerializeField] private TreeViewState treeViewState;
+        [SerializeField] private int uniqueID;
+        #endregion
 
-		#region Class Accesors
-		public TreeViewState TreeViewState
-		{
-			get { return treeViewState; }
-		}
+        #region Properties
+        public TreeViewState TreeViewState
+        {
+            get { return treeViewState; }
+        }
 
-		public int UniqueId
-		{
-			get
-			{
-				if (uniqueId == 0)
-					uniqueId = EditorGUIUtility.GetControlID (FocusType.Passive) * 1000;
+        public int UniqueID
+        {
+            get
+            {
+                if (uniqueID == 0)
+                    uniqueID = IdGenerator.GetUniqueID ();
+                else
+                {
+                    // If the assigned ID its already available, get a new one for avoid multiple lists with the same ID.
+                    if (IdGenerator.GeneratedIDs.Contains (uniqueID))
+                        uniqueID = IdGenerator.GetUniqueID ();
+                }
 
-				return uniqueId;
-			}
-		}
-		#endregion
+                return uniqueID;
+            }
+        }
+        #endregion
 
-		#region Class Implementation
-		public ReorderableListState ()
-		{
-			treeViewState = new TreeViewState ();
-		}
-		#endregion
-	}
+        #region Constructors
+        public ReorderableListState ()
+        {
+            treeViewState = new TreeViewState ();
+        }
+        #endregion
+
+        #region Nested Types
+        private static class IdGenerator
+        {
+            #region Members
+            private const int GeneratedIDsCapacity = 100000;
+
+            private const int SpaceBetweenIDs = 10000;
+            private const int MinimunValue = int.MinValue / SpaceBetweenIDs;
+            private const int MaximunValue = int.MaxValue / SpaceBetweenIDs;
+
+            private static readonly Random generator;
+            private static HashSet<int> generatedIds;
+            #endregion
+
+            #region Properties
+            private static string StoredIDs
+            {
+                get { return EditorPrefs.GetString ("ReorderableListState_IDs"); }
+                set { EditorPrefs.SetString ("ReorderableListState_IDs", value); }
+            }
+
+            public static HashSet<int> GeneratedIDs
+            {
+                get { return generatedIds; }
+            }
+            #endregion
+
+            #region Constructors
+            static IdGenerator ()
+            {
+                generator = new Random (DateTime.Now.Ticks.GetHashCode ());
+                generatedIds = new HashSet<int> ();
+
+                CatchStoredIDs ();
+            }
+            #endregion
+
+            #region Implementation
+            [InitializeOnLoadMethod]
+            private static void Initialize ()
+            {
+                EditorApplication.quitting += UpdateStoredIDs;
+                AssemblyReloadEvents.beforeAssemblyReload += UpdateStoredIDs;
+            }
+
+            [MenuItem ("GGS Framework/Reorderable List/Clear All Stored IDs")]
+            private static void ClearAll ()
+            {
+                StoredIDs = string.Empty;
+                CatchStoredIDs ();
+            }
+
+            public static int GetUniqueID ()
+            {
+                int id = generatedIds.First ();
+                generatedIds.Remove (id);
+
+                if (generatedIds.Count == 0)
+                    CatchStoredIDs ();
+
+                return id;
+            }
+
+            private static void UpdateStoredIDs ()
+            {
+                StoredIDs = string.Join (",", generatedIds);
+            }
+
+            private static void CatchStoredIDs ()
+            {
+                string storedIDs = StoredIDs;
+
+                if (string.IsNullOrEmpty (storedIDs))
+                    generatedIds = GenerateIDs ();
+                else
+                {
+                    string[] splitedIDs = storedIDs.Split (new[] {","}, StringSplitOptions.RemoveEmptyEntries);
+
+                    generatedIds.Clear ();
+                    for (int i = 0; i < splitedIDs.Length; i++)
+                        generatedIds.Add (int.Parse (splitedIDs[i]));
+                }
+            }
+
+            private static HashSet<int> GenerateIDs ()
+            {
+                HashSet<int> ids = new HashSet<int> ();
+
+                for (int i = 0; i < GeneratedIDsCapacity; i++)
+                {
+                    int id = GetRandomValue ();
+
+                    if (ids.Contains (id))
+                    {
+                        while (ids.Contains (id))
+                            id = GetRandomValue ();
+                    }
+
+                    ids.Add (id);
+                }
+
+                return ids;
+            }
+
+            private static int GetRandomValue ()
+            {
+                return generator.Next (MinimunValue, MaximunValue) * SpaceBetweenIDs;
+            }
+            #endregion
+        }
+        #endregion
+    }
 }

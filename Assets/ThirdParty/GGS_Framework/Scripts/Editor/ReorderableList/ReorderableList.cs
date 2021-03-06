@@ -56,7 +56,7 @@ namespace GGS_Framework.Editor
 
         public int[] Selection
         {
-            get { return state.TreeViewState.selectedIDs.Select (id => id - state.UniqueId).ToArray (); }
+            get { return state.TreeViewState.selectedIDs.Select (id => id - state.UniqueID).ToArray (); }
         }
 
         public int FirstOfSelection
@@ -508,12 +508,12 @@ namespace GGS_Framework.Editor
             if (ids == null)
                 ids = new List<int> ();
 
-            treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList (), TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
+            treeView.SetSelection (ids.Select (id => id + state.UniqueID).ToList (), TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
         }
 
         protected void SetSelection (IList<int> ids, TreeViewSelectionOptions options)
         {
-            treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList (), options);
+            treeView.SetSelection (ids.Select (id => id + state.UniqueID).ToList (), options);
         }
         #endregion
         #endregion

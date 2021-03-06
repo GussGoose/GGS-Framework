@@ -25,7 +25,7 @@ namespace GGS_Framework.Editor
 
         private int UniqueId
         {
-            get { return list.state.UniqueId; }
+            get { return list.state.UniqueID; }
         }
 
         public bool ShowAlternatingRowBackgrounds
@@ -50,7 +50,7 @@ namespace GGS_Framework.Editor
             root.children = new List<TreeViewItem> ();
 
             for (int i = 0; i < list.Count; i++)
-                root.AddChild (new TreeViewItem (list.state.UniqueId + i, -1, "Element"));
+                root.AddChild (new TreeViewItem (list.state.UniqueID + i, -1, "Element"));
 
             return root;
         }
