@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using Styles = GGS_Framework.Editor.ReorderableListStyles;
-using ElementOptions = GGS_Framework.Editor.ReorderableListElementOptions;
 
 namespace GGS_Framework.Editor
 {
     public abstract class SerializableReorderableList : ReorderableList
     {
-        #region Class Members
+        #region Members
         protected readonly SerializedObject serializedObject;
         protected readonly SerializedProperty elements;
         #endregion
 
-        #region Class Accesors
+        #region Properties
         public override int Count
         {
             get { return elements.arraySize; }
@@ -34,25 +32,38 @@ namespace GGS_Framework.Editor
             {
                 serializedObject.Update ();
                 serializedObject.ApplyModifiedProperties ();
-                ReloadTree ();
-                RepaintTree ();
+                Refresh ();
             };
         }
         #endregion
 
-        #region Overrides
-        protected internal override void DoDraw (Rect rect)
-        {
-            serializedObject.Update ();
-            base.DoDraw (rect);
-        }
-
+        #region Implementation
         protected SerializedProperty GetPropertyAtIndex (int index)
         {
             return elements.GetArrayElementAtIndex (index);
         }
 
-        protected override void DoMoveElementSelection (int insertIndex, int[] selectedIds)
+        protected override void AddElementAtIndex (int insertIndex)
+        {
+            AddElementAtIndex (insertIndex, null);
+        }
+
+        protected void AddElementAtIndex (int insertIndex, object value)
+        {
+            elements.InsertArrayElementAtIndex (insertIndex);
+
+            serializedObject.ApplyModifiedProperties ();
+            elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
+
+            serializedObject.ApplyModifiedPropertiesWithoutUndo ();
+            serializedObject.Update ();
+
+            ReloadTree ();
+            SetSelection (new List<int> {insertIndex});
+            ListChanged?.Invoke ();
+        }
+
+        protected override void MoveElementSelection (int insertIndex, int[] selectedIds)
         {
             int originalInsert = insertIndex;
             foreach (int selectedElement in selectedIds)
@@ -78,35 +89,10 @@ namespace GGS_Framework.Editor
 
             SetSelection (selectedIds, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            onChanged?.Invoke ();
+            ListChanged?.Invoke ();
         }
 
-        protected override void DoAddElementAtIndex (int insertIndex)
-        {
-            DoAddElementAtIndex (insertIndex, null);
-        }
-
-        protected void DoAddElementAtIndex (int insertIndex, object value)
-        {
-            elements.InsertArrayElementAtIndex (insertIndex);
-
-            serializedObject.ApplyModifiedProperties ();
-            elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
-
-            serializedObject.ApplyModifiedPropertiesWithoutUndo ();
-            serializedObject.Update ();
-
-            ReloadTree ();
-            SetSelection (new List<int> {insertIndex});
-            onChanged?.Invoke ();
-        }
-
-        [Obsolete ("This function is no longer used. You should remove inheritance and references to it.")]
-        protected virtual void ElementAdded (SerializedProperty element, int index)
-        {
-        }
-
-        protected override void DoRemoveElementSelection ()
+        protected override void RemoveElementSelection ()
         {
             List<int> selection = new List<int> (Selection);
 
@@ -130,25 +116,9 @@ namespace GGS_Framework.Editor
             serializedObject.ApplyModifiedProperties ();
             serializedObject.Update ();
 
-            ReloadTree ();
+            Refresh ();
             SetSelection (null);
-            onChanged?.Invoke ();
-        }
-
-        protected override int GetCopiedElementIndex ()
-        {
-            int index = -1;
-            if (CopiedElementHashCode == 0)
-                return index;
-
-            // Find for element with copied hash code
-            for (int i = 0; i < Count; i++)
-            {
-                if (GetPropertyAtIndex (i).GetHashCode () == CopiedElementHashCode)
-                    return i;
-            }
-
-            return index;
+            ListChanged?.Invoke ();
         }
         #endregion
     }

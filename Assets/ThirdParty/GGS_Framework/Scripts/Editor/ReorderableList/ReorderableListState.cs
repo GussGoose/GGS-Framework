@@ -17,11 +17,6 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region Properties
-        public TreeViewState TreeViewState
-        {
-            get { return treeViewState; }
-        }
-
         public int UniqueID
         {
             get
@@ -37,6 +32,35 @@ namespace GGS_Framework.Editor
 
                 return uniqueID;
             }
+        }
+
+        internal TreeViewState TreeViewState
+        {
+            get { return treeViewState; }
+        }
+
+        public List<int> SelectedIDs
+        {
+            get
+            {
+                return treeViewState.selectedIDs.Select (id => id - UniqueID).ToList ();
+            }
+            set
+            {
+                treeViewState.selectedIDs = value.Select (id => id + UniqueID).ToList ();
+            }
+        }
+
+        public int LastClickedID
+        {
+            get { return treeViewState.lastClickedID - UniqueID; }
+            set { treeViewState.lastClickedID = value + UniqueID; }
+        }
+
+        public string Search
+        {
+            get { return treeViewState.searchString; }
+            set { treeViewState.searchString = value; }
         }
         #endregion
 

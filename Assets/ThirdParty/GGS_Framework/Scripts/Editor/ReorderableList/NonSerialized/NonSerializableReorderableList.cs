@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
-using UnityEngine;
 using Styles = GGS_Framework.Editor.ReorderableListStyles;
-using ElementOptions = GGS_Framework.Editor.ReorderableListElementOptions;
 
 namespace GGS_Framework.Editor
 {
     public abstract class NonSerializableReorderableList<TElement> : ReorderableList
     {
-        #region Class Members
+        #region Members
         protected List<TElement> list;
         #endregion
 
-        #region Class Accesors
+        #region Properties
         public override int Count
         {
             get { return list.Count; }
@@ -28,47 +26,28 @@ namespace GGS_Framework.Editor
         }
         #endregion
 
-        #region Class Implementation
-        #region General
-        protected override void DoRemoveElementSelection ()
+        #region Implementation
+        protected override void AddElementAtIndex (int insertIndex)
         {
-            List<int> selection = new List<int> (Selection);
+            AddElementAtIndex (insertIndex, CreateElementObject ());
+        }
 
-            // Sort elements by descending 
-            if (selection.Count > 1)
-                selection.Sort ((a, b) => -1 * a.CompareTo (b));
-
-            foreach (int id in selection)
-                list.RemoveAt (id);
+        protected void AddElementAtIndex (int insertIndex, TElement value)
+        {
+            list.Insert (insertIndex, value);
 
             ReloadTree ();
-            SetSelection (null);
-
-            onChanged?.Invoke ();
+            SetSelection (new List<int> {insertIndex});
+            ListChanged?.Invoke ();
         }
-        #endregion
 
-        #region Copy
-        protected override int GetCopiedElementIndex ()
+        protected virtual TElement CreateElementObject ()
         {
-            int index = -1;
-
-            if (CopiedElementHashCode == 0)
-                return index;
-
-            // Find for element with copied hash code
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].GetHashCode () == CopiedElementHashCode)
-                    return i;
-            }
-
-            return index;
+            throw new NotImplementedException ();
+            // return Activator.CreateInstance<TElement> ();
         }
-        #endregion
 
-        #region General
-        protected override void DoMoveElementSelection (int insertIndex, int[] selectedIds)
+        protected override void MoveElementSelection (int insertIndex, int[] selectedIds)
         {
             if (insertIndex < 0)
                 return;
@@ -100,29 +79,24 @@ namespace GGS_Framework.Editor
 
             SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            onChanged?.Invoke ();
+            ListChanged?.Invoke ();
         }
 
-        protected override void DoAddElementAtIndex (int insertIndex)
+        protected override void RemoveElementSelection ()
         {
-            DoAddElementAtIndex (insertIndex, CreateElementObject ());
-        }
+            List<int> selection = new List<int> (Selection);
 
-        protected void DoAddElementAtIndex (int insertIndex, TElement value)
-        {
-            list.Insert (insertIndex, value);
+            // Sort elements by descending 
+            if (selection.Count > 1)
+                selection.Sort ((a, b) => -1 * a.CompareTo (b));
 
-            ReloadTree ();
-            SetSelection (new List<int> {insertIndex});
-            onChanged?.Invoke ();
-        }
+            foreach (int id in selection)
+                list.RemoveAt (id);
 
-        protected virtual TElement CreateElementObject ()
-        {
-            Debug.LogError ("You should override this method from the derived class, unless you call DoAddElementAtIndex and create your own instance of the object.");
-            return Activator.CreateInstance<TElement> ();
+            Refresh ();
+            SetSelection (null);
+            ListChanged?.Invoke ();
         }
-        #endregion
         #endregion
     }
 }
