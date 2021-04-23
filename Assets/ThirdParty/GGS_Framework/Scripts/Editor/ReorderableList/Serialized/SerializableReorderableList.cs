@@ -38,6 +38,12 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region Implementation
+        protected internal override void DoDraw (Rect rect)
+        {
+            serializedObject.Update ();
+            base.DoDraw (rect);
+        }
+
         protected SerializedProperty GetPropertyAtIndex (int index)
         {
             return elements.GetArrayElementAtIndex (index);
