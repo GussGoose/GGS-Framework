@@ -5,37 +5,27 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using Styles = GGS_Framework.Editor.ReorderableListStyles;
-using ElementOptions = GGS_Framework.Editor.ReorderableListElementOptions;
 
 namespace GGS_Framework.Editor
 {
     public abstract class ReorderableList
     {
-        #region Class Members
-        internal ReorderableListTreeView treeView;
-        internal ReorderableListState state;
-        internal SearchField searchBar;
+        #region Members
+        private ReorderableListTreeView treeView;
+        private ReorderableListState state;
+        private SearchField searchBar;
 
-        internal bool showContextMenuInNextDraw;
-
-        #region Events
-        public Action onChanged;
-        public Action<int[]> onSelectionChanged;
-        public Action<int> onRightClickElement;
-        #endregion
+        private bool showContextMenuInNextDraw;
         #endregion
 
-        #region Class Accesors
-        public abstract int Count
-        {
-            get;
-        }
+        #region Properties
+        public abstract int ElementCount { get; }
 
-        public string Title
-        {
-            get;
-            private set;
-        }
+        public Action ElementsListChanged { get; set; }
+
+        public ReorderableListState State { get { return state; } }
+
+        public string Title { get; private set; }
 
         public bool ShowAlternatingRowBackgrounds
         {
@@ -43,10 +33,7 @@ namespace GGS_Framework.Editor
             set { treeView.ShowAlternatingRowBackgrounds = value; }
         }
 
-        public bool HasSearch
-        {
-            get { return treeView.hasSearch; }
-        }
+        public bool HasSearch { get { return treeView.hasSearch; } }
 
         public string SearchString
         {
@@ -54,16 +41,23 @@ namespace GGS_Framework.Editor
             private set { treeView.searchString = value; }
         }
 
-        public int[] Selection
-        {
-            get { return state.TreeViewState.selectedIDs.Select (id => id - state.UniqueId).ToArray (); }
-        }
+        public Action<string> SearchChanged { get; set; }
+
+        public Action KeyboardInputChanged { get; set; }
+
+        public Action<int> SingleClickedElement { get; set; }
+
+        public Action<int> DoubleClickedElement { get; set; }
+
+        public Action<int[]> SelectionChanged { get; set; }
+
+        public List<int> Selection { get { return state.SelectedIDs; } }
 
         public int FirstOfSelection
         {
             get
             {
-                if (Selection.Length == 0)
+                if (Selection.Count == 0)
                     return -1;
 
                 return Selection[0];
@@ -74,21 +68,27 @@ namespace GGS_Framework.Editor
         {
             get
             {
-                if (Selection.Length == 0)
+                if (Selection.Count == 0)
                     return -1;
 
-                return Selection[Selection.Length - 1];
+                return Selection[Selection.Count - 1];
             }
         }
 
-        internal int CopiedElementHashCode
-        {
-            get;
-            set;
-        }
+        public Action<int> ContextClickedElement { get; set; }
+
+        public Action ContextClickedOutsideElements { get; set; }
+
+        public bool ShowingScrollBar { get { return treeView.ShowingScrollBar; } }
+        
+        public float TotalElementsHeight { get { return treeView.TotalHeight; } }
+        
+        public Action<int, int[]> ElementsDragging { get; set; }
+
+        public Action<int, int[]> ElementsDragged { get; set; }
         #endregion
 
-        #region Class Implementation
+        #region Implementation
         internal void Initialize (ReorderableListState state, string title)
         {
             Title = title;
@@ -101,10 +101,100 @@ namespace GGS_Framework.Editor
 
             searchBar = new SearchField ();
             searchBar.downOrUpArrowKeyPressed += treeView.SetFocusAndEnsureSelectedItem;
+
+            InitializeTreeViewCallbacks ();
         }
 
-        #region Draw
-        public virtual void Draw (float height)
+        private void InitializeTreeViewCallbacks ()
+        {
+            treeView.SearchChangedCallback += (newSearch) =>
+            {
+                SearchChanged?.Invoke (newSearch);
+                OnSearchChanged (newSearch);
+            };
+
+            treeView.DoesElementMatchSearchCallback += DoesElementMatchSearch;
+
+            treeView.KeyboardInputChangedCallback += () =>
+            {
+                KeyboardInputChanged?.Invoke ();
+                OnKeyboardInputChanged ();
+            };
+
+            treeView.SingleClickedElementCallback += id =>
+            {
+                SingleClickedElement?.Invoke (id);
+                OnSingleClickedElement (id);
+            };
+
+            treeView.DoubleClickedElementCallback += id =>
+            {
+                DoubleClickedElement?.Invoke (id);
+                OnDoubleClickedElement (id);
+            };
+
+            treeView.CanMultiSelectCallback += CanMultiSelect;
+
+            treeView.SelectionChangedCallback += selection =>
+            {
+                SelectionChanged?.Invoke (selection);
+                OnSelectionChanged (selection);
+            };
+
+            treeView.ContextClickedElementCallback += id =>
+            {
+                showContextMenuInNextDraw = true;
+                RepaintTree ();
+
+                ContextClickedElement?.Invoke (id);
+                OnContextClickedElement (id);
+            };
+
+            treeView.ContextClickedOutsideElementsCallback += () =>
+            {
+                ContextClickedOutsideElements?.Invoke ();
+                OnContextClickedOutsideElements ();
+            };
+
+            treeView.ElementDrawedCallback += (id, rect) =>
+            {
+                DrawElementBase (rect, id);
+            };
+
+            treeView.ElementsDraggingCallback += (insertIndex, draggedIDs) =>
+            {
+                ElementsDragging?.Invoke (insertIndex, draggedIDs);
+                OnElementsDragging (insertIndex, draggedIDs);
+
+                MoveElementSelection (insertIndex, draggedIDs);
+
+                ElementsDragged?.Invoke (insertIndex, draggedIDs);
+                OnElementsDragged (insertIndex, draggedIDs);
+            };
+
+            treeView.CanRenameElementCallback += CanRenameElement;
+            treeView.GetElementRenameRectCallback += GetElementRenameRect;
+            treeView.ElementRenamedCallback += RenameElement;
+        }
+
+        protected internal void ReloadTree ()
+        {
+            treeView.Reload ();
+        }
+
+        protected internal void RepaintTree ()
+        {
+            treeView.Repaint ();
+        }
+
+        public void Refresh ()
+        {
+            treeView.Reload ();
+            treeView.Repaint ();
+        }
+
+        #region General Draw
+        public virtual void LayoutDraw (float height)
         {
             Rect rect = EditorGUILayout.GetControlRect (false, height);
             DoDraw (rect);
@@ -117,7 +207,7 @@ namespace GGS_Framework.Editor
 
         protected internal virtual void DoDraw (Rect rect)
         {
-            if (treeView.ItemCount != Count)
+            if (treeView.ItemCount != ElementCount)
             {
                 ReloadTree ();
                 RepaintTree ();
@@ -137,22 +227,25 @@ namespace GGS_Framework.Editor
             {
                 Styles.Background.Draw (rects["TreeView"]);
                 rects["TreeView"] = rects["TreeView"].Expand (new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
-                // rects["TreeView"] = AdvancedRect.ExpandRect (rects["TreeView"], new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
-                // rects["TreeView"] = ExtendedRect.Expand (rects["TreeView"], new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
             }
 
-            if (Count > 0)
+            if (ElementCount > 0)
             {
                 if (showContextMenuInNextDraw)
                 {
                     showContextMenuInNextDraw = false;
-                    ShowContextMenu ();
+                    ShowContextElementMenu ();
                 }
 
                 treeView.OnGUI (rects["TreeView"]);
             }
             else
                 AdvancedLabel.Draw (rects["TreeView"], new AdvancedLabel.Config (GetEmptyListMessage (), FontStyle.Bold));
+        }
+
+        protected virtual bool CanDrawBackground ()
+        {
+            return true;
         }
 
         protected virtual string GetEmptyListMessage ()
@@ -177,7 +270,7 @@ namespace GGS_Framework.Editor
 
             if (canSearch)
             {
-                if (Count > 0)
+                if (ElementCount > 0)
                     DrawSearchBar (rects["SearchBar"]);
             }
 
@@ -189,6 +282,13 @@ namespace GGS_Framework.Editor
                 if (GUI.Button (rects["AddButton"], string.Empty, Styles.AddButton))
                     AddElement ();
             }
+        }
+        #endregion
+
+        #region Search
+        protected virtual bool CanSearch ()
+        {
+            return true;
         }
 
         protected internal void DrawSearchBar (Rect rect)
@@ -210,15 +310,69 @@ namespace GGS_Framework.Editor
             }
         }
 
+        protected virtual void OnSearchChanged (string newSearch)
+        {
+        }
+
+        protected virtual bool DoesElementMatchSearch (int index, string search)
+        {
+            throw new NotImplementedException ();
+        }
+        #endregion
+
+        #region Selection
+        protected virtual bool CanMultiSelect (int index)
+        {
+            return true;
+        }
+
+        protected virtual void OnKeyboardInputChanged ()
+        {
+        }
+
+        protected void SetSelection (IList<int> ids)
+        {
+            if (ids == null)
+                ids = new List<int> ();
+
+            treeView.SetSelection (ids.Select (id => id + state.UniqueID).ToList (), TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
+        }
+
+        protected void SetSelection (IList<int> ids, TreeViewSelectionOptions options)
+        {
+            treeView.SetSelection (ids.Select (id => id + state.UniqueID).ToList (), options);
+        }
+
+        protected virtual void OnSingleClickedElement (int index)
+        {
+        }
+
+        protected virtual void OnDoubleClickedElement (int index)
+        {
+        }
+
+        protected virtual void OnSelectionChanged (int[] selection)
+        {
+        }
+        #endregion
+
+        #region Element
+        protected virtual void OnContextClickedElement (int index)
+        {
+        }
+
+        protected virtual void OnContextClickedOutsideElements ()
+        {
+        }
+
+        protected internal void RefreshElementHeights ()
+        {
+            treeView.RefreshCustomRowHeights ();
+        }
+
         public virtual float GetElementHeight (int index)
         {
             return 16;
-        }
-
-        [Obsolete ("This function is no longer used, you should remove the override.")]
-        protected virtual string GetDisplayName (int index)
-        {
-            return string.Empty;
         }
 
         internal void DrawElementBase (Rect rect, int index)
@@ -235,151 +389,71 @@ namespace GGS_Framework.Editor
         }
 
         protected abstract void DrawElement (Rect rect, int index);
-        #endregion
 
-        #region General
-        internal void PerformSingleClickedItem (int index)
-        {
-            SingleClickedItem (index);
-        }
-
-        protected virtual void SingleClickedItem (int index)
-        {
-        }
-
-        internal void PerformSelectionChanged (int[] selection)
-        {
-            SelectionChanged (selection);
-        }
-
-        protected virtual void SelectionChanged (int[] selection)
-        {
-            onSelectionChanged?.Invoke (selection);
-        }
-
-        internal void PerformRightClickElement (int index)
-        {
-            RightClickElement (index);
-        }
-
-        protected virtual void RightClickElement (int index)
-        {
-            showContextMenuInNextDraw = true;
-            RepaintTree ();
-            onRightClickElement?.Invoke (index);
-        }
-
-        protected internal void ShowContextMenu ()
+        protected internal void ShowContextElementMenu ()
         {
             bool canRemove = CanRemoveSelection ();
-            bool canInsertElementAbove = CanInsertElementAbove ();
-            bool canInsertElementBelow = CanInsertElementBelow ();
-            bool canCopyElement = CanCopyElement ();
-            bool canPasteElement = CanPasteElement ();
-            AdvancedGenericDropdown.Option[] dropdownOptions =
-            {
-                new AdvancedGenericDropdown.Item ("Remove", false, canRemove),
-                new AdvancedGenericDropdown.Separator (canCopyElement || canPasteElement),
-                new AdvancedGenericDropdown.Item ("Copy", false, canCopyElement),
-                new AdvancedGenericDropdown.Item ("Paste", false, canPasteElement),
-                new AdvancedGenericDropdown.Separator (canInsertElementAbove || canInsertElementBelow),
-                new AdvancedGenericDropdown.Item ("Insert Above", false, canInsertElementAbove),
-                new AdvancedGenericDropdown.Item ("Insert Below", false, canInsertElementBelow)
-            };
-            AdvancedGenericDropdown.Show<ElementOptions> (dropdownOptions, option =>
-                {
-                    ElementOptions elementOption = (ElementOptions) option;
+            bool canInsertElementAbove = CanInsertElementAboveSelection ();
+            bool canInsertElementBelow = CanInsertElementBelowSelection ();
 
-                    switch (elementOption)
-                    {
-                        case ElementOptions.Remove:
-                            RemoveElementSelection ();
-                            break;
-                        case ElementOptions.Copy:
-                            CopyElement ();
-                            break;
-                        case ElementOptions.Paste:
-                            PasteElement ();
-                            break;
-                        case ElementOptions.InsertAbove:
-                            InsertElementAbove ();
-                            break;
-                        case ElementOptions.InsertBelow:
-                            InsertElementBelow ();
-                            break;
-                    }
-                }
-            );
-        }
+            GenericMenu contextMenu = new GenericMenu ();
 
-        internal void PerformDrop (int insertIndex, int[] draggedElements)
-        {
-            MoveElementSelection (insertIndex, draggedElements);
-        }
+            if (canRemove)
+                contextMenu.AddItem (new GUIContent ("Remove"), false, RemoveElementSelection);
+            if (canInsertElementAbove || canInsertElementBelow)
+                contextMenu.AddSeparator (string.Empty);
+            if (canInsertElementAbove)
+                contextMenu.AddItem (new GUIContent ("Insert Above"), false, InsertElementAboveSelection);
+            if (canInsertElementBelow)
+                contextMenu.AddItem (new GUIContent ("Insert Below"), false, InsertElementBelowSelection);
 
-        protected abstract int GetElementHashCode (int index);
-
-        internal bool PerformDoesElementMatchSearch (int index, string search)
-        {
-            return DoesElementMatchSearch (index, search);
-        }
-
-        protected abstract bool DoesElementMatchSearch (int index, string search);
-
-        internal void PerformSearchChanged (string newSearch)
-        {
-            SearchChanged (newSearch);
-        }
-
-        protected virtual void SearchChanged (string newSearch)
-        {
+            contextMenu.ShowAsContext ();
         }
         #endregion
 
-        #region Configuration
-        protected virtual bool CanDrawBackground ()
+        #region Reorder
+        protected internal virtual bool CanReorder ()
         {
             return true;
         }
 
-        protected virtual bool CanSearch ()
+        protected virtual void OnElementsDragging (int insertIndex, int[] draggedIDs)
         {
-            return true;
         }
 
-        internal bool PerformCanReorder ()
+        protected virtual void OnElementsDragged (int insertIndex, int[] draggedIDs)
         {
-            return CanReorder ();
         }
 
-        protected virtual bool CanReorder ()
+        protected abstract void MoveElementSelection (int insertIndex, int[] selectedIds);
+        #endregion
+
+        #region Rename
+        protected virtual bool CanRenameElement (int index)
         {
-            return true;
+            return false;
         }
 
+        protected virtual Rect GetElementRenameRect (int index, Rect totalRect)
+        {
+            return totalRect;
+        }
+
+        protected virtual void RenameElement (int index, bool renameAccepted, string originalName, string newName)
+        {
+            throw new NotImplementedException ();
+        }
+        #endregion
+
+        #region List Management
+        protected abstract void AddElementAtIndex (int insertIndex);
+
+        #region Add
         protected virtual bool CanAdd ()
         {
             return true;
         }
 
-        protected virtual bool CanInsert ()
-        {
-            return true;
-        }
-
-        protected virtual bool CanRemove ()
-        {
-            return true;
-        }
-
-        protected virtual bool CanCopyAndPaste ()
-        {
-            return true;
-        }
-        #endregion
-
-        #region Element Management
-        #region Add
         protected bool CanAddElement ()
         {
             return CanAdd () & !HasSearch;
@@ -387,134 +461,61 @@ namespace GGS_Framework.Editor
 
         protected virtual void AddElement ()
         {
-            AddElementAtIndex (Count);
+            AddElementAtIndex (ElementCount);
         }
         #endregion
 
         #region Insert
+        protected virtual bool CanInsert ()
+        {
+            return true;
+        }
+
         protected bool CanInsertElement ()
         {
             return CanInsert () && CanAddElement ();
         }
 
-        #region Above
-        protected bool CanInsertElementAbove ()
+        protected bool CanInsertElementAboveSelection ()
         {
             if (!CanInsertElement ())
                 return false;
-            return (Selection.Length == 1);
+
+            return (Selection.Count == 1);
         }
 
-        protected virtual void InsertElementAbove ()
+        protected virtual void InsertElementAboveSelection ()
         {
             AddElementAtIndex (LatestOfSelection);
         }
-        #endregion
 
-        #region Below
-        protected bool CanInsertElementBelow ()
+        protected bool CanInsertElementBelowSelection ()
         {
             if (!CanInsertElement ())
                 return false;
-            return (Selection.Length == 1);
+
+            return (Selection.Count == 1);
         }
 
-        protected virtual void InsertElementBelow ()
+        protected virtual void InsertElementBelowSelection ()
         {
             AddElementAtIndex (LatestOfSelection + 1);
         }
         #endregion
-        #endregion
 
         #region Remove
+        protected virtual bool CanRemove ()
+        {
+            return true;
+        }
+
         protected bool CanRemoveSelection ()
         {
             return CanRemove ();
         }
 
-        protected virtual void RemoveElementSelection ()
-        {
-            DoRemoveElementSelection ();
-        }
-
-        protected abstract void DoRemoveElementSelection ();
+        protected abstract void RemoveElementSelection ();
         #endregion
-
-        #region Copy
-        protected bool CanCopyElement ()
-        {
-            if (!CanCopyAndPaste ())
-                return false;
-            return (Selection.Length == 1);
-        }
-
-        protected void CopyElement ()
-        {
-            CopiedElementHashCode = GetElementHashCode (FirstOfSelection);
-        }
-
-        protected abstract int GetCopiedElementIndex ();
-        #endregion
-
-        #region Paste
-        protected bool CanPasteElement ()
-        {
-            if (!CanCopyAndPaste () || GetCopiedElementIndex () == -1)
-                return false;
-            return true;
-        }
-
-        protected virtual void PasteElement ()
-        {
-            int copiedElementIndex = GetCopiedElementIndex ();
-        }
-        #endregion
-
-        #region General
-        protected virtual void MoveElementSelection (int insertIndex, int[] selectedIds)
-        {
-            DoMoveElementSelection (insertIndex, selectedIds);
-        }
-
-        protected abstract void DoMoveElementSelection (int insertIndex, int[] selectedIds);
-
-        protected virtual void AddElementAtIndex (int insertIndex)
-        {
-            DoAddElementAtIndex (insertIndex);
-        }
-
-        protected abstract void DoAddElementAtIndex (int insertIndex);
-        #endregion
-        #endregion
-
-        #region TreeView Shortcuts
-        protected internal void ReloadTree ()
-        {
-            treeView.Reload ();
-        }
-
-        protected internal void RepaintTree ()
-        {
-            treeView.Repaint ();
-        }
-
-        protected internal void RefreshCustomRowHeights ()
-        {
-            treeView.RefreshCustomRowHeights ();
-        }
-
-        protected void SetSelection (IList<int> ids)
-        {
-            if (ids == null)
-                ids = new List<int> ();
-
-            treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList (), TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
-        }
-
-        protected void SetSelection (IList<int> ids, TreeViewSelectionOptions options)
-        {
-            treeView.SetSelection (ids.Select (id => id + state.UniqueId).ToList (), options);
-        }
         #endregion
         #endregion
     }

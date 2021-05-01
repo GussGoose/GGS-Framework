@@ -1,74 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
-using UnityEngine;
 using Styles = GGS_Framework.Editor.ReorderableListStyles;
-using ElementOptions = GGS_Framework.Editor.ReorderableListElementOptions;
 
 namespace GGS_Framework.Editor
 {
     public abstract class NonSerializableReorderableList<TElement> : ReorderableList
     {
-        #region Class Members
-        protected List<TElement> list;
+        #region Members
+        protected List<TElement> elements;
         #endregion
 
-        #region Class Accesors
-        public override int Count
-        {
-            get { return list.Count; }
-        }
+        #region Properties
+        public override int ElementCount { get { return elements.Count; } }
         #endregion
 
         #region Constructors
-        protected NonSerializableReorderableList (ReorderableListState state, List<TElement> list, string title = "Reorderable List")
+        protected NonSerializableReorderableList (ReorderableListState state, List<TElement> elements, string title = "Reorderable List")
         {
-            this.list = list;
+            this.elements = elements;
             Initialize (state, title);
         }
         #endregion
 
-        #region Class Implementation
-        #region General
-        protected override void DoRemoveElementSelection ()
+        #region Implementation
+        protected TElement GetElementAtIndex (int index)
         {
-            List<int> selection = new List<int> (Selection);
+            return elements[index];
+        }
 
-            // Sort elements by descending 
-            if (selection.Count > 1)
-                selection.Sort ((a, b) => -1 * a.CompareTo (b));
+        protected override void AddElementAtIndex (int insertIndex)
+        {
+            AddElementAtIndex (insertIndex, CreateElementObject ());
+        }
 
-            foreach (int id in selection)
-                list.RemoveAt (id);
+        protected void AddElementAtIndex (int insertIndex, TElement value)
+        {
+            elements.Insert (insertIndex, value);
 
             ReloadTree ();
-            SetSelection (null);
-
-            onChanged?.Invoke ();
+            SetSelection (new List<int> {insertIndex});
+            ElementsListChanged?.Invoke ();
         }
-        #endregion
 
-        #region Copy
-        protected override int GetCopiedElementIndex ()
+        protected virtual TElement CreateElementObject ()
         {
-            int index = -1;
-
-            if (CopiedElementHashCode == 0)
-                return index;
-
-            // Find for element with copied hash code
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].GetHashCode () == CopiedElementHashCode)
-                    return i;
-            }
-
-            return index;
+            throw new NotImplementedException ();
+            // return Activator.CreateInstance<TElement> ();
         }
-        #endregion
 
-        #region General
-        protected override void DoMoveElementSelection (int insertIndex, int[] selectedIds)
+        protected override void MoveElementSelection (int insertIndex, int[] selectedIds)
         {
             if (insertIndex < 0)
                 return;
@@ -76,10 +57,10 @@ namespace GGS_Framework.Editor
             List<object> selection = new List<object> ();
 
             for (int i = 0; i < selectedIds.Length; i++)
-                selection.Add (list[selectedIds[i]]);
+                selection.Add (elements[selectedIds[i]]);
 
             foreach (TElement item in selection)
-                list.Remove (item);
+                elements.Remove (item);
 
             int itemsAboveInsertIndex = 0;
             foreach (int selectedElement in selectedIds)
@@ -92,7 +73,7 @@ namespace GGS_Framework.Editor
 
             selection.Reverse ();
             foreach (TElement item in selection)
-                list.Insert (insertIndex, item);
+                elements.Insert (insertIndex, item);
 
             List<int> newSelection = new List<int> ();
             for (int i = insertIndex; i < insertIndex + selection.Count; i++)
@@ -100,29 +81,24 @@ namespace GGS_Framework.Editor
 
             SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            onChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
 
-        protected override void DoAddElementAtIndex (int insertIndex)
+        protected override void RemoveElementSelection ()
         {
-            DoAddElementAtIndex (insertIndex, CreateElementObject ());
-        }
+            List<int> selection = new List<int> (Selection);
 
-        protected void DoAddElementAtIndex (int insertIndex, TElement value)
-        {
-            list.Insert (insertIndex, value);
+            // Sort elements by descending 
+            if (selection.Count > 1)
+                selection.Sort ((a, b) => -1 * a.CompareTo (b));
 
-            ReloadTree ();
-            SetSelection (new List<int> {insertIndex});
-            onChanged?.Invoke ();
-        }
+            foreach (int id in selection)
+                elements.RemoveAt (id);
 
-        protected virtual TElement CreateElementObject ()
-        {
-            Debug.LogError ("You should override this method from the derived class, unless you call DoAddElementAtIndex and create your own instance of the object.");
-            return Activator.CreateInstance<TElement> ();
+            Refresh ();
+            SetSelection (null);
+            ElementsListChanged?.Invoke ();
         }
-        #endregion
         #endregion
     }
 }

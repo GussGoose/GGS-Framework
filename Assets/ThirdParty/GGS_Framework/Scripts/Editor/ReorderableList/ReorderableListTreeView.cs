@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace GGS_Framework.Editor
 {
-    public class ReorderableListTreeView : TreeView
+    internal class ReorderableListTreeView : TreeView
     {
-        #region Class Members
+        #region Members
         private readonly ReorderableList list;
         #endregion
 
-        #region Class Accesors
+        #region Properties
         private string DragKey
         {
             get { return $"ReorderableListDrag_{UniqueId}"; }
@@ -25,7 +27,7 @@ namespace GGS_Framework.Editor
 
         private int UniqueId
         {
-            get { return list.state.UniqueId; }
+            get { return list.State.UniqueID; }
         }
 
         public bool ShowAlternatingRowBackgrounds
@@ -33,79 +35,127 @@ namespace GGS_Framework.Editor
             get { return showAlternatingRowBackgrounds; }
             set { showAlternatingRowBackgrounds = value; }
         }
+        
+        public bool ShowingScrollBar { get { return showingHorizontalScrollBar; } }
+
+        public float TotalHeight { get { return totalHeight; } }
+
+        #region Events
+        public Action<string> SearchChangedCallback { get; set; }
+
+        public Func<int, string, bool> DoesElementMatchSearchCallback { get; set; }
+
+        public Func<int, bool> CanMultiSelectCallback { get; set; }
+
+        public Action KeyboardInputChangedCallback { get; set; }
+
+        public Action<int> SingleClickedElementCallback { get; set; }
+
+        public Action<int> DoubleClickedElementCallback { get; set; }
+
+        public Action<int[]> SelectionChangedCallback { get; set; }
+
+        public Action<int> ContextClickedElementCallback { get; set; }
+
+        public Action ContextClickedOutsideElementsCallback { get; set; }
+
+        public Action<int, Rect> ElementDrawedCallback { get; set; }
+
+        public Action<int, int[]> ElementsDraggingCallback { get; set; }
+
+        public Func<int, bool> CanRenameElementCallback { get; set; }
+
+        public Func<int, Rect, Rect> GetElementRenameRectCallback { get; set; }
+
+        public Action<int, bool, string, string> ElementRenamedCallback { get; set; }
+        #endregion
         #endregion
 
-        #region Constructor
+        #region Constructors
         public ReorderableListTreeView (ReorderableList list, TreeViewState treeViewState) : base (treeViewState)
         {
             this.list = list;
+
             Reload ();
         }
         #endregion
 
-        #region Class Overrides
+        #region Implementation
         protected override TreeViewItem BuildRoot ()
         {
             TreeViewItem root = new TreeViewItem (-1, -1, "Root");
             root.children = new List<TreeViewItem> ();
 
-            for (int i = 0; i < list.Count; i++)
-                root.AddChild (new TreeViewItem (list.state.UniqueId + i, -1, "Element"));
+            for (int i = 0; i < list.ElementCount; i++)
+                root.AddChild (new TreeViewItem (list.State.UniqueID + i, -1, "Element"));
 
             return root;
         }
 
-        protected override float GetCustomRowHeight (int row, TreeViewItem item)
+        protected override void SearchChanged (string newSearch)
         {
-            int index = item.id - UniqueId;
-            return list.GetElementHeight (index);
-        }
-
-        protected override void RowGUI (RowGUIArgs args)
-        {
-            int index = args.item.id - UniqueId;
-
-            args.item.displayName = "Item";
-            list.DrawElementBase (args.rowRect, index);
-        }
-
-        protected override void ContextClickedItem (int id)
-        {
-            base.ContextClickedItem (id);
-
-            int index = id - UniqueId;
-            list.PerformRightClickElement (index);
-        }
-
-        protected override void SingleClickedItem (int id)
-        {
-            base.SingleClickedItem (id);
-
-            int index = id - UniqueId;
-            list.PerformSingleClickedItem (index);
-        }
-
-        protected override void SelectionChanged (IList<int> selectedIds)
-        {
-            base.SelectionChanged (selectedIds);
-            list.PerformSelectionChanged (selectedIds.Select (id => id - UniqueId).ToArray ());
+            SearchChangedCallback?.Invoke (newSearch);
         }
 
         protected override bool DoesItemMatchSearch (TreeViewItem item, string search)
         {
-            int index = item.id - UniqueId;
-            return list.PerformDoesElementMatchSearch (index, search);
+            return DoesElementMatchSearchCallback != null && DoesElementMatchSearchCallback (GetItemId (item), search);
         }
 
-        protected override void SearchChanged (string newSearch)
+        protected override bool CanMultiSelect (TreeViewItem item)
         {
-            list.PerformSearchChanged (newSearch);
+            return CanMultiSelectCallback != null && CanMultiSelectCallback (GetItemId (item));
         }
 
-        #region Drag
+        protected override void KeyEvent ()
+        {
+            KeyboardInputChangedCallback?.Invoke ();
+        }
+
+        protected override void SingleClickedItem (int id)
+        {
+            SingleClickedElementCallback?.Invoke (id - UniqueId);
+        }
+
+        protected override void DoubleClickedItem (int id)
+        {
+            DoubleClickedElementCallback?.Invoke (id - UniqueId);
+        }
+
+        protected override void SelectionChanged (IList<int> selectedIds)
+        {
+            SelectionChangedCallback?.Invoke (selectedIds.Select (id => id - UniqueId).ToArray ());
+        }
+
+        protected override void ContextClickedItem (int id)
+        {
+            ContextClickedElementCallback (id - UniqueId);
+        }
+
+        protected override void ContextClicked ()
+        {
+            ContextClickedOutsideElementsCallback?.Invoke ();
+        }
+
+        internal new void RefreshCustomRowHeights ()
+        {
+            base.RefreshCustomRowHeights ();
+        }
+
+        protected override float GetCustomRowHeight (int row, TreeViewItem item)
+        {
+            return list.GetElementHeight (GetItemId (item));
+        }
+
+        protected override void RowGUI (RowGUIArgs args)
+        {
+            args.item.displayName = "Item";
+            list.DrawElementBase (args.rowRect, GetItemId (args.item));
+        }
+
         protected override bool CanStartDrag (CanStartDragArgs args)
         {
-            return list.PerformCanReorder ();
+            return list.CanReorder ();
         }
 
         protected override void SetupDragAndDrop (SetupDragAndDropArgs args)
@@ -131,14 +181,14 @@ namespace GGS_Framework.Editor
             if (draggedItems == null)
                 return DragAndDropVisualMode.None;
 
-            int[] draggedIds = draggedItems.Select (item => item.id - UniqueId).ToArray ();
+            int[] draggedIds = draggedItems.Select (GetItemId).ToArray ();
 
             switch (args.dragAndDropPosition)
             {
                 case DragAndDropPosition.BetweenItems:
                 {
                     if (args.performDrop)
-                        list.PerformDrop (args.insertAtIndex, draggedIds);
+                        ElementsDraggingCallback?.Invoke (args.insertAtIndex, draggedIds);
 
                     return DragAndDropVisualMode.Move;
                 }
@@ -146,13 +196,25 @@ namespace GGS_Framework.Editor
                     return DragAndDropVisualMode.None;
             }
         }
-        #endregion
-        #endregion
 
-        #region Implementation
-        internal new void RefreshCustomRowHeights ()
+        protected override bool CanRename (TreeViewItem item)
         {
-            base.RefreshCustomRowHeights ();
+            return CanRenameElementCallback != null && CanRenameElementCallback (GetItemId (item));
+        }
+
+        protected override Rect GetRenameRect (Rect rowRect, int row, TreeViewItem item)
+        {
+            return GetElementRenameRectCallback?.Invoke (GetItemId (item), rowRect) ?? Rect.zero;
+        }
+
+        protected override void RenameEnded (RenameEndedArgs args)
+        {
+            ElementRenamedCallback?.Invoke (args.itemID - UniqueId, args.acceptedRename, args.originalName, args.newName);
+        }
+
+        private int GetItemId (TreeViewItem item)
+        {
+            return item.id - UniqueId;
         }
         #endregion
     }
