@@ -8,25 +8,27 @@ namespace GGS_Framework.Editor
     public abstract class NonSerializableReorderableList<TElement> : ReorderableList
     {
         #region Members
-        protected List<TElement> list;
+        protected List<TElement> elements;
         #endregion
 
         #region Properties
-        public override int Count
-        {
-            get { return list.Count; }
-        }
+        public override int ElementCount { get { return elements.Count; } }
         #endregion
 
         #region Constructors
-        protected NonSerializableReorderableList (ReorderableListState state, List<TElement> list, string title = "Reorderable List")
+        protected NonSerializableReorderableList (ReorderableListState state, List<TElement> elements, string title = "Reorderable List")
         {
-            this.list = list;
+            this.elements = elements;
             Initialize (state, title);
         }
         #endregion
 
         #region Implementation
+        protected TElement GetElementAtIndex (int index)
+        {
+            return elements[index];
+        }
+
         protected override void AddElementAtIndex (int insertIndex)
         {
             AddElementAtIndex (insertIndex, CreateElementObject ());
@@ -34,11 +36,11 @@ namespace GGS_Framework.Editor
 
         protected void AddElementAtIndex (int insertIndex, TElement value)
         {
-            list.Insert (insertIndex, value);
+            elements.Insert (insertIndex, value);
 
             ReloadTree ();
             SetSelection (new List<int> {insertIndex});
-            ListChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
 
         protected virtual TElement CreateElementObject ()
@@ -55,10 +57,10 @@ namespace GGS_Framework.Editor
             List<object> selection = new List<object> ();
 
             for (int i = 0; i < selectedIds.Length; i++)
-                selection.Add (list[selectedIds[i]]);
+                selection.Add (elements[selectedIds[i]]);
 
             foreach (TElement item in selection)
-                list.Remove (item);
+                elements.Remove (item);
 
             int itemsAboveInsertIndex = 0;
             foreach (int selectedElement in selectedIds)
@@ -71,7 +73,7 @@ namespace GGS_Framework.Editor
 
             selection.Reverse ();
             foreach (TElement item in selection)
-                list.Insert (insertIndex, item);
+                elements.Insert (insertIndex, item);
 
             List<int> newSelection = new List<int> ();
             for (int i = insertIndex; i < insertIndex + selection.Count; i++)
@@ -79,7 +81,7 @@ namespace GGS_Framework.Editor
 
             SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            ListChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
 
         protected override void RemoveElementSelection ()
@@ -91,11 +93,11 @@ namespace GGS_Framework.Editor
                 selection.Sort ((a, b) => -1 * a.CompareTo (b));
 
             foreach (int id in selection)
-                list.RemoveAt (id);
+                elements.RemoveAt (id);
 
             Refresh ();
             SetSelection (null);
-            ListChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
         #endregion
     }

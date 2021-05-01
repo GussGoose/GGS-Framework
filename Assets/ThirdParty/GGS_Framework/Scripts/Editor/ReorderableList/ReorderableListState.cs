@@ -116,13 +116,6 @@ namespace GGS_Framework.Editor
                 AssemblyReloadEvents.beforeAssemblyReload += UpdateStoredIDs;
             }
 
-            [MenuItem ("GGS Framework/Reorderable List/Clear All Stored IDs")]
-            private static void ClearAll ()
-            {
-                StoredIDs = string.Empty;
-                CatchStoredIDs ();
-            }
-
             public static int GetUniqueID ()
             {
                 int id = generatedIds.First ();

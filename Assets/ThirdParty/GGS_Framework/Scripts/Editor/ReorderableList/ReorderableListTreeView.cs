@@ -35,6 +35,10 @@ namespace GGS_Framework.Editor
             get { return showAlternatingRowBackgrounds; }
             set { showAlternatingRowBackgrounds = value; }
         }
+        
+        public bool ShowingScrollBar { get { return showingHorizontalScrollBar; } }
+
+        public float TotalHeight { get { return totalHeight; } }
 
         #region Events
         public Action<string> SearchChangedCallback { get; set; }
@@ -82,7 +86,7 @@ namespace GGS_Framework.Editor
             TreeViewItem root = new TreeViewItem (-1, -1, "Root");
             root.children = new List<TreeViewItem> ();
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.ElementCount; i++)
                 root.AddChild (new TreeViewItem (list.State.UniqueID + i, -1, "Element"));
 
             return root;

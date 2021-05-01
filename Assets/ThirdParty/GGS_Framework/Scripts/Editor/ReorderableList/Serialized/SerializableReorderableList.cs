@@ -14,16 +14,13 @@ namespace GGS_Framework.Editor
         #endregion
 
         #region Properties
-        public override int Count
-        {
-            get { return elements.arraySize; }
-        }
+        public override int ElementCount { get { return elements.arraySize; } }
         #endregion
 
         #region Constructors
-        protected SerializableReorderableList (ReorderableListState state, SerializedObject serializedObject, SerializedProperty elements, string title = "Reorderable List")
+        protected SerializableReorderableList (ReorderableListState state, SerializedProperty elements, string title = "Reorderable List")
         {
-            this.serializedObject = serializedObject;
+            this.serializedObject = elements.serializedObject;
             this.elements = elements;
 
             Initialize (state, title);
@@ -44,7 +41,7 @@ namespace GGS_Framework.Editor
             base.DoDraw (rect);
         }
 
-        protected SerializedProperty GetPropertyAtIndex (int index)
+        protected SerializedProperty GetElementAtIndex (int index)
         {
             return elements.GetArrayElementAtIndex (index);
         }
@@ -66,7 +63,7 @@ namespace GGS_Framework.Editor
 
             ReloadTree ();
             SetSelection (new List<int> {insertIndex});
-            ListChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
 
         protected override void MoveElementSelection (int insertIndex, int[] selectedIds)
@@ -80,8 +77,8 @@ namespace GGS_Framework.Editor
 
             for (int i = selectedIds.Length - 1; i > -1; i--)
             {
-                elements.MoveArrayElement (selectedIds[i], Count - 1);
-                selectedIds[i] = Count - selectedIds.Length + i;
+                elements.MoveArrayElement (selectedIds[i], ElementCount - 1);
+                selectedIds[i] = ElementCount - selectedIds.Length + i;
             }
 
             for (int i = 0; i < selectedIds.Length; i++)
@@ -95,7 +92,7 @@ namespace GGS_Framework.Editor
 
             SetSelection (selectedIds, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            ListChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
 
         protected override void RemoveElementSelection ()
@@ -124,7 +121,7 @@ namespace GGS_Framework.Editor
 
             Refresh ();
             SetSelection (null);
-            ListChanged?.Invoke ();
+            ElementsListChanged?.Invoke ();
         }
         #endregion
     }

@@ -15,13 +15,13 @@ namespace GGS_Framework.Editor
         private ReorderableListState state;
         private SearchField searchBar;
 
-        internal bool showContextMenuInNextDraw;
+        private bool showContextMenuInNextDraw;
         #endregion
 
         #region Properties
-        public abstract int Count { get; }
+        public abstract int ElementCount { get; }
 
-        public Action ListChanged { get; set; }
+        public Action ElementsListChanged { get; set; }
 
         public ReorderableListState State { get { return state; } }
 
@@ -51,10 +51,7 @@ namespace GGS_Framework.Editor
 
         public Action<int[]> SelectionChanged { get; set; }
 
-        public List<int> Selection
-        {
-            get { return state.SelectedIDs; }
-        }
+        public List<int> Selection { get { return state.SelectedIDs; } }
 
         public int FirstOfSelection
         {
@@ -82,6 +79,10 @@ namespace GGS_Framework.Editor
 
         public Action ContextClickedOutsideElements { get; set; }
 
+        public bool ShowingScrollBar { get { return treeView.ShowingScrollBar; } }
+        
+        public float TotalElementsHeight { get { return treeView.TotalHeight; } }
+        
         public Action<int, int[]> ElementsDragging { get; set; }
 
         public Action<int, int[]> ElementsDragged { get; set; }
@@ -206,7 +207,7 @@ namespace GGS_Framework.Editor
 
         protected internal virtual void DoDraw (Rect rect)
         {
-            if (treeView.ItemCount != Count)
+            if (treeView.ItemCount != ElementCount)
             {
                 ReloadTree ();
                 RepaintTree ();
@@ -228,7 +229,7 @@ namespace GGS_Framework.Editor
                 rects["TreeView"] = rects["TreeView"].Expand (new RectPadding (Styles.DefaultPadding, RectPaddingType.All));
             }
 
-            if (Count > 0)
+            if (ElementCount > 0)
             {
                 if (showContextMenuInNextDraw)
                 {
@@ -269,7 +270,7 @@ namespace GGS_Framework.Editor
 
             if (canSearch)
             {
-                if (Count > 0)
+                if (ElementCount > 0)
                     DrawSearchBar (rects["SearchBar"]);
             }
 
@@ -460,7 +461,7 @@ namespace GGS_Framework.Editor
 
         protected virtual void AddElement ()
         {
-            AddElementAtIndex (Count);
+            AddElementAtIndex (ElementCount);
         }
         #endregion
 

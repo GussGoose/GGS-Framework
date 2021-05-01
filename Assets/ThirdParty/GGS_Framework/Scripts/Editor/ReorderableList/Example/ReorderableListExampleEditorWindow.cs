@@ -66,7 +66,7 @@ namespace GGS_Framework.Editor.Examples
                 serializableReorderableListState = new ReorderableListState ();
 
             SerializedObject serializedObject = new SerializedObject (this);
-            serializableReorderableList = new ExampleSerializableReorderableList (serializableReorderableListState, serializedObject, serializedObject.FindProperty ("list"));
+            serializableReorderableList = new ExampleSerializableReorderableList (serializableReorderableListState, serializedObject.FindProperty ("list"));
         }
         #endregion
 
@@ -74,7 +74,7 @@ namespace GGS_Framework.Editor.Examples
         public class ExampleNonSerializableReorderableList : NonSerializableReorderableList<ReorderableListExampleClass>
         {
             #region Constructors
-            public ExampleNonSerializableReorderableList (ReorderableListState state, List<ReorderableListExampleClass> list) : base (state, list)
+            public ExampleNonSerializableReorderableList (ReorderableListState state, List<ReorderableListExampleClass> elements) : base (state, elements)
             {
                 ShowAlternatingRowBackgrounds = true;
             }
@@ -83,7 +83,7 @@ namespace GGS_Framework.Editor.Examples
             #region Implementation
             protected override bool DoesElementMatchSearch (int index, string search)
             {
-                return list[index].name.Contains (search);
+                return elements[index].name.Contains (search);
             }
 
             protected override ReorderableListExampleClass CreateElementObject ()
@@ -103,7 +103,7 @@ namespace GGS_Framework.Editor.Examples
 
                 EditorGUIUtility.labelWidth = 35;
 
-                ReorderableListExampleClass element = list[index];
+                ReorderableListExampleClass element = elements[index];
                 element.name = EditorGUI.TextField (rects["Name"], element.name);
                 element.value = EditorGUI.Slider (rects["Float"], "Value", element.value, -10, 10);
                 element.boolean = EditorGUI.Toggle (rects["Bool"], "Bool", element.boolean);
@@ -116,7 +116,7 @@ namespace GGS_Framework.Editor.Examples
         public class ExampleSerializableReorderableList : SerializableReorderableList
         {
             #region Constructors
-            public ExampleSerializableReorderableList (ReorderableListState state, SerializedObject serializedObject, SerializedProperty elements) : base (state, serializedObject, elements)
+            public ExampleSerializableReorderableList (ReorderableListState state, SerializedProperty elements) : base (state, elements)
             {
                 ShowAlternatingRowBackgrounds = true;
             }
@@ -125,7 +125,7 @@ namespace GGS_Framework.Editor.Examples
             #region Implementation
             protected override bool DoesElementMatchSearch (int index, string search)
             {
-                return GetPropertyAtIndex (index).FindPropertyRelative ("name").stringValue.Contains (search);
+                return GetElementAtIndex (index).FindPropertyRelative ("name").stringValue.Contains (search);
             }
 
             protected override void AddElementAtIndex (int insertIndex)
@@ -152,10 +152,10 @@ namespace GGS_Framework.Editor.Examples
 
                 serializedObject.Update ();
 
-                if (index >= Count)
+                if (index >= ElementCount)
                     return;
 
-                SerializedProperty property = GetPropertyAtIndex (index);
+                SerializedProperty property = GetElementAtIndex (index);
 
                 EditorGUI.PropertyField (rects["Name"], property.FindPropertyRelative ("name"), GUIContent.none);
                 EditorGUI.Slider (rects["Float"], property.FindPropertyRelative ("value"), -10, 10, "Value");
