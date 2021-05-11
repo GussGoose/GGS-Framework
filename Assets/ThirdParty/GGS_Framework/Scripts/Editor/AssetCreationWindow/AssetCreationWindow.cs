@@ -18,7 +18,9 @@ namespace GGS_Framework.Editor
 
         [SerializeField] private string creationInfoJson;
         private AssetCreationInfo creationInfoScriptableObject;
+
         private SerializedObject creationInfoSerializedObject;
+        private AssetCreationInfoEditor creationInfoEditor;
 
         [SerializeField] private AssetCreationMode creationMode;
         [SerializeField] private int batchSize;
@@ -65,7 +67,7 @@ namespace GGS_Framework.Editor
             if (HandleKeyboardEvents ())
                 return;
 
-            EditorGUIUtility.labelWidth = 60;
+            EditorGUIUtility.labelWidth = GetGUIWidth ();
             DrawGUI ();
             EditorGUIUtility.labelWidth = 0;
 
@@ -152,7 +154,15 @@ namespace GGS_Framework.Editor
                 JsonUtility.FromJsonOverwrite (creationInfoJson, creationInfoScriptableObject);
 
             if (creationInfoSerializedObject == null)
+            {
                 creationInfoSerializedObject = new SerializedObject (creationInfoScriptableObject);
+                creationInfoEditor = InitializeCreationInfoView (creationInfoSerializedObject);
+            }
+        }
+
+        protected virtual AssetCreationInfoEditor InitializeCreationInfoView (SerializedObject serializedObject)
+        {
+            return new AssetCreationInfoEditor (serializedObject);
         }
 
         private AssetCreationInfo FindCreationInfoSubAsset ()
@@ -209,9 +219,14 @@ namespace GGS_Framework.Editor
             }
         }
 
+        protected virtual float GetGUIWidth ()
+        {
+            return 60;
+        }
+
         protected virtual void DrawGUI ()
         {
-            DrawCreationInfo ();
+            DrawCreationInfoBase ();
             DrawCreationMode ();
             DrawCreationInfoList ();
 
@@ -230,28 +245,15 @@ namespace GGS_Framework.Editor
             EditorGUILayout.EndHorizontal ();
         }
 
-        private void DrawCreationInfo ()
+        private void DrawCreationInfoBase ()
         {
             EditorGUILayout.BeginVertical (EditorStyles.helpBox);
 
             float lastLabelWidth = EditorGUIUtility.labelWidth;
-            EditorGUIUtility.labelWidth = CreationInfo.GetLabelWidth ();
+            EditorGUIUtility.labelWidth = creationInfoEditor.GetLabelWidth ();
             EditorGUIUtility.wideMode = true;
 
-            SerializedProperty property = CreationInfoSerializedObject.GetIterator ();
-            if (property.NextVisible (true))
-            {
-                while (property.NextVisible (false))
-                {
-                    EditorGUI.BeginChangeCheck ();
-                    EditorGUILayout.PropertyField (property);
-                    if (EditorGUI.EndChangeCheck ())
-                    {
-                        EditorUtility.SetDirty (CreationInfoSerializedObject.targetObject);
-                        property.serializedObject.ApplyModifiedProperties ();
-                    }
-                }
-            }
+            creationInfoEditor.OnGUI ();
 
             EditorGUIUtility.wideMode = false;
             EditorGUIUtility.labelWidth = lastLabelWidth;
