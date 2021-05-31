@@ -21,7 +21,7 @@ namespace GGS_Framework.Editor
         #region Properties
         public abstract int ElementCount { get; }
 
-        public Action ElementsListChanged { get; set; }
+        public Action ElementsChanged { get; set; }
 
         public ReorderableListState State { get { return state; } }
 

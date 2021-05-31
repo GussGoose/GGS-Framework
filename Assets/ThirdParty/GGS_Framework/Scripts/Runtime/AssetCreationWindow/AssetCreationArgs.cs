@@ -36,6 +36,16 @@ namespace GGS_Framework
         #endregion
 
         #region Implementation
+        public AssetCreationArgs ()
+        {
+        }
+
+        public AssetCreationArgs (string name, int id)
+        {
+            this.name = name;
+            this.id = id;
+        }
+
         public void ValidateName (List<string> names)
         {
             if (string.IsNullOrEmpty (name) || string.IsNullOrWhiteSpace (name))

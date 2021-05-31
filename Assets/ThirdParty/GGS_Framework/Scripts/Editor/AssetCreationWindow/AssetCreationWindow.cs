@@ -112,13 +112,11 @@ namespace GGS_Framework.Editor
 
             originalWindowRect = position;
 
+            LoadCreationInfoObject ();
+
             int nextHighestId = GetCurrentHighestID () + 1;
             if (creationMode == AssetCreationMode.Single)
-                assetIDRange = new IntRange (nextHighestId, nextHighestId);
-            else
-                assetIDRange = new IntRange (nextHighestId, nextHighestId + 1);
-
-            LoadCreationInfoObject ();
+                singleCreationInfo[0].ID = nextHighestId;
         }
 
         protected virtual void Initializing (AssetCreationWindowArgs windowArgs) { }

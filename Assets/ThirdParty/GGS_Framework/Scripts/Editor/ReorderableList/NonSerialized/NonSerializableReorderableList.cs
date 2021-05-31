@@ -8,11 +8,13 @@ namespace GGS_Framework.Editor
     public abstract class NonSerializableReorderableList<TElement> : ReorderableList
     {
         #region Members
-        protected List<TElement> elements;
+        protected internal readonly List<TElement> elements;
         #endregion
 
         #region Properties
         public override int ElementCount { get { return elements.Count; } }
+
+        public List<TElement> Elements { get { return elements; } }
         #endregion
 
         #region Constructors
@@ -40,7 +42,7 @@ namespace GGS_Framework.Editor
 
             ReloadTree ();
             SetSelection (new List<int> {insertIndex});
-            ElementsListChanged?.Invoke ();
+            ElementsChanged?.Invoke ();
         }
 
         protected virtual TElement CreateElementObject ()
@@ -81,7 +83,7 @@ namespace GGS_Framework.Editor
 
             SetSelection (newSelection, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            ElementsListChanged?.Invoke ();
+            ElementsChanged?.Invoke ();
         }
 
         protected override void RemoveElementSelection ()
@@ -97,7 +99,7 @@ namespace GGS_Framework.Editor
 
             Refresh ();
             SetSelection (null);
-            ElementsListChanged?.Invoke ();
+            ElementsChanged?.Invoke ();
         }
         #endregion
     }

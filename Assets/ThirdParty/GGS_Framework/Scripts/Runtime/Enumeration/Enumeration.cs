@@ -69,7 +69,26 @@ namespace GGS_Framework
 
             return typeMatches && valueMatches;
         }
-        
+
+        public static bool operator == (Enumeration enumerationA, Enumeration enumerationB)
+        {
+            if (ReferenceEquals (enumerationA, enumerationB))
+                return true;
+
+            if (ReferenceEquals (enumerationA, null))
+                return false;
+
+            if (ReferenceEquals (enumerationB, null))
+                return false;
+
+            return enumerationA.Equals (enumerationB);
+        }
+
+        public static bool operator != (Enumeration enumerationA, Enumeration enumerationB)
+        {
+            return !(enumerationA == enumerationB);
+        }
+
         public override int GetHashCode ()
         {
             unchecked

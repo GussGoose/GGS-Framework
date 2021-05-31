@@ -150,7 +150,7 @@ namespace GGS_Framework.Editor.Examples
 
                 EditorGUIUtility.labelWidth = 35;
 
-                serializedObject.Update ();
+                SerializedObject.Update ();
 
                 if (index >= ElementCount)
                     return;
@@ -161,7 +161,7 @@ namespace GGS_Framework.Editor.Examples
                 EditorGUI.Slider (rects["Float"], property.FindPropertyRelative ("value"), -10, 10, "Value");
                 EditorGUI.PropertyField (rects["Bool"], property.FindPropertyRelative ("boolean"), new GUIContent ("Bool"));
 
-                serializedObject.ApplyModifiedProperties ();
+                SerializedObject.ApplyModifiedProperties ();
 
                 EditorGUIUtility.labelWidth = 0;
             }

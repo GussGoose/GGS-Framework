@@ -9,26 +9,28 @@ namespace GGS_Framework.Editor
     public abstract class SerializableReorderableList : ReorderableList
     {
         #region Members
-        protected readonly SerializedObject serializedObject;
-        protected readonly SerializedProperty elements;
+        protected internal readonly SerializedProperty elements;
         #endregion
 
         #region Properties
         public override int ElementCount { get { return elements.arraySize; } }
+
+        public SerializedObject SerializedObject { get { return elements?.serializedObject; } }
+
+        public SerializedProperty Elements { get { return elements; } }
         #endregion
 
         #region Constructors
         protected SerializableReorderableList (ReorderableListState state, SerializedProperty elements, string title = "Reorderable List")
         {
-            this.serializedObject = elements.serializedObject;
             this.elements = elements;
 
             Initialize (state, title);
 
             Undo.undoRedoPerformed += delegate
             {
-                serializedObject.Update ();
-                serializedObject.ApplyModifiedProperties ();
+                SerializedObject.Update ();
+                SerializedObject.ApplyModifiedProperties ();
                 Refresh ();
             };
         }
@@ -37,7 +39,7 @@ namespace GGS_Framework.Editor
         #region Implementation
         protected internal override void DoDraw (Rect rect)
         {
-            serializedObject.Update ();
+            SerializedObject.Update ();
             base.DoDraw (rect);
         }
 
@@ -55,15 +57,15 @@ namespace GGS_Framework.Editor
         {
             elements.InsertArrayElementAtIndex (insertIndex);
 
-            serializedObject.ApplyModifiedProperties ();
+            SerializedObject.ApplyModifiedProperties ();
             elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
 
-            serializedObject.ApplyModifiedPropertiesWithoutUndo ();
-            serializedObject.Update ();
+            SerializedObject.ApplyModifiedPropertiesWithoutUndo ();
+            SerializedObject.Update ();
 
             ReloadTree ();
             SetSelection (new List<int> {insertIndex});
-            ElementsListChanged?.Invoke ();
+            ElementsChanged?.Invoke ();
         }
 
         protected override void MoveElementSelection (int insertIndex, int[] selectedIds)
@@ -87,12 +89,12 @@ namespace GGS_Framework.Editor
                 selectedIds[i] = insertIndex + i;
             }
 
-            serializedObject.ApplyModifiedProperties ();
-            serializedObject.Update ();
+            SerializedObject.ApplyModifiedProperties ();
+            SerializedObject.Update ();
 
             SetSelection (selectedIds, TreeViewSelectionOptions.RevealAndFrame | TreeViewSelectionOptions.FireSelectionChanged);
             ReloadTree ();
-            ElementsListChanged?.Invoke ();
+            ElementsChanged?.Invoke ();
         }
 
         protected override void RemoveElementSelection ()
@@ -116,12 +118,12 @@ namespace GGS_Framework.Editor
                 elements.DeleteArrayElementAtIndex (id);
             }
 
-            serializedObject.ApplyModifiedProperties ();
-            serializedObject.Update ();
+            SerializedObject.ApplyModifiedProperties ();
+            SerializedObject.Update ();
 
             Refresh ();
             SetSelection (null);
-            ElementsListChanged?.Invoke ();
+            ElementsChanged?.Invoke ();
         }
         #endregion
     }
