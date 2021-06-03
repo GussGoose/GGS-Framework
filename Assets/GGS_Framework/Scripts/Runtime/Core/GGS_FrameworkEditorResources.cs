@@ -7,9 +7,9 @@ namespace GGS_Framework.Editor
     public static class GGS_FrameworkEditorResources
     {
         #region Class Implementation
-        public static Object LoadAsset<T> (string path)
+        public static Object LoadAsset<T> (string path) where T : class
         {
-            string assetPath = $"{GGS_FrameworkEditorPaths.EditorResourcesFolderFullPath}/{path}";
+            string assetPath = $"{GGS_FrameworkEditorPaths.EditorResourcesDirectoryPath}/{path}";
             return AssetDatabase.LoadAssetAtPath (assetPath, typeof (T));
         }
         #endregion
