@@ -5,7 +5,7 @@ namespace GGS_Framework.Editor
 {
     public static class ReorderableListStyles
     {
-        #region Properties
+        #region Members
         public static readonly GUISkin DarkSkin = GGS_FrameworkEditorResources.LoadAsset<GUISkin> ("ReorderableList/ReorderableList_DarkGUISkin.guiskin") as GUISkin;
         public static readonly GUISkin Lightkin = GGS_FrameworkEditorResources.LoadAsset<GUISkin> ("ReorderableList/ReorderableList_LightGUISkin.guiskin") as GUISkin;
 
