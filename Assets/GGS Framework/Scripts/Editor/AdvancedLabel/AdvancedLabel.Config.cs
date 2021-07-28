@@ -12,12 +12,12 @@ namespace GGS_Framework.Editor
             {
                 public static GUIContent Content = GUIContent.none;
                 public static GUIStyle BackgroundStyle = GUIStyle.none;
-                public static Color Color = (EditorGUIUtility.isProSkin) ? new Color (0.705f, 0.705f, 0.705f, 1) : Color.black;
+                public static Color Color = (EditorGUIUtility.isProSkin) ? EditorStyles.label.normal.textColor : Color.black;
                 public const FontStyle Style = FontStyle.Normal;
                 public const TextAnchor Alignment = TextAnchor.MiddleCenter;
                 public const TextClipping Clipping = TextClipping.Clip;
                 public const bool WordWrap = true;
-                public const int FontSize = 11;
+                public const int FontSize = 12;
             }
             #endregion
 
