@@ -1,5 +1,4 @@
-﻿using GGS_Framework.Editor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GGS_Framework
 {
@@ -11,7 +10,7 @@ namespace GGS_Framework
             #if UNITY_EDITOR
             UnityEditor.Handles.BeginGUI ();
 
-            GUIStyle textPointStyle = GGS_FrameworkEditorStyles.GeneralSkin.GetStyle ("TextPoint");
+            GUIStyle textPointStyle = Editor.GGS_FrameworkEditorStyles.GeneralSkin.GetStyle ("TextPoint");
             Vector2 size = textPointStyle.CalcSize (new GUIContent (text));
             Rect sizedRect = UnityEditor.HandleUtility.WorldPointToSizedRect (position, GUIContent.none, GUIStyle.none);
             sizedRect.size = size + Vector2.one * 2;
