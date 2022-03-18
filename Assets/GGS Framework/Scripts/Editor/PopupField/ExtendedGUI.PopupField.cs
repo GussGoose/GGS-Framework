@@ -8,14 +8,25 @@ namespace GGS_Framework.Editor
         #region Class Implementation
         public static bool PopupField (Rect rect, string label, string selected)
         {
-            return PopupField (rect, new GUIContent (label), selected);
+            return PopupField (rect, new GUIContent (label), selected, out Rect buttonRect);
         }
 
         public static bool PopupField (Rect rect, GUIContent label, string selected)
         {
-            rect = EditorGUI.PrefixLabel (rect, GUIUtility.GetControlID (FocusType.Passive), label);
+            return PopupField (rect, label, selected, out Rect buttonRect);
+        }
 
-            if (GUI.Button (rect, selected, EditorStyles.popup))
+        public static bool PopupField (Rect rect, string label, string selected, out Rect buttonRect)
+        {
+            return PopupField (rect, new GUIContent (label), selected, out buttonRect);
+        }
+
+        public static bool PopupField (Rect rect, GUIContent label, string selected, out Rect buttonRect)
+        {
+            rect.height = EditorGUIUtility.singleLineHeight;
+            buttonRect = EditorGUI.PrefixLabel (rect, GUIUtility.GetControlID (FocusType.Passive), label);
+
+            if (GUI.Button (buttonRect, selected, EditorStyles.popup))
                 return true;
 
             return false;

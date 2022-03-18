@@ -25,8 +25,8 @@ namespace GGS_Framework.Editor
         [SerializeField] private AssetCreationMode creationMode;
         [SerializeField] private int batchSize;
         [SerializeField] private bool canEditIDs = true;
-        [SerializeField] private IntRange assetIDRange;
-        [SerializeField] private List<AssetCreationArgs> singleCreationInfo = new List<AssetCreationArgs> ();
+        [SerializeField] private IntRange assetIDRange = new IntRange ();
+        [SerializeField] private List<AssetCreationArgs> singleCreationInfo = new List<AssetCreationArgs> () {new AssetCreationArgs (String.Empty, 0)};
         #endregion
 
         #region Properties
@@ -34,8 +34,8 @@ namespace GGS_Framework.Editor
 
         private string StoredWindowJson
         {
-            get { return EditorPrefs.GetString ($"AssetCreationWindow_{WindowGUID}_Json"); }
-            set { EditorPrefs.SetString ($"AssetCreationWindow_{WindowGUID}_Json", value); }
+            get { return SessionState.GetString ($"AssetCreationWindow_{WindowGUID}_Json", string.Empty); }
+            set { SessionState.SetString ($"AssetCreationWindow_{WindowGUID}_Json", value); }
         }
 
         public abstract ScriptableObject CreationInfoObjectContainer { get; }
