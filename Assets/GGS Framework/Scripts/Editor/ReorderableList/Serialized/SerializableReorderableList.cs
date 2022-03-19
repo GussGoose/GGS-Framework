@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
@@ -58,7 +59,18 @@ namespace GGS_Framework.Editor
             elements.InsertArrayElementAtIndex (insertIndex);
 
             SerializedObject.ApplyModifiedProperties ();
-            elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
+
+            try
+            {
+                elements.GetArrayElementAtIndex (insertIndex).SetValue (value);
+            }
+            catch
+            {
+                // Ignored:
+                // NullReferenceException: Object reference not set to an instance of an object
+                // GGS_Framework.Editor.SerializedPropertyExtensions.SetValueNoRecord (UnityEditor.SerializedProperty property, System.Object value)
+                // (at Assets/ThirdParty/GGS Framework/Scripts/Editor/Extensions/SerializedPropertyExtensions.cs:57)
+            }
 
             SerializedObject.ApplyModifiedPropertiesWithoutUndo ();
             SerializedObject.Update ();

@@ -27,9 +27,9 @@ namespace GGS_Framework
                 {
                     foreach (string directory in Directory.GetDirectories (currentDirectory))
                     {
-                        if (directory.Contains("."))
+                        if (directory.Contains ("."))
                             continue;
-                    
+
                         if (directory.Contains (partialPath))
                             return directory;
 
