@@ -7,7 +7,9 @@ namespace GGS_Framework
     public static class GGS_FrameworkEditorPaths
     {
         #region Members
-        public static readonly string EditorResourcesDirectoryPath = GetDirectoryWithPartialPath ("GGS Framework/EditorResources");
+        public static readonly string SystemSlash = (Application.platform == RuntimePlatform.WindowsEditor) ? "\\" : "/";
+        public static readonly string EditorResourcesDirectoryPath = GetDirectoryWithPartialPath ($"GGS Framework{SystemSlash}EditorResources");
+        public static readonly string ScriptsDirectoryPath = GetDirectoryWithPartialPath ($"GGS Framework{SystemSlash}Scripts");
         #endregion
 
         #region Implementation

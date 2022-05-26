@@ -90,7 +90,7 @@ namespace GGS_Framework.Editor
 
             OverwriteWindowFromStoredJson (window);
 
-            window.position = new Rect (windowPosition, new Vector2 (270, 200));
+            window.position = new Rect (windowPosition, new Vector2 (280, 200));
             window.ShowPopup ();
             window.Focus ();
 
@@ -183,7 +183,7 @@ namespace GGS_Framework.Editor
 
             if (Math.Abs (maxSize.y - lastRect.y + 23) > 1f)
             {
-                maxSize = new Vector2 (270, lastRect.y + 23);
+                maxSize = new Vector2 (280, lastRect.y + 23);
                 minSize = maxSize;
             }
         }
@@ -276,7 +276,9 @@ namespace GGS_Framework.Editor
             if (creationMode == AssetCreationMode.Batch)
             {
                 EditorGUILayout.BeginHorizontal ();
-                canEditIDs = GUILayout.Toggle (canEditIDs, "Editable IDs", EditorStyles.miniButton, GUILayout.Width (65));
+                GUIStyle toggleStyle = new GUIStyle (EditorStyles.miniButton);
+                toggleStyle.alignment = TextAnchor.MiddleCenter;
+                canEditIDs = GUILayout.Toggle (canEditIDs, "Editable IDs", EditorStyles.miniButton, GUILayout.Width (80));
 
                 if (canEditIDs)
                 {

@@ -1,0 +1,12 @@
+using GGS_Framework;
+
+namespace #Namespace#
+{
+    // This class was automatically generated, do not modify since all the changes you made will be lost when the Enumeration be re-written.
+    public partial class #EnumerationType# : Enumeration
+    {
+        #region Members
+        <MemberDeclaration>public static readonly #EnumerationType# #MemberName# = new #EnumerationType# (#MemberID#, nameof(#MemberName#));</MemberDeclaration>
+        #endregion
+    }
+}
